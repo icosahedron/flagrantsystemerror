@@ -14,6 +14,12 @@ h1, h2, h3 {
 	margin:.2em 0 .8em 0;
 	padding:0;
 }
+
+h2 {
+    font-size:18px;
+    line-height:27px;
+}
+
 p {
 	margin:.4em 0 .8em 0;
 	padding:0;
