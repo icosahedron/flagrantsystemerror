@@ -20,10 +20,11 @@
 	<div class="colleft">
 	  <div class="col1">
 		<!-- Column 1 start -->
-            <h3>Content Goes Here</h3>
+            <h2>Content Goes Here</h2>
             <p>Welcome to the inaugural post of flagrantsystemerror.com.</p>
             <p>This website is intended to blog the more technical aspects of my projects.  The hobbit-hole.org never seemed the right place for that kind of stuff.  I intended to use <a href="http://www.hobbit-hole.org">hobbit-hole.org</a> to blog my RPG and writing pursuits, but it mostly seemed about programming.</p>
         <p>This website is also a static website.  It's not using anything to generate the site dynamically; the site is just static html files.  For now, these files are written by hand.  However, I'm looking into using site generation tool similar to <a href="http://hyde.github.com/">Hyde</a> or <a href="https://github.com/caolan/petrify">Petrify</a>.  If you have any suggestions, I'd like to hear them.</p>
+        <p>I'm using git to maintain the website.  <a href="http://toroid.org/ams/git-website-howto">Instructions</a> to do so are straightforward with one caveat.  I put the website repository in ~/flagrant.git and the site directory in ~/flagrant (which is where the post-receive hook checked the site out to).  When I pushed, the site directory wasn't updated and I received the error <pre>remote: fatal: Could not jump back into original cwd: No such<br/>    file or directory</pre>  Fortunately someone else had seen this <a href="http://stackoverflow.com/a/8513916">error</a> and posted the solution on Stack Overflow.  Changing the checkout dir to flagrant.www works fine.</p>
 		<!-- Column 1 end -->
 	  </div>
 	  <div class="col2">
