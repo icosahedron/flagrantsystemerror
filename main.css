@@ -20,6 +20,11 @@ h2 {
     line-height:27px;
 }
 
+h3 { 
+    font-size:16px;
+    line-height:24px;
+}
+
 p {
 	margin:.4em 0 .8em 0;
 	padding:0;
@@ -115,6 +120,12 @@ img {
 .leftmenu .col2 a:hover {
    color:#fff;
    text-decoration:none;
+}
+
+#dsq-content {
+    margin: 100px 0 0 0;
+    font-size:13px;
+    line-height:20px;
 }
 
 /* Footer styles */
