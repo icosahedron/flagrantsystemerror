@@ -51,7 +51,38 @@
         <br/>
         <p><a href="http://www.flagrantsystemerror.com/archive.html">ARCHIVE</a></p>
         <p><a href="http://www.flagrantsystemerror.com/projects.html">PROJECTS</a></p>
-		<!-- Column 2 end -->
+        <br/>
+        <br/>
+        <br/>
+<script src="widget.js"></script>
+<script>
+new TWTR.Widget({
+  version: 2,
+  type: 'profile',
+  rpp: 4,
+  interval: 30000,
+  width: 172,
+  height: 300,
+  theme: {
+    shell: {
+      background: '#206da8',
+      color: '#dbdef0'
+    },
+    tweets: {
+      background: '#206da8',
+      color: '#dbdef0',
+      links: '#ffffff'
+    }
+  },
+  features: {
+    scrollbar: true,
+    loop: true,
+    live: true,
+    behavior: 'default'
+  }
+}).render().setUser('icosahedron').start();
+</script>
+        <!-- Column 2 end -->
 	  </div>
 	</div>
   </div>

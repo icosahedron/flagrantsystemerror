@@ -134,6 +134,7 @@ img {
 	float:left;
 	width:100%;
 }
+
 #footer p {
 	padding:10px;
 	margin:100px 0 0 0;
@@ -153,4 +154,12 @@ img {
    color: #fff;
    text-decoration: underline;
    text-decoration-style: dashed;
+}
+
+.twtr-widget {
+   left: 17px;
+}
+
+a.twtr-join-conv {
+    font-size:10px;
 }
