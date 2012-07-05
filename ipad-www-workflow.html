@@ -11,6 +11,12 @@
   <title>Flagrant System Error - iPad Web Authoring Workflow</title>
 </head>
 <body>
+  <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready( function() {
+      $("#sidebar").load("sidebar.html");
+    });
+  </script>
 
 <div id="fixed">
   <div id="header">
@@ -133,14 +139,7 @@
 	  </div>
 	  <div class="col2">
 		<!-- Column 2 start -->
-        <p>By JAY KINT</p>
-        <br/>
-        <p><a href="http://www.flagrantsystemerror.com/archive.html">ARCHIVE</a></p>
-        <p><a href="http://www.flagrantsystemerror.com/colophon.html">COLOPHON</a></p>
-        <p><a href="http://www.flagrantsystemerror.com/projects.html">PROJECTS</a></p>
-        <br/>
-        <br/>
-        <br/>
+		<div id="sidebar"></div>
 <script src="widget.js"></script>
 <script>
 new TWTR.Widget({
