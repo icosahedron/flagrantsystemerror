@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<rss version="2.0">
+
+<channel xmlns:atom="http://www.w3.org/2005/Atom">
+
+    <title>Flagrant System Error</title>
+    <link>http://flagrantsystemerror.com</link>
+    <description>Technical musings from Jay Kint, a developer of little renown.</description>
+    <category>Programming</category>
+    <category>programming languages</category>
+    <language>en-us</language>
+    <copyright>(c) 2013 Jay Kint</copyright>
+    <webMaster>jkint@flagrantsystemerror.com (Jay Kint)</webMaster>
+    <atom:link href="http://flagrantsystemerror.com/rss.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+        <title>Content Goes Here</title>
+        <link>http://flagrantsystemerror.com/content-goes-here.html</link>
+        <description>Welcome to flagrantsystemerror.com.  This is the inaugural post.</description>
+        <author>jkint@flagrantsystemerror.com (Jay Kint)</author>
+        <guid>http://flagrantsystemerror.com/content-goes-here.html</guid>
+    </item>
+
+</channel>
+</rss>
