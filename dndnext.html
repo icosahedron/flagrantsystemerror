@@ -15,6 +15,7 @@
   <script type="text/javascript">
     $(document).ready( function() {
       $("#sidebar").load("sidebar.html");
+      $("#footer").load("footer.html");
     });
   </script>
 
@@ -33,41 +34,11 @@
 	  <div class="col2">
 		<!-- Column 2 start -->
 		<div id="sidebar"></div>
-<script src="widget.js"></script>
-<script>
-new TWTR.Widget({
-  version: 2,
-  type: 'profile',
-  rpp: 4,
-  interval: 30000,
-  width: 172,
-  height: 300,
-  theme: {
-    shell: {
-      background: '#206da8',
-      color: '#dbdef0'
-    },
-    tweets: {
-      background: '#206da8',
-      color: '#dbdef0',
-      links: '#ffffff'
-    }
-  },
-  features: {
-    scrollbar: true,
-    loop: true,
-    live: true,
-    behavior: 'default'
-  }
-}).render().setUser('icosahedron').start();
-</script>
         <!-- Column 2 end -->
 	  </div>
 	</div>
   </div>
-  <div id="footer">
-      <p>CSS from <a href="http://matthewjamestaylor.com/blog/ultimate-2-column-left-menu-pixels.htm">James Taylor</a>.  Title graphic from <a href="http://www.homestarrunner.com/sbemail50.html">Homestar Runner SB E-mail 50</a>.</p>
-  </div>
+  <div id="footer"></div>
 </div>
 </body>
 </html>
