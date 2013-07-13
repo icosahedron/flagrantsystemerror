@@ -49,5 +49,14 @@
         <pubDate>28 Jan 2013 12:00 PST</pubDate>
     </item>
 
+    <item>
+        <title>Website Deployments to S3 via Git and EC2</title>
+        <link>http://www.flagrantsystemerror.com/git-sync-ec2.html</link>
+        <description>Deploying a static site to Amazon S3 with Git and a dynamic EC2 instance.</description>
+        <author>jkint@flagrantsystemerror.com (Jay Kint)</author>
+        <guid>http://www.flagrantsystemerror.com/git-sync-ec2.html</guid>
+        <pubDate>12 Jul 2013 12:00 PST</pubDate>
+    </item>
+
 </channel>
 </rss>
