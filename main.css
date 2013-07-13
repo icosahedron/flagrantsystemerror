@@ -168,3 +168,11 @@ img {
 a.twtr-join-conv {
     font-size:10px;
 }
+
+pre {
+    overflow: auto;
+    width: auto;
+    border: 1px solid #CCCCCC;
+    border-width: 1px 0;
+    padding: 10px;
+}
