@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+  <meta name="author" content="Jay Kint" >
+  <meta name="description" content="Flagrant System Error" >
+  <meta name="keywords" content="programming" >
+  <meta name="robots" content="index, follow" />
+  <link href="main.css" rel="stylesheet" type="text/css" >
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <title>Flagrant System Error</title>
+</head>
+<body>
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+$(document).ready( function() {
+  $("#sidebar").load("sidebar.html");
+  $("#footer").load("footer.html");
+});
+</script>
+
+<div id="fixed">
+  <div id="header">
+  </div>
+
+  <div class="colmask leftmenu">
+	<div class="colleft">
+	  <div class="col1" id="article">
+		<!-- Column 1 start -->
+<h1>The Last Configuration Reader <em>I</em> Will Ever Need</h1>
+
+<p>While working on my unit tests, I ran into a problem loading test data from a configuration file using the default <a href="http://msdn.microsoft.com/en-us/library/microsoft.visualstudio.testtools.unittesting.testconfiguration.aspx">TestConfiguration</a> object. After failing to diagnose the problem, I ventured on my own to loading the test configuration data.</p>
+
+<p>Loading settigs from configuration files in .NET is tried and true practice. Many articles have been written and the .NET framework has an <a href="http://msdn.microsoft.com/en-us/library/System.Configuration.aspx">entire namespace</a> devoted to managing configuration information.</p>
+
+<p>During my research into loading configurations, I stumbled across an <a href="https://sites.google.com/site/craigandera/craigs-stuff/clr-workings/the-last-configuration-section-handler-i-ll-ever-need">article</a> by Craig Andera about loading settings directly into an object using the XmlSerializer. This technique has proven quite popular<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
+
+<p>The configurations for my tests were pretty simple. Each test had a section in the app.config named after the test. Within the test's section were common elements shared by all the tests.</p>
+
+<pre><code>&lt;configuration&gt;
+  &lt;configSections&gt;
+    &lt;section name="MyTest" type="MySoftware.XmlSerializerSectionHandler, MyTestAssembly" /&gt;
+  &lt;/configSections&gt;
+  ...
+  &lt;MyTest type="TestCsvConfig, MyTestsAssembly"&gt;
+    &lt;Data&gt;file1.csv&lt;/Data&gt;
+    &lt;Results&gt;results1.csv&lt;/Results&gt;
+  &lt;/MyTest&gt;
+  &lt;MyTest2 type="TestCsvConfig, MyTestsAssembly"&gt;
+    &lt;Data&gt;file2.csv&lt;/Data&gt;
+    &lt;Results&gt;results2.csv&lt;/Results&gt;
+  &lt;/MyTest2&gt;
+&lt;/configuration&gt;
+</code></pre>
+
+<p>These configurations are identical other than the names of the sections they're in.  Since they're identical, we want to load these into the same type, TestCsvConfig, as mentioned in the type attribute.  (I load the data into some objects from a .csv file, operate on it, and then compare it to data loaded from another .csv file.)</p>
+
+<pre><code>public class TestCsvConfig
+{
+    // data to load into the database
+    public property Data { get; set; }
+    // data to compare against to verify results
+    public property Results { get: set; }
+}
+</code></pre>
+
+<p>However, while each test has the same parameters, they can't have the same name in the config file.  (Well, technically they could, but it would be a pain.)</p>
+
+<p>The problem with using the <code>XmlSerializerSectionHandler</code> as written is that it loads XML sections that match the type name only.    To get it to read from arbitrary sections, we must set the root node in an override.</p>
+
+<pre><code>public class XmlSerializerSectionHandler : IConfigurationSectionHandler
+{
+    public object Create(
+         object parent,
+         object configContext,
+         System.Xml.XmlNode section)
+    {
+        // read the type name of the object to marshall the data into
+        XPathNavigator nav = section.CreateNavigator();
+        string typename = (string)nav.Evaluate("string(@type)");
+        Type t = Type.GetType(typename);
+        XmlAttributes attrs = new XmlAttributes();
+
+        // establish the overrides necessary for the root node to be named differently
+        XmlRootAttribute rootAttr = new XmlRootAttribute(section.Name);
+        attrs.XmlRoot = rootAttr;
+        XmlAttributeOverrides overrides = new XmlAttributeOverrides();
+        overrides.Add(t, attrs);
+
+        // marshall the XML into the object
+        XmlSerializer ser = new XmlSerializer(t, overrides);
+        XmlNodeReader nodeReader = new XmlNodeReader(section);
+        return ser.Deserialize(nodeReader);
+    }
+}
+</code></pre>
+
+<p>Add four little lines to establish the root node, and voilà, now we can use sections with different names.</p>
+
+<p>To use it is easy peasy:</p>
+
+<pre><code>   TestCsvConfig config = (TestCsvConfig) ConfigurationManager.GetSection("MyTest2");
+</code></pre>
+
+<p>Now I can easily store test configurations within the app.config and easily retrieve it by test name.</p>
+
+<p><em>This software is licensed under the same license as Mr. Andera's original software.</em></p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>The following articles also reference XmlSerializerSectionHandler: http://haacked.com/archive/2004/06/24/verylastconfigurationsectionhandler.aspx, http://stackoverflow.com/questions/2984432/how-to-read-in-a-list-of-custom-configuration-objects, http://blogs.msdn.com/b/dotnetinterop/archive/2005/02/12/371588.aspx<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+		<!-- Column 1 end -->
+	  </div>
+	  <div class="col2">
+		<!-- Column 2 start -->
+		<div id="sidebar"></div>
+        <!-- Column 2 end -->
+	  </div>
+	</div>
+  </div>
+  <div id="footer"></div>
+</div>
+</body>
+</html>
