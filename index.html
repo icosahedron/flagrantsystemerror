@@ -1,45 +1,84 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
 <head>
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
-  <meta name="author" content="Jay Kint" >
-  <meta name="description" content="Flagrant System Error" >
-  <meta name="keywords" content="artifice, rpg, games, programming" >
-  <meta name="robots" content="index, follow" />
-  <link href="main.css" rel="stylesheet" type="text/css" >
-  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-  <title>Flagrant System Error</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+    <meta name="author" content="Jay Kint" >
+    <meta name="description" content="Flagrant System Error" >
+    <meta name="keywords" content="artifice, programming langauges, scheme, web development, programming, database, sql server" >
+    <meta name="robots" content="index, follow" />
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.1/pure-min.css">
+    <link rel="stylesheet" href="common.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <title>Flagrant System Error</title>
 </head>
 <body>
-<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+
+<div id="cover">Loading core dump...</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript">
+
+function set_credit_at_bottom()
+{
+    $("#footer").css("margin-top", Math.max( 100, $(window).height() - $("#header").height() - $("#content").height() - $("#credits").height()));
+}
+
 $(document).ready( function() {
-  $("#sidebar").load("sidebar.html");
-  $("#footer").load("footer.html");
-  $("#content").load("last_config_reader.html #article")
+
+	$(window).on('hashchange', function() {
+	  	$("#post").load(window.location.hash.substring(1)+".html", function() {
+	  	  set_credit_at_bottom();
+ 		  $('html, body').scrollTop(0,0);
+	  	});
+  	});
+  
+	if( window.location.hash == "" ) {
+		window.location.hash = "front";
+	}
+
+	$("#post").load(window.location.hash.substring(1)+".html", function() {
+	  $("#sidebar").load("sidebar.html", function() {
+		$("#credits").load("credits.html", function() {
+			set_credit_at_bottom();
+		});
+      });
+	});
+});
+
+$(window).on('load', function() {
+  $("#cover").fadeOut(500);
 });
 </script>
 
-<div id="fixed">
-  <div id="header">
-  </div>
+<div class="middle">
 
-  <div class="colmask leftmenu">
-	<div class="colleft">
-	    <div id="content"></div>
-<!--         <div class="col1" id="article"> -->
-		<!-- Column 1 start -->
-		  <!-- article goes here. -->
-		<!-- Column 1 end -->
-<!-- 	  </div> -->
-	  <div class="col2">
-		<!-- Column 2 start -->
-		<div id="sidebar"></div>
-        <!-- Column 2 end -->
-	  </div>
-	</div>
-  </div>
-  <div id="footer"></div>
+<div id="header">
+    <div class="pure-g">
+    	<div class="pure-u-1"><img src="images/flagrant_system_error_banner.jpg" width="100%"></div>
+    </div>
 </div>
+
+<div id="content">
+    <div class="pure-g">
+        <div class="pure-u-1-5">
+        	<div id="sidebar">
+    	    </div>
+        </div>
+        <div class="pure-u-4-5">
+        	<div id="post">
+    	    </div>
+        </div>
+    </div>
+</div>
+
+<div id="footer">
+    <div class="pure-g">
+    	<div class="pure-u-1" id="credits">
+    	</div>
+    </div>
+</div>
+
+</div>
+
 </body>
 </html>

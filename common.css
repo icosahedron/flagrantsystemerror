@@ -1,0 +1,119 @@
+
+body {
+    background: #206da8 center
+}
+
+#cover {
+	position: fixed; height: 100%; width: 100%; top:0; left: 0; background: #206da8; z-index:9999; 
+    font-size: 60px; text-align: center; padding-top: 200px; color: #fff;
+}
+
+.middle {
+	margin: auto; /* center in viewport */
+	width: 960px;
+	font-family: Verdana, sans-serif;
+	color: #dbdef0;
+}
+
+#content .pure-g .pure-u-1-5 {
+    float: left;    
+}
+
+#content .pure-g .pure-u-4-5 {
+    float: right;
+}
+
+#title {
+	margin: 30px 0 0 0;
+	text-align: left;
+}
+
+#sidebar {
+	margin-right: 25px;
+	text-align: right;
+	min-height: 100%;
+}
+
+#sidebar a {
+	text-decoration: none;
+    color: #dbdef0;
+}
+
+#sidebar a:hover {
+	color: #fff;
+}
+
+#post {
+	margin-left: 25px;
+	margin-right: 50px;
+	text-align: left;
+}
+
+#post a {
+    color: #dbdef0;
+}
+
+#post a:hover {
+	color: #fff;	
+}
+
+#footer {	
+	margin-top: 100px;
+}
+
+#credits {
+	text-align: center;
+	vertical-align: middle;
+	font-size: 12px;
+}
+
+#credits p {
+	font-size:  12px;
+}
+
+#credits a {
+    color: #dbdef0;
+}
+
+#credits a:hover {
+	color:  #fff;
+}
+
+h1, h2, h3 {
+	margin:.2em 0 .8em 0;
+	padding:0;
+}
+
+h1 {
+	font-size: 22px;
+	line-height: 30px;
+}
+
+h2 {
+    font-size:18px;
+    line-height:27px;
+}
+
+h3 { 
+    font-size:16px;
+    line-height:24px;
+}
+
+p {
+   	font-size:15px;
+	line-height:24px;
+	margin:.4em 0 .8em 0;
+	padding:0;
+}
+
+img {
+	margin:10px 0 5px;
+}
+
+pre {
+    overflow: auto;
+    width: auto;
+    border: 1px solid #CCCCCC;
+    border-width: 1px 0;
+    padding: 10px;
+}
