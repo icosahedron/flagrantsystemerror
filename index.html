@@ -6,7 +6,7 @@
     <meta name="description" content="Flagrant System Error" >
     <meta name="keywords" content="artifice, programming langauges, scheme, web development, programming, database, sql server" >
     <meta name="robots" content="index, follow" />
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.1/pure-min.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
     <link rel="stylesheet" href="common.css">
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <title>Flagrant System Error</title>
@@ -23,8 +23,18 @@ function set_credit_at_bottom()
     $("#footer").css("margin-top", Math.max( 100, $(window).height() - $("#header").height() - $("#content").height() - $("#credits").height()));
 }
 
-$(document).ready( function() {
+var coverFaded = false;
 
+function fade_in_cover() 
+{
+    if( !coverFaded ) {
+        $("#cover").fadeOut(500);
+    }
+    coverFaded = true;
+}
+
+$(document).ready( function() {
+    
 	$(window).on('hashchange', function() {
 	  	$("#post").load(window.location.hash.substring(1)+".html", function() {
 	  	  set_credit_at_bottom();
@@ -40,14 +50,16 @@ $(document).ready( function() {
 	  $("#sidebar").load("sidebar.html", function() {
 		$("#credits").load("credits.html", function() {
 			set_credit_at_bottom();
-		});
+			fade_in_cover();
+  		});
       });
 	});
+	
+    $(window).on('load', function() {
+        fade_in_cover();
+    });
 });
 
-$(window).on('load', function() {
-  $("#cover").fadeOut(500);
-});
 </script>
 
 <div class="middle">

@@ -3,6 +3,13 @@ body {
     background: #206da8 center
 }
 
+body,
+.pure-g [class *= "pure-u"],
+.pure-g-r [class *= "pure-u"] {
+    /* Add your font in here, whether it's a custom font or a normal font */
+    font-family: Verdana, Georgia, Times, "Times New Roman", serif;
+}
+
 #cover {
 	position: fixed; height: 100%; width: 100%; top:0; left: 0; background: #206da8; z-index:9999; 
     font-size: 60px; text-align: center; padding-top: 200px; color: #fff;
@@ -11,7 +18,6 @@ body {
 .middle {
 	margin: auto; /* center in viewport */
 	width: 960px;
-	font-family: Verdana, sans-serif;
 	color: #dbdef0;
 }
 
@@ -110,7 +116,7 @@ img {
 	margin:10px 0 5px;
 }
 
-pre {
+#post pre {
     overflow: auto;
     width: auto;
     border: 1px solid #CCCCCC;
