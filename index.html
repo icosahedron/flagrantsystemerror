@@ -23,14 +23,14 @@ function set_credit_at_bottom()
     $("#footer").css("margin-top", Math.max( 100, $(window).height() - $("#header").height() - $("#content").height() - $("#credits").height()));
 }
 
-var coverFaded = false;
+var windowLoaded = false;
+var contentLoaded = false;
 
 function fade_in_cover() 
 {
-    if( !coverFaded ) {
+    if( windowLoaded && contentLoaded ) {
         $("#cover").fadeOut(500);
     }
-    coverFaded = true;
 }
 
 $(document).ready( function() {
@@ -50,12 +50,14 @@ $(document).ready( function() {
 	  $("#sidebar").load("sidebar.html", function() {
 		$("#credits").load("credits.html", function() {
 			set_credit_at_bottom();
+			contentLoaded = true;
 			fade_in_cover();
   		});
       });
 	});
 	
     $(window).on('load', function() {
+        windowLoaded = true;
         fade_in_cover();
     });
 });
