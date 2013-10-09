@@ -8,7 +8,7 @@
 
 <p>The configurations for my tests were pretty simple. Each test had a section in the app.config named after the test. Within the test's section were common elements shared by all the tests.</p>
 
-<pre><code>&lt;configuration&gt;
+<div class="codeblock">&lt;configuration&gt;
   &lt;configSections&gt;
     &lt;section name="MyTest" type="MySoftware.XmlSerializerSectionHandler, MyTestAssembly" /&gt;
   &lt;/configSections&gt;
@@ -22,24 +22,24 @@
     &lt;Results&gt;results2.csv&lt;/Results&gt;
   &lt;/MyTest2&gt;
 &lt;/configuration&gt;
-</code></pre>
+</div>
 
 <p>These configurations are identical other than the names of the sections they're in.  Since they're identical, we want to load these into the same type, TestCsvConfig, as mentioned in the type attribute.  (I load the data into some objects from a .csv file, operate on it, and then compare it to data loaded from another .csv file.)</p>
 
-<pre><code>public class TestCsvConfig
+<div class="codeblock">public class TestCsvConfig
 {
     // data to load into the database
     public property Data { get; set; }
     // data to compare against to verify results
     public property Results { get: set; }
 }
-</code></pre>
+</div>
 
 <p>However, while each test has the same parameters, they can't have the same name in the config file.  (Well, technically they could, but it would be a pain.)</p>
 
 <p>The problem with using the <code>XmlSerializerSectionHandler</code> as written is that it loads XML sections that match the type name only.    To get it to read from arbitrary sections, we must set the root node in an override.</p>
 
-<pre><code>public class XmlSerializerSectionHandler : IConfigurationSectionHandler
+<div class="codeblock">public class XmlSerializerSectionHandler : IConfigurationSectionHandler
 {
     public object Create(
          object parent,
@@ -64,14 +64,14 @@
         return ser.Deserialize(nodeReader);
     }
 }
-</code></pre>
+</div>
 
 <p>Add four little lines to establish the root node, and voilà, now we can use sections with different names.</p>
 
 <p>To use it is easy peasy:</p>
 
-<pre><code>   TestCsvConfig config = (TestCsvConfig) ConfigurationManager.GetSection("MyTest2");
-</code></pre>
+<div class="codeblock">   TestCsvConfig config = (TestCsvConfig) ConfigurationManager.GetSection("MyTest2");
+</div>
 
 <p>Now I can easily store test configurations within the app.config and easily retrieve it by test name.</p>
 

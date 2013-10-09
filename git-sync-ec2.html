@@ -36,13 +36,13 @@
 
 <p>Installation instructions are found at the <a href="http://github.com/aws/aws-cli">github repo</a>.  I was able to use the dead simple pip:</p>
 
-<pre><code>pip install awscli
-</code></pre>
+<div class="codeblock">pip install awscli
+</div>
 
 <p>and I set my AWS credentials in the file ~/.awscli using my .bashrc/.zshenv:</p>
 
-<pre><code>export AWS_CONFIG_FILE=~/.awscli
-</code></pre>
+<div class="codeblock">export AWS_CONFIG_FILE=~/.awscli
+</div>
 
 <h3>Set to Deploy! (Remote)</h3>
 
@@ -50,8 +50,8 @@
 
 <p>There is one caveat; files copied to S3 should have a content type associated with them.  Websites have different files and therefore different content types.  The simplest option is to issue one S3 command for each file type:</p>
 
-<pre><code>find . -type f -name '*.html' | sed -e "s/\.\///g" | xargs -I xxxyyyzzz aws s3 put-object --bucket "flagrantsystemerror.com" --key "xxxyyyzzz" --body "xxxyyyzzz" --content-type "text/html"
-</code></pre>
+<div class="codeblock">find . -type f -name '*.html' | sed -e "s/\.\///g" | xargs -I xxxyyyzzz aws s3 put-object --bucket "flagrantsystemerror.com" --key "xxxyyyzzz" --body "xxxyyyzzz" --content-type "text/html"
+</div>
 
 <p>This command line is hopefully straightforward.  It will find all the .html files, uses sed to strip the leading './' from the path returned by find, followed by copying the file to S3 (in this case, the bucket for this website, flagrantsystemerror.com) using aws-cli.  (The xxxyyyzzz is the symbol for substitution of the filename.)  You will want to run this command for each file type in your website.</p>
 
@@ -63,7 +63,7 @@
 
 <p>Here we use the post-receive hook to update the website after a push has been received.</p>
 
-<pre><code>#!/bin/sh
+<div class="codeblock">#!/bin/sh
 export AWS_CONFIG_FILE=~/.awscli
 # the following two lines are for remote repositories
 GIT_WORK_TREE=~/www/flagrant.www git checkout -f
@@ -75,7 +75,7 @@ find . -type f -name "*.png" | sed -e "s/\.\///g" | xargs -I xxxyyyzzz aws s3 pu
 find . -type f -name '*.css' | sed -e "s/\.\///g" | xargs -I xxxyyyzzz aws s3 put-object --bucket "flagrantsystemerror.com" --key "xxxyyyzzz" --body "xxxyyyzzz" --content-type "text/css"
 find . -type f -name '*.xml' | sed -e "s/\.\///g" | xargs -I xxxyyyzzz aws s3 put-object --bucket "flagrantsystemerror.com" --key "xxxyyyzzz" --body "xxxyyyzzz" --content-type "text/xml"
 find . -type f -name '*.ico' | sed -e "s/\.\///g" | xargs -I xxxyyyzzz aws s3 put-object --bucket "flagrantsystemerror.com" --key "xxxyyyzzz" --body "xxxyyyzzz" --content-type "text/x-icon"
-</code></pre>
+</div>
 
 <p>The script above checks the site out to a directory on the server and then copies the files using the previously installed aws-cli tools.  <strong>Note: It is hopefully obvious, but maybe not; the above hook will <em>not</em> copy all the files in the repository, only those types listed (e.g., README.TXT would not be copied to S3).</strong> You will want to verify that all the necessary files types that your site needs are represented.</p>
 
@@ -120,29 +120,29 @@ Developer site.  Verify that you can connect to it.  These instructions assume y
 
 <p>First, start the instance:</p>
 
-<pre><code>aws ec2 start-instances --instance-ids &lt;instance id&gt;
-</code></pre>
+<div class="codeblock">aws ec2 start-instances --instance-ids &lt;instance id&gt;
+</div>
 
 <p>Next, to push the local repo.</p>
 
 <p>But we have to know where to push, so look up the name:</p>
 
-<pre><code>aws ec2 describe-instances --instance-ids &lt;instance id&gt; | jq ".Reservations[0].Instances[0].PublicDnsName"
-</code></pre>
+<div class="codeblock">aws ec2 describe-instances --instance-ids &lt;instance id&gt; | jq ".Reservations[0].Instances[0].PublicDnsName"
+</div>
 
 <p>If you're using ssh, unfortunately you cannot specify an identity file using git, so either you will have to login with your account password when prompted or create an entry in the ssh config (this can be easily done with the storm tool installed above).</p>
 
 <p>Push the repo.  You might want to add a test commit to make sure there is something to push.  Otherwise nothing will be pushed and the deploy will not be run.</p>
 
-<pre><code>git push ssh://user@&lt;instance name&gt;/~/&lt;path to repo&gt;
-</code></pre>
+<div class="codeblock">git push ssh://user@&lt;instance name&gt;/~/&lt;path to repo&gt;
+</div>
 
 <p>During the push you should see the messages of your website being updated.</p>
 
 <p>Stopping the instance is likewise done with the aws-cli command line:</p>
 
-<pre><code>aws ec2 stop-instances --instance-ids &lt;instance id&gt;
-</code></pre>
+<div class="codeblock">aws ec2 stop-instances --instance-ids &lt;instance id&gt;
+</div>
 
 <h3>Git Repo Setup (Local)</h3>
 
@@ -169,8 +169,8 @@ Developer site.  Verify that you can connect to it.  These instructions assume y
 
 <p>You can set each of these with the following command template:</p>
 
-<pre><code>git config --local sync-ec2.instance-id i-YYYYYY
-</code></pre>
+<div class="codeblock">git config --local sync-ec2.instance-id i-YYYYYY
+</div>
 
 <p>I suggest using local settings since every repository is likely to have different configurations.  Remember to put values in quotes to avoid shell expansion.</p>
 
@@ -178,8 +178,8 @@ Developer site.  Verify that you can connect to it.  These instructions assume y
 
 <p>Last, to make it part of the git workflow, add an alias for push-ec2:</p>
 
-<pre><code>git config --local alias.push-ec2 \!git-push-ec2.sh
-</code></pre>
+<div class="codeblock">git config --local alias.push-ec2 \!git-push-ec2.sh
+</div>
 
 <p>Note: the ! in front of the alias is necessary or otherwise git will complain about the alias not expanding to a proper git command.</p>
 
@@ -191,8 +191,8 @@ Developer site.  Verify that you can connect to it.  These instructions assume y
 
 <p>Simply set the alias:</p>
 
-<pre><code>git config --local alias.pull-ec2 \!git-pull-ec2.sh
-</code></pre>
+<div class="codeblock">git config --local alias.pull-ec2 \!git-pull-ec2.sh
+</div>
 
 <p>and voilà, you can pull just as easily as push.</p>
 
@@ -200,17 +200,17 @@ Developer site.  Verify that you can connect to it.  These instructions assume y
 
 <p>You've probably noticed the prompt:</p>
 
-<pre><code>The authenticity of host 'ec2-nn-nn-nn-nn.us-west-2.compute.amazonaws.com (nn.nn.nn.nn)' can't be established.
+<div class="codeblock">The authenticity of host 'ec2-nn-nn-nn-nn.us-west-2.compute.amazonaws.com (nn.nn.nn.nn)' can't be established.
 RSA key fingerprint is 9e:c8:28:18:04:8d:b0:90:99:93:4f:e4:ad:3a:d9:a5.
 Are you sure you want to continue connecting (yes/no)?
-</code></pre>
+</div>
 
 <p>Since the EC2 instance names are constantly changing, you will see this warning each and every time you push.  I was tired of seeing it, so I turned it off.</p>
 
 <p>To turn the warning off, you can add the following line to your ~/.ssh/config file.</p>
 
-<pre><code>StrictHostKeyChecking no
-</code></pre>
+<div class="codeblock">StrictHostKeyChecking no
+</div>
 
 <p><em> Note: This is not a good security practice.  Please review the ssh documentation for the consequences of setting this option.</em></p>
 

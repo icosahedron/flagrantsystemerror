@@ -21,14 +21,6 @@ body,
 	color: #dbdef0;
 }
 
-#content .pure-g .pure-u-1-5 {
-    float: left;    
-}
-
-#content .pure-g .pure-u-4-5 {
-    float: right;
-}
-
 #title {
 	margin: 30px 0 0 0;
 	text-align: left;
@@ -116,10 +108,17 @@ img {
 	margin:10px 0 5px;
 }
 
-#post pre {
+/* This is now what I use instead of <pre> since Pure/Normalize does something with pre that makes
+it so I can't get the auto scrolling to work properly in Chrome.  This now is applied to a div that
+contains code references.
+*/
+.codeblock {
     overflow: auto;
-    width: auto;
+    width: 10px;    /* low value reset by jQuery to match the width of the post */
     border: 1px solid #CCCCCC;
     border-width: 1px 0;
     padding: 10px;
+    white-space: pre;
+    font-size: 16px;
+    font-family: monospace;
 }
