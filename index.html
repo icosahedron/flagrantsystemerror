@@ -28,6 +28,11 @@ var contentLoaded = false;
 
 function set_codeblock_widths()
 {
+    // return if there are no codeblocks to set the width of
+    if( $(".codeblock").length == 0 ) {
+        return;
+    }
+
     var paddingRight = $(".codeblock").css("padding-right");
     var paddingLeft = $(".codeblock").css("padding-left");
     paddingLeft = paddingLeft.substring(0,paddingLeft.length-2);
