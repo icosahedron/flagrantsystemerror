@@ -13,10 +13,22 @@
 </head>
 <body>
 
-<div id="cover">Loading core dump...</div>
+<div id="cover">Loading core dump...
+    <div class="loading-spinner">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+      <div class="rect5"></div>
+    </div>
+</div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://desandro.github.io/imagesloaded/imagesloaded.pkgd.js"></script>
 <script type="text/javascript">
+
+var minLoadingWaitTime = 2400;	// in ms
+var minPostWaitTime = 1000;
 
 function set_credit_at_bottom()
 {
@@ -44,41 +56,73 @@ function set_codeblock_widths()
     $(".codeblock").width($("#post").innerWidth() - paddingRight - paddingLeft);
 }
 
-function fade_in_cover() 
+function fade_out_cover() 
 {
     if( windowLoaded && contentLoaded ) {
         $("#cover").fadeOut(500);
     }
 }
 
+function showPost()
+{
+	$("#postload").hide();
+	$("#post").show();
+	set_codeblock_widths();
+	set_credit_at_bottom();
+	$('html, body').scrollTop(0,0);
+}
+
 $(document).ready( function() {
     
 	$(window).on('hashchange', function() {
-	  	$("#post").load(window.location.hash.substring(1)+".html", function() {
-	  	  set_credit_at_bottom();
-	  	  set_codeblock_widths();
- 		  $('html, body').scrollTop(0,0);
-	  	});
+		// show the spinner
+		$("#post").hide();
+		$("#postload").show();
+		set_credit_at_bottom();
+
+		// load the post
+		var startTime = Date.now();
+		$("#post").load(window.location.hash.substring(1)+".html", function() {
+			$("#post").imagesLoaded( function() {
+
+				var endTime = Date.now();
+				if( minPostWaitTime - (endTime - startTime) < 0) {
+					showPost();
+				}
+				else {
+					setTimeout( 'showPost();', minPostWaitTime - (endTime - startTime));
+				}
+			});
+		});
   	});
   
+/*
 	if( window.location.hash == "" ) {
 		window.location.hash = "front";
 	}
+*/
 
-	$("#post").load(window.location.hash.substring(1)+".html", function() {
+	var startTime = Date.now();
+	$("#post").load("front.html", function() {
 	  $("#sidebar").load("sidebar.html", function() {
 		$("#credits").load("credits.html", function() {
-			set_credit_at_bottom();
 			set_codeblock_widths();
+			set_credit_at_bottom();
 			contentLoaded = true;
-			fade_in_cover();
+			var endTime = Date.now();
+			if( minLoadingWaitTime - (endTime - startTime) < 0 ) {
+				fade_out_cover();
+			}
+			else {
+				setTimeout('fade_out_cover();', minLoadingWaitTime - (endTime - startTime));
+			}
   		});
       });
 	});
 	
     $(window).on('load', function() {
         windowLoaded = true;
-        fade_in_cover();
+        fade_out_cover();
     });
 });
 
@@ -101,6 +145,28 @@ $(document).ready( function() {
         <div class="pure-u-4-5">
         	<div id="post">
     	    </div>
+    		<div id="postload">
+    			<div class="spinner">
+    			  <div class="spinner-container container1">
+    			    <div class="circle1"></div>
+    			    <div class="circle2"></div>
+    			    <div class="circle3"></div>
+    			    <div class="circle4"></div>
+    			  </div>
+    			  <div class="spinner-container container2">
+    			    <div class="circle1"></div>
+    			    <div class="circle2"></div>
+    			    <div class="circle3"></div>
+    			    <div class="circle4"></div>
+    			  </div>
+    			  <div class="spinner-container container3">
+    			    <div class="circle1"></div>
+    			    <div class="circle2"></div>
+    			    <div class="circle3"></div>
+    			    <div class="circle4"></div>
+    			  </div>
+    			</div>
+    		</div>
         </div>
     </div>
 </div>
