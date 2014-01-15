@@ -96,14 +96,12 @@ $(document).ready( function() {
 		});
   	});
   
-/*
 	if( window.location.hash == "" ) {
 		window.location.hash = "front";
 	}
-*/
 
 	var startTime = Date.now();
-	$("#post").load("front.html", function() {
+	$("#post").load(window.location.hash.substring(1)+".html", function() {
 	  $("#sidebar").load("sidebar.html", function() {
 		$("#credits").load("credits.html", function() {
 			set_codeblock_widths();
