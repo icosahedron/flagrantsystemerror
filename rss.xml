@@ -15,47 +15,56 @@
 
     <item>
         <title>Content Goes Here</title>
-        <link>http://flagrantsystemerror.com/content_goes_here.html</link>
+        <link>http://flagrantsystemerror.com/#content_goes_here</link>
         <description>Welcome to flagrantsystemerror.com.  This is the inaugural post.</description>
         <author>jkint@flagrantsystemerror.com (Jay Kint)</author>
-        <guid>http://flagrantsystemerror.com/content_goes_here.html</guid>
+        <guid>http://flagrantsystemerror.com/#content_goes_here</guid>
         <pubDate>1 Oct 2011 12:00 PST</pubDate>
     </item>
 
     <item>
         <title>iPad Blog Post Workflow</title>
-        <link>http://www.flagrantsystemerror.com/ipad-www-workflow.html</link>
+        <link>http://flagrantsystemerror.com/#ipad-www-workflow</link>
         <description>I've long wanted to be able to author my blog completely on my iPad.  Now with the help of a new app, I can do so.  This is my workflow and how this post came to fruition.</description>
         <author>jkint@flagrantsystemerror.com (Jay Kint)</author>
-        <guid>http://www.flagrantsystemerror.com/ipad-www-workflow.html</guid>
+        <guid>http://flagrantsystemerror.com/#ipad-www-workflow</guid>
         <pubDate>1 May 2012 12:00 PST</pubDate>
     </item>
 
     <item>
         <title>Goodbye Emacs, Hello Sublime Text 2</title>
-        <link>http://www.flagrantsystemerror.com/goodbye-emacs-hello-sublime-text-2.html</link>
+        <link>http://flagrantsystemerror.com/#goodbye-emacs-hello-sublime-text-2</link>
         <description>This all starts with a search for a good full screen editing experience.</description>
         <author>jkint@flagrantsystemerror.com (Jay Kint)</author>
-        <guid>http://www.flagrantsystemerror.com/goodbye-emacs-hello-sublime-text-2.html</guid>
+        <guid>http://flagrantsystemerror.com/#goodbye-emacs-hello-sublime-text-2</guid>
         <pubDate>1 Oct 2012 12:00 PST</pubDate>
     </item>
 
     <item>
         <title>The Microsoft Wedge Keyboard is a nice companion to any tablet.</title>
-        <link>http://www.flagrantsystemerror.com/microsoft-wedge-keyboard.html</link>
+        <link>http://flagrantsystemerror.com/#microsoft-wedge-keyboard</link>
         <description>The Microsoft Wedge Keyboard is a nice companion to any tablet.</description>
         <author>jkint@flagrantsystemerror.com (Jay Kint)</author>
-        <guid>http://www.flagrantsystemerror.com/microsoft-wedge-keyboard.html</guid>
+        <guid>http://flagrantsystemerror.com/#microsoft-wedge-keyboard</guid>
         <pubDate>28 Jan 2013 12:00 PST</pubDate>
     </item>
 
     <item>
         <title>Website Deployments to S3 via Git and EC2</title>
-        <link>http://www.flagrantsystemerror.com/git-sync-ec2.html</link>
+        <link>http://flagrantsystemerror.com/#git-sync-ec2</link>
         <description>Deploying a static site to Amazon S3 with Git and a dynamic EC2 instance.</description>
         <author>jkint@flagrantsystemerror.com (Jay Kint)</author>
-        <guid>http://www.flagrantsystemerror.com/git-sync-ec2.html</guid>
+        <guid>http://flagrantsystemerror.com/#git-sync-ec2</guid>
         <pubDate>12 Jul 2013 12:00 PST</pubDate>
+    </item>
+
+    <item>
+        <title>The Last Configuration Reader <em>I</em> Will Ever Need</title>
+        <link>http://flagrantsystemerror.com/#last_config_reader</link>
+        <description>Loading XML configuration data easily into an object in .NET</description>
+        <author>jkint@flagrantsystemerror.com (Jay Kint)</author>
+        <guid>http://flagrantsystemerror.com/#last_config_reader</guid>
+        <pubDate>15 Jul 2013 12:00 PST</pubDate>
     </item>
 
 </channel>
