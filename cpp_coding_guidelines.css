@@ -1,0 +1,297 @@
+
+body {
+	background: center rgb(228,222,205);
+    color:#657b83;
+	margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#middle {
+	background-color: #fdf6e3;
+	margin: auto; /* center in viewport */
+	width: 960px;
+	text-align: justify;
+    box-shadow: 0px 0px 165px rgba(0, 0, 0, 0.33);
+    -moz-box-shadow: 0px 0px 165px rgba(0, 0, 0, 0.33);
+    -webkit-box-shadow: 0px 0px 165px rgba(0, 0, 0, 0.33);
+}
+
+article {
+    margin-top: 0px;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 40px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 40px;
+    position: relative;
+    width: 800px;
+}
+
+h1, h2, h3 {
+	margin:0 0 .8em 0;
+	padding: 0;
+}
+
+h1 {
+	font-size: 30px;
+	line-height: 48px;
+}
+
+h2 {
+    font-size:26px;
+    line-height:42px;
+}
+
+h3 { 
+    font-size:22px;
+    line-height:35px;
+}
+
+p, ul, ol, table {
+   	font-size:20px;
+	line-height:32px;
+}
+
+pre {
+    font-size: 17px;
+    line-height:27px;
+}
+
+p {
+	margin:.4em 0 .8em 0;
+	padding:0;
+}
+
+a {
+    color: #a57700;
+    text-decoration: none;    
+}
+
+img {
+	margin:10px 0 5px;
+}
+
+table  
+{
+  border: solid #657b83;
+  border-width: 2px 0px;
+  empty-cells: hide;
+  border-spacing: 15px 0px;
+  padding: 2px;
+  margin: 20px auto;
+}
+
+table caption 
+{
+  margin: 5px;
+  text-align: center;
+  caption-side: bottom;
+}
+
+thead th 
+{
+  border: solid #657b83;
+  border-width: 0 0 2px 0;
+  padding: 5px;
+}
+
+thead > tr:last-child > th 
+{	
+	border-style: none;
+ }
+
+tbody > tr:first-child > td 
+{
+	border: solid #657b83;
+  border-width: 1px 0 0 0;
+}
+
+tbody > tr:first-child > th 
+{
+	border: solid #657b83;
+  border-width: 1px 0 0 0;
+}
+
+thead + tbody > tr:first-child > td 
+{
+	border: solid #657b83;
+  border-width: 1px 0 0 0;
+}
+
+thead + tbody > tr:first-child > th 
+{
+	border: solid #657b83;
+  border-width: 1px 0 0 0;
+}
+
+/*
+table
+{
+    margin-bottom:2em;
+    padding:0;
+    font-size:14px;
+    border-collapse:collapse;
+    -webkit-box-shadow:1px 1px 2px rgba(0,0,0,0.35);
+    -moz-box-shadow:1px 1px 2px rgba(0,0,0,0.35);
+    box-shadow:1px 1px 2px rgba(0,0,0,0.35);
+    width:70%;
+    margin:0 auto 2em auto;
+    border:1px solid #ddd;
+    border-collapse:separate;
+    *border-collapse:collapse;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+}
+
+table caption,table col,table colgroup,table table,table tbody,table td,table tfoot,table th,table thead,table tr
+{
+    border-spacing:0;
+    font-family:Helvetica,Arial,sans-serif;
+    font-weight:400;
+    font-size:24px;
+}
+
+table caption
+{
+    display:table-caption;
+    font-weight:700;
+    font-size:12px;
+    text-transform:uppercase;
+    font-family:Palatino;
+    background:rgba(22,22,22,0.75);
+    color:#EEE;
+    padding:8px 4px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    margin:4px 0;
+    -webkit-box-shadow:2px 2px 2px rgba(0,0,0,0.35);
+    -moz-box-shadow:2px 2px 2px rgba(0,0,0,0.35);
+    box-shadow:2px 2px 2px rgba(0,0,0,0.35);
+}
+
+table col
+{
+    display:table-column;
+}
+
+table colgroup
+{
+    display:table-column-group;
+}
+
+table tbody
+{
+    display:table-row-group;
+}
+
+table tfoot
+{
+    display:table-footer-group;
+}
+
+table th,table td
+{
+    padding:10px 10px 9px;
+    line-height:18px;
+    text-align:left;
+}
+
+table th
+{
+    padding-top:9px;
+    font-family:Palatino;
+    font-size:14px;
+    font-weight:700!important;
+    text-transform:uppercase;
+    vertical-align:middle;
+    text-align:center;
+}
+
+table td
+{
+    vertical-align:top;
+    border-top:1px solid #ddd;
+    font-family:Palatino,georgia,serif;
+    font-size:14px!important;
+}
+
+table tbody th
+{
+    border-top:1px solid #ddd;
+    vertical-align:top;
+}
+
+table th+th,table td+td,table th+td
+{
+    border-left:1px solid #ddd;
+}
+
+table thead tr:first-child th:first-child,table tbody tr:first-child td:first-child
+{
+    -webkit-border-radius:4px 0 0 0;
+    -moz-border-radius:4px 0 0 0;
+    border-radius:4px 0 0 0;
+}
+
+table thead tr:first-child th:last-child
+{
+    -webkit-border-radius:0 4px 0 0;
+    -moz-border-radius:0 4px 0 0;
+    border-radius:0 4px 0 0;
+}
+
+table tr:nth-child(odd),table th:nth-child(odd),table td:nth-child(odd)
+{
+    background:rgba(255,255,255,0.06);
+}
+
+table tr:nth-child(even),table td:nth-child(even)
+{
+    background:rgba(0,0,0,0.06);
+}
+
+table tbody tr:first-child td:last-child
+{
+    -webkit-border-radius:0 4px 0 0;
+    -moz-border-radius:0 4px 0 0;
+    border-radius:0 4px 0 0;
+}
+
+table tbody tr:last-child td:first-child
+{
+    -webkit-border-radius:0 0 0 4px;
+    -moz-border-radius:0 0 0 4px;
+    border-radius:0 0 0 4px;
+}
+
+table tbody tr:last-child td:last-child
+{
+    -webkit-border-radius:0 0 4px 0;
+    -moz-border-radius:0 0 4px 0;
+    border-radius:0 0 4px 0;
+}
+
+table tbody tr:nth-child(odd)
+{
+    background-color:rgba(0,0,0,0.03);
+}
+*/
+/* This is now what I use instead of <pre> since Pure/Normalize does something with pre that makes
+it so I can't get the auto scrolling to work properly in Chrome.  This now is applied to a div that
+contains code references.
+*/
+.codeblock {
+    overflow: auto;
+    width: 10px;    /* low value reset by jQuery to match the width of the post */
+    border: 1px solid #CCCCCC;
+    border-width: 1px 0;
+    padding: 10px;
+    white-space: pre;
+    font-size: 16px;
+    font-family: monospace;
+}
+
