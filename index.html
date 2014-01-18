@@ -6,6 +6,7 @@
     <meta name="description" content="Flagrant System Error" >
     <meta name="keywords" content="artifice, programming langauges, scheme, web development, programming, database, sql server" >
     <meta name="robots" content="index, follow" />
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans|Inconsolata' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
     <link rel="stylesheet" href="common.css">
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
@@ -30,6 +31,8 @@
 var minLoadingWaitTime = 2400;	// in ms
 var minPostWaitTime = 1000;
 
+// set the footer so that it either appears at the bottom of the window or at a specified distance 
+// from the end of the post
 function set_credit_at_bottom()
 {
     $("#footer").css("margin-top", Math.max( 100, $(window).height() - $("#header").height() - $("#content").height() - $("#credits").height()));
@@ -37,7 +40,11 @@ function set_credit_at_bottom()
 
 var windowLoaded = false;
 var contentLoaded = false;
+var postWidth = 0;
 
+// some browsers (Epic, *cough*, *cough*) treat the width CSS property based on content
+// rather than on parent size.  We set the .codeblock widths here to compensate
+// so they scroll within the post.
 function set_codeblock_widths()
 {
     // return if there are no codeblocks to set the width of
@@ -50,10 +57,10 @@ function set_codeblock_widths()
     paddingLeft = paddingLeft.substring(0,paddingLeft.length-2);
     paddingRight = paddingRight.substring(0,paddingRight.length-2);
     paddingLeft = parseInt(paddingLeft);
-    paddingRigt = parseInt(paddingRight);
+    paddingRight = parseInt(paddingRight);
     
     // padding is left in innerWidth
-    $(".codeblock").width($("#post").innerWidth() - paddingRight - paddingLeft);
+    $(".codeblock").width( postWidth - paddingRight - paddingLeft );
 }
 
 function fade_out_cover() 
@@ -69,12 +76,14 @@ function showPost()
 	$("#post").show();
 	set_codeblock_widths();
 	set_credit_at_bottom();
-	$('html, body').scrollTop(0,0);
 }
 
 $(document).ready( function() {
     
 	$(window).on('hashchange', function() {
+
+        $(document).scrollTop(0,0);
+
 		// show the spinner
 		$("#post").hide();
 		$("#postload").show();
@@ -100,10 +109,16 @@ $(document).ready( function() {
 		window.location.hash = "front";
 	}
 
+    // set the pre content post width for use in setting code block sizes above
+    postWidth = $("#post").width();
+
 	var startTime = Date.now();
 	$("#post").load(window.location.hash.substring(1)+".html", function() {
+	      
 	  $("#sidebar").load("sidebar.html", function() {
 		$("#credits").load("credits.html", function() {
+
+	
 			set_codeblock_widths();
 			set_credit_at_bottom();
 			contentLoaded = true;
