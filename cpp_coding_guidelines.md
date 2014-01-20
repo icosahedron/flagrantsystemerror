@@ -7,7 +7,7 @@ date: January 18, 2014
 These are my personal C++ coding guidelines, cultivated from the following sources:
 
 * Boost Coding Guidelines published in 2001 by Dave Abrams and Nathan Myers
-	* The is the basis for my coding standard. 90% of this my coding guidelines are copied from the Boost Coding Guidelines
+	* The Boost Coding Guidelines document is the basis for my coding standard. 90% of my coding guidelines are copied from here.
 * [C++ Coding Standards](http://www.amazon.com/Coding-Standards-Rules-Guidelines-Practices/dp/0321113586) book by Herb Sutter and Andrei Alexandrescu
 * [High Integrity C++ Coding Standard](http://www.codingstandard.com/)
 * [Google C++ coding standard](https://google-styleguide.googlecode.com/svn/trunk/cppguide.xml) 
