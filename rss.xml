@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <rss version="2.0">
-
 <channel xmlns:atom="http://www.w3.org/2005/Atom">
 
     <title>Flagrant System Error</title>
@@ -61,10 +60,19 @@
     <item>
         <title>The Last Configuration Reader <em>I</em> Will Ever Need</title>
         <link>http://flagrantsystemerror.com/#last_config_reader</link>
-        <description>Loading XML configuration data easily into an object in .NET</description>
+        <description>Loading XML configuration data easily into an object in .NET.</description>
         <author>jkint@flagrantsystemerror.com (Jay Kint)</author>
         <guid>http://flagrantsystemerror.com/#last_config_reader</guid>
         <pubDate>15 Jul 2013 12:00 PST</pubDate>
+    </item>
+
+    <item>
+        <title>Flagrant System Error Coding Guidelines</title>
+        <link>http://flagrantsystemerror.com/#my_cpp_coding_guidelines</link>
+        <description>Personal coding C++ guidelines cultivated from my experience and preferences.</description>
+        <author>jkint@flagrantsystemerror.com (Jay Kint)</author>
+        <guid>http://flagrantsystemerror.com/#my_cpp_coding_guidelines</guid>
+        <pubDate>18 Jan 2014 12:00 PST</pubDate>
     </item>
 
 </channel>
