@@ -19,4 +19,4 @@ The following software is used to produce Flagrant System Error.
 * [Textastic](http://www.textasticapp.com/)
 * [Text Expander](http://itunes.apple.com/us/app/textexpander/id326180690?mt=8)
 
-Flagrant System Error is hosted on Amazon S3 as static HTML.  See [the iPad WWW Workflow](http://www.flagrantsystemerror.com/ipad-www-workflow.html) for more information.
+Flagrant System Error is hosted on Amazon S3 as static HTML.  See [the iPad WWW Workflow](#ipad-www-workflow) for more information.

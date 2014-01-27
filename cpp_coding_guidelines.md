@@ -60,12 +60,16 @@ Rules below are based on some broad principles:
 
 |Sub-directory	|Contents	|Required	|  
 | ------	| ------	| ------	|  
-|``build``	|Library build files such as Jamfile.	|If any build files.	|  
-|``doc``	|Documentation (HTML) files.	|If several doc files.	|  
-|``example``	|Sample program files.	|If several sample files.	|  
-|``src``	|Source files which must be compiled to build the library.	|If any source files	|  
-|``test``	|Regression or other test programs or scripts.	|If several test files.	|  
+|``bin``	| Output files (such as .lib or .exe)	| If any output files.	| 
+|``build``	| Library build files such as Jamfile.	| If any build files.	|  
+|``deps``	| Dependencies for project go here.[^deps]	| If any dependencies.	| 
+|``doc``	| Documentation files.	| If several doc files.	|  
+|``example``	| Sample program files.	| If several sample files.	|  
+|``src``	| Source files which must be compiled to build the library.	| If any source files	|  
+|``test``	| Regression or other test programs or scripts.	| If several test files.	|  
 [**Component sub-directory names**]
+
+[^deps]: Should only be used for smaller dependencies.  Large dependencies (e.g., Python) should be installed separately.  However, there is something to be said for having *everything* available. Node.js contains the V8 engine within its ``deps`` folder.
 
 1.11 Begin all source files (including programs, headers, scripts, etc.) with:
 
@@ -279,9 +283,9 @@ Every C++ textbook -- I have 10 here, not counting C books -- places a unary ope
 
 4.8. Access specifiers (public, private, and protected) may be either at the margin of the class or indented one space from the opening brace of a class declaration.
 
-4.9. Omit spaces in template instantiations. Spaces are allowed between arguments to template declarations. Unnecessary spaces in type names weaken their recognizability as a syntactic unit. Instantiations with names that are too unwieldy in this form should be typedef'ed.[^1]
+4.9. Omit spaces in template instantiations. Spaces are allowed between arguments to template declarations. Unnecessary spaces in type names weaken their recognizability as a syntactic unit. Instantiations with names that are too unwieldy in this form should be typedef'ed.[^typedef'ed]
 
-[^1]: The jury is still out on this rule.  Perhaps spaces should be allowed between brackets and parameters.
+[^typedef'ed]: The jury is still out on this rule.  Perhaps spaces should be allowed between brackets and parameters.
 
 Examples:
 

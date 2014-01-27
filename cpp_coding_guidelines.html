@@ -98,13 +98,23 @@
 
 <tbody>
 <tr>
+	<td style="text-align:left;"><code>bin</code></td>
+	<td style="text-align:left;">Output files (such as .lib or .exe)</td>
+	<td style="text-align:left;">If any output files.</td>
+</tr>
+<tr>
 	<td style="text-align:left;"><code>build</code></td>
 	<td style="text-align:left;">Library build files such as Jamfile.</td>
 	<td style="text-align:left;">If any build files.</td>
 </tr>
 <tr>
+	<td style="text-align:left;"><code>deps</code></td>
+	<td style="text-align:left;">Dependencies for project go here.<a href="#fn:1" id="fnref:1" title="see footnote" class="footnote">[1]</a></td>
+	<td style="text-align:left;">If any dependencies.</td>
+</tr>
+<tr>
 	<td style="text-align:left;"><code>doc</code></td>
-	<td style="text-align:left;">Documentation (HTML) files.</td>
+	<td style="text-align:left;">Documentation files.</td>
 	<td style="text-align:left;">If several doc files.</td>
 </tr>
 <tr>
@@ -340,7 +350,7 @@ Every C++ textbook &#8211; I have 10 here, not counting C books &#8211; places a
 
 <p>4.8. Access specifiers (public, private, and protected) may be either at the margin of the class or indented one space from the opening brace of a class declaration.</p>
 
-<p>4.9. Omit spaces in template instantiations. Spaces are allowed between arguments to template declarations. Unnecessary spaces in type names weaken their recognizability as a syntactic unit. Instantiations with names that are too unwieldy in this form should be typedef&#8217;ed.<a href="#fn:1" id="fnref:1" title="see footnote" class="footnote">[1]</a></p>
+<p>4.9. Omit spaces in template instantiations. Spaces are allowed between arguments to template declarations. Unnecessary spaces in type names weaken their recognizability as a syntactic unit. Instantiations with names that are too unwieldy in this form should be typedef&#8217;ed.<a href="#fn:2" id="fnref:2" title="see footnote" class="footnote">[2]</a></p>
 
 <p>Examples:</p>
 
@@ -964,15 +974,17 @@ class my_string
 <ol>
 
 <li id="fn:1">
-<p>The jury is still out on this rule. Perhaps spaces should be allowed between brackets and parameters. <a href="#fnref:1" title="return to article" class="reversefootnote">&#160;&#8617;</a></p>
+<p>Should only be used for smaller dependencies. Large dependencies (e.g., Python) should be installed separately. However, there is something to be said for having <em>everything</em> available. Node.js contains the V8 engine within its <code>deps</code> folder. <a href="#fnref:1" title="return to article" class="reversefootnote">&#160;&#8617;</a></p>
+</li>
+
+<li id="fn:2">
+<p>The jury is still out on this rule. Perhaps spaces should be allowed between brackets and parameters. <a href="#fnref:2" title="return to article" class="reversefootnote">&#160;&#8617;</a></p>
 </li>
 
 </ol>
 </div>
 
-
-</body>
-</html></article>
+</article>
 </div>
 </body>
 </html>

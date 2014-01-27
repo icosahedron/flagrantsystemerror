@@ -2,10 +2,7 @@
 
 ### To Do for Site
 
-* Update Colophon
-* Switch Colophon to using Textastic instead of Writing Kit
-
-As I wrote at the [beginning of this blog](http://flagrantsystemerror.com/content-goes-here.html), this is a static site that is deployed via Git.  However, I have since decided to move everything to S3 for a variety of reasons:
+As I wrote at the [beginning of this blog](#content_goes_here), this is a static site that is deployed via Git.  However, I have since decided to move everything to S3 for a variety of reasons:
 
 * Price - Amazon S3 is pay for what you use, and this blog is not likely to see huge influxes of traffic so the cost should remain very reasonable.
 * Reliability and Performance - With Amazon CloudFront the pages are distributed across the world for redundancy and performance.
@@ -23,7 +20,7 @@ Follow directions as outlined by Amazon on AWS Developer site.  Verify that it w
 We need a remote git site from which to deploy our website.  While possible to deploy to S3 from local git repositories, I advocate the use of a remote repository for a couple of reasons:
 
 * Backups - the remote repository serves as a great place for the last good copy of your website
-* Multiple workspaces - because I have a central repository, I can work in two different repositories, one via my [iPad](http://flagrantsystemerror.com/ipad-www-workflow.html) and another on my Mac.
+* Multiple workspaces - because I have a central repository, I can work in two different repositories, one via my [iPad](#ipad-www-workflow) and another on my Mac.
 
 (The following instructions could likely be easily adapted to maintain a website to S3 via a local repository.)
 
