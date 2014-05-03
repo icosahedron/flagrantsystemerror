@@ -6,8 +6,7 @@
     <meta name="description" content="Flagrant System Error" >
     <meta name="keywords" content="artifice, programming langauges, scheme, web development, programming, database, sql server" >
     <meta name="robots" content="index, follow" />
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans|Inconsolata' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="http://brick.a.ssl.fastly.net/Source+Sans+Pro:400,400i/Inconsolata:500">
     <link rel="stylesheet" href="common.css">
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <title>Flagrant System Error</title>
@@ -28,27 +27,47 @@
 <script src="http://desandro.github.io/imagesloaded/imagesloaded.pkgd.js"></script>
 <script type="text/javascript">
 
-var minLoadingWaitTime = 2400;	// in ms
+var minLoadingWaitTime = 2400;    // in ms
 var minPostWaitTime = 1000;
 
-// set the footer so that it either appears at the bottom of the window or at a specified distance 
-// from the end of the post
+// taken from jquery site
+function jq( myid ) 
+{ 
+    return "#" + myid.replace( /(:|\.|\[|\])/g, "\\$1" );
+}
+
+function splitUrlToHashes( url )
+{
+    var hashes = url.split("#");
+    if( hashes.length > 3 )
+    {
+        throw "Too many hash marks: " + hashes.toString();
+    }
+    
+    var hashName = hashes[1];
+    var subHash = null;
+    if( hashes.length == 3 )
+    {
+        subHash = hashes[2];
+    }
+
+    return { hash: hashName, subHash: subHash };
+}
+
 function set_credit_at_bottom()
 {
-    $("#footer").css("margin-top", Math.max( 100, $(window).height() - $("#header").height() - $("#content").height() - $("#credits").height()));
+    $("#footer").css("margin-top", Math.max( 100,
+    $(window).height() - $("#header").outerHeight(true) - $("#content").outerHeight(true) - $("#credits").outerHeight(true)));
 }
 
 var windowLoaded = false;
 var contentLoaded = false;
-var postWidth = 0;
 
-// some browsers (Epic, *cough*, *cough*) treat the width CSS property based on content
-// rather than on parent size.  We set the .codeblock widths here to compensate
-// so they scroll within the post.
 function set_codeblock_widths()
 {
     // return if there are no codeblocks to set the width of
-    if( $(".codeblock").length == 0 ) {
+    if( $(".codeblock").length == 0 )
+    {
         return;
     }
 
@@ -57,137 +76,233 @@ function set_codeblock_widths()
     paddingLeft = paddingLeft.substring(0,paddingLeft.length-2);
     paddingRight = paddingRight.substring(0,paddingRight.length-2);
     paddingLeft = parseInt(paddingLeft);
-    paddingRight = parseInt(paddingRight);
+    paddingRigt = parseInt(paddingRight);
     
     // padding is left in innerWidth
-    $(".codeblock").width( postWidth - paddingRight - paddingLeft );
+    $(".codeblock").width($("#post").innerWidth() - paddingRight - paddingLeft);
 }
 
-function fade_out_cover() 
+function fade_out_cover( initialLink ) 
 {
     if( windowLoaded && contentLoaded ) {
         $("#cover").fadeOut(500);
+        
+        if( initialLink != null )
+        {
+            console.log( typeof initialLink );
+            moveToLink( initialLink );
+        }
     }
 }
 
-function showPost()
+function setupLinks()
 {
-	$("#postload").hide();
-	$("#post").show();
-	set_codeblock_widths();
-	set_credit_at_bottom();
+    $("a").click(
+        function(e)
+        {
+            // if this is an external link, do nothing
+            if( $(this).context.host != window.location.host )
+            {
+                return;
+            }
+
+            var anchor = $(this).context.hash;
+            
+            if($(this).hasClass("footnote") || $(this).hasClass("reversefootnote"))
+            {
+                var currentHash = splitUrlToHashes( window.location.hash );
+                anchor = currentHash.hash + $(this).context.hash;
+            }
+            e.preventDefault();
+            window.location.hash = anchor;
+        });
 }
 
-$(document).ready( function() {
-    
-	$(window).on('hashchange', function() {
+function moveToLink( hash )
+{
+    console.log( hash );
+    $('html, body').stop().animate({
+        'scrollTop': $(jq(hash)).offset().top
+    }, 900, 'swing');
+}
 
-        $(document).scrollTop(0,0);
+function showPost(subHash)
+{
+    $("#postload").hide();
+    $("#post").show();
+    set_credit_at_bottom();
+    $('html, body').scrollTop(0,0);
+}
 
-		// show the spinner
-		$("#post").hide();
-		$("#postload").show();
-		set_credit_at_bottom();
+function showError(id, msg, xhr)
+{
+    $(id).html( msg + xhr.status + " " + xhr.statusText );
+    return;
+}
 
-		// load the post
-		var startTime = Date.now();
-		$("#post").load(window.location.hash.substring(1)+".html", function() {
-			$("#post").imagesLoaded( function() {
+function loadPost( hashName, subHash )
+{
+    // show the spinner
+    $("#post").hide();
+    $("#postload").show();
+    set_credit_at_bottom();
 
-				var endTime = Date.now();
-				if( minPostWaitTime - (endTime - startTime) < 0) {
-					showPost();
-				}
-				else {
-					setTimeout( 'showPost();', minPostWaitTime - (endTime - startTime));
-				}
-			});
-		});
-  	});
+    // load the post
+    var startTime = Date.now();
+    $("#post").load(hashName+".html", function( response, status, xhr ) {
+
+        if( status == "error" )
+        {
+            showError( "#post", "Sorry, the dice came up as: ",  xhr );
+            showPost();
+            return;
+        }
+        
+        $("#post").imagesLoaded( function() {
+            var endTime = Date.now();
+            
+            setupLinks();
+
+            if( minPostWaitTime - (endTime - startTime) < 0) {
+                showPost(subHash);
+            }
+            else {
+                setTimeout( function f() { showPost( subHash ) }, minPostWaitTime - (endTime - startTime));
+            }
+        });
+    });
+}
   
-	if( window.location.hash == "" ) {
-		window.location.hash = "front";
-	}
+$(document).ready( function() {
 
-    // set the pre content post width for use in setting code block sizes above
-    postWidth = $("#post").width();
+    var previousHash = null;
 
-	var startTime = Date.now();
-	$("#post").load(window.location.hash.substring(1)+".html", function() {
-	      
-	  $("#sidebar").load("sidebar.html", function() {
-		$("#credits").load("credits.html", function() {
-
-	
-			set_codeblock_widths();
-			set_credit_at_bottom();
-			contentLoaded = true;
-			var endTime = Date.now();
-			if( minLoadingWaitTime - (endTime - startTime) < 0 ) {
-				fade_out_cover();
-			}
-			else {
-				setTimeout('fade_out_cover();', minLoadingWaitTime - (endTime - startTime));
-			}
-  		});
+    $(window).on('hashchange', function() {
+    
+        var hashes = splitUrlToHashes( window.location.hash );
+        
+        console.log( previousHash );
+        console.log( hashes.hash );
+        console.log( hashes.subHash );
+        if( hashes.hash == previousHash )
+        {
+            moveToLink( hashes.subHash );
+        }
+        else 
+        {
+            previousHash = hashes.hash;
+            loadPost( hashes.hash, hashes.subHash );
+        }   
       });
-	});
-	
-    $(window).on('load', function() {
-        windowLoaded = true;
-        fade_out_cover();
+
+    if( window.location.hash == "" ) 
+    {
+        window.location.hash = "#front";    // does this cause the front to be loaded twice?
+        previousHash = "front";
+    }
+    else 
+    {
+        previousHash = window.location.hash.substring(1);
+    }
+
+    var initialHash = splitUrlToHashes( window.location.hash );
+    var startTime = Date.now();
+    
+    console.log( initialHash );
+
+    $("#sidebar").load("sidebar.html", function( r, status, xhr ) {
+    
+        if( status == "error" )
+        {
+            showError( "#sidebar", "Sorry, no drinks at this sidebar: ", xhr );
+        }
+        
+        $("#credits").load("credits.html", function( r, status, xhr ) {
+
+            if( status == "error" )
+            {
+                showError( "#credits", "Sorry, no credit(s) for you: ", xhr );
+            }
+            
+            $("#post").load(initialHash.hash + ".html", function( response, status, xhr ) {
+
+                if( status == "error" )
+                {
+                    showError( "#post", "Sorry, the dice came up as: ", xhr );
+                }
+        
+                setupLinks();
+                set_credit_at_bottom();
+                set_codeblock_widths();
+                contentLoaded = true;
+                var endTime = Date.now();
+                if( minLoadingWaitTime - (endTime - startTime) <= 0 ) {
+                    fade_out_cover( initialHash.subHash );
+                }
+                else {
+                    setTimeout( function f() { fade_out_cover( initialHash.subHash ) }, minLoadingWaitTime - (endTime - startTime));
+                }
+            });
+        });
     });
 });
 
+$(window).on('load', function() {
+
+    windowLoaded = true;
+    fade_out_cover();
+});
+
+
 </script>
 
-<div class="middle">
+<div id="middle">
 
 <div id="header">
-    <div class="pure-g">
-    	<div class="pure-u-1"><img src="images/flagrant_system_error.png" width="100%"></div>
+    <div class="grid">
+        <div class="grid-col-1"><img src="images/flagrant_system_error.png" width="100%"></div>
     </div>
 </div>
 
 <div id="content">
-    <div class="pure-g">
-        <div class="pure-u-1-5">
-        	<div id="sidebar">
-    	    </div>
+    <div class="grid">
+        <div class="grid-col-1-5">
+            <div id="sidebar">
+            </div>
         </div>
-        <div class="pure-u-4-5">
-        	<div id="post">
-    	    </div>
-    		<div id="postload">
-    			<div class="spinner">
-    			  <div class="spinner-container container1">
-    			    <div class="circle1"></div>
-    			    <div class="circle2"></div>
-    			    <div class="circle3"></div>
-    			    <div class="circle4"></div>
-    			  </div>
-    			  <div class="spinner-container container2">
-    			    <div class="circle1"></div>
-    			    <div class="circle2"></div>
-    			    <div class="circle3"></div>
-    			    <div class="circle4"></div>
-    			  </div>
-    			  <div class="spinner-container container3">
-    			    <div class="circle1"></div>
-    			    <div class="circle2"></div>
-    			    <div class="circle3"></div>
-    			    <div class="circle4"></div>
-    			  </div>
-    			</div>
-    		</div>
+        <div class="grid-col-4-5">
+            <div id="post">
+            </div>
+            <div id="postload">
+                <div class="spinner">
+                  <div class="spinner-container container1">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                  <div class="spinner-container container2">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                  <div class="spinner-container container3">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <div id="footer">
-    <div class="pure-g">
-    	<div class="pure-u-1" id="credits">
-    	</div>
+    <div class="grid">
+        <div class="grid-col-1" id="credits">
+        </div>
     </div>
 </div>
 
