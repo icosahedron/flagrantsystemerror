@@ -101,7 +101,7 @@ function setupLinks()
         function(e)
         {
             // if this is an external link, do nothing
-            if( $(this).context.host != window.location.host )
+            if( $(this).context.host != window.location.host || $(this).context.href.substring(0,1) != "#")
             {
                 return;
             }
