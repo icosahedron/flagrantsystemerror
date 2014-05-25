@@ -189,6 +189,11 @@ img {
     margin:10px 0 5px;
 }
 
+code {
+    font-size: 13px;
+    font-family: monospace;
+}
+
 /* This is now what I use instead of <pre> since Pure/Normalize does something with pre that makes
 it so I can't get the auto scrolling to work properly in Chrome.  This now is applied to a div that
 contains code references.
@@ -203,8 +208,21 @@ contains code references.
     margin-top: 15px;
     margin-bottom: 15px;
     white-space: pre;
-    font-size: 15px;
+    font-size: 13px;
     font-family: monospace;
+}
+
+/* Since we have eliminated the dependency on Pure/Normalize, we can use pre/code again */
+pre {
+    overflow: scroll;
+    width: 100%;    /* low value reset by jQuery to match the width of the post */
+    border: 1px solid #CCCCCC;
+    border-width: 1px 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    white-space: pre;
 }
 
 

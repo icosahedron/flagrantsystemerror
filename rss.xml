@@ -75,5 +75,23 @@
         <pubDate>18 Jan 2014 12:00 PST</pubDate>
     </item>
 
+    <item>
+        <title>Using Static Members on Dynamic Types in C#</title>
+        <link>http://flagrantsystemerror.com/#static_members_dynamic_type</link>
+        <description>You cannot use static members on dynamic types by default. Instead, a little glue code is needed to tie it together.</description>
+        <author>jkint@flagrantsystemerror.com (Jay Kint)</author>
+        <guid>http://flagrantsystemerror.com/#static_members_dynamic_type</guid>
+        <pubDate>28 Feb 2014 12:00 PST</pubDate>
+    </item>
+    
+    <item>
+        <title>Building Mobile Common Lisp on OSX</title>
+        <link>http://flagrantsystemerror.com/#building_mocl</link>
+        <description>Expanding on the README with more detail.</description>
+        <author>jkint@flagrantsystemerror.com (Jay Kint)</author>
+        <guid>http://flagrantsystemerror.com/#building_mocl</guid>
+        <pubDate>25 May 2014 12:00 PST</pubDate>
+    </item>
+    
 </channel>
 </rss>
