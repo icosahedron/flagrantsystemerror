@@ -6,7 +6,7 @@
 
 <h2 id="compiler">Compiler</h2>
 
-<p>These instructions are for iOS, so make sure that Xcode 5.2+ is installed, including the command line tools.</p>
+<p>These instructions are for iOS and OSX, so make sure that Xcode 5.2+ is installed, including the command line tools.</p>
 
 <h2 id="installsbcl">Install SBCL</h2>
 
@@ -24,9 +24,9 @@
 
 <h2 id="installquicklisp">Install Quicklisp</h2>
 
-<p>Zach Beane&#8217;s <a href="http://quicklisp.org">QuickLisp</a> is an essential part of any Lisp installation. It is to lisp libraries/packages what macports/homebrew are to OSX packages. There are currently just shy of 2400 packages on Quicklisp.</p>
+<p>Zach Beane&#8217;s <a href="http://quicklisp.org">Quicklisp</a> is an essential part of any Lisp installation. It is to lisp libraries/packages what macports/homebrew are to OSX packages. There are currently just shy of 2400 packages on Quicklisp.</p>
 
-<p>Installing it is breeze easy. Just load <code>quicklisp.lisp</code> at your REPL and then <code>(quicklisp-quickstart:install)</code> to allow QuickLisp to install itself properly. (If you have already installed QuckLisp for another lisp, you can use <code>(load &quot;~/quicklisp/setup.lisp&quot;</code>). To have Quicklisp automatically load from henceforth, just run <code>(ql:add-to-init-file)</code>. It will add itself to SBCL&#8217;s initialization file in your home directory.</p>
+<p>Installing it is breeze easy. Just load <code>quicklisp.lisp</code> at your REPL and then <code>(quicklisp-quickstart:install)</code> to allow Quicklisp to install itself properly. (If you have already installed Qucklisp for another lisp, you can use <code>(load &quot;~/quicklisp/setup.lisp&quot;</code>). To have Quicklisp automatically load from henceforth, just run <code>(ql:add-to-init-file)</code>. It will add itself to SBCL&#8217;s initialization file in your home directory.</p>
 
 <p>Additional instructions are available on the Quicklisp website if these are insufficient.</p>
 
@@ -47,9 +47,9 @@
 
 <p><a href="http://www.xach.com/lisp/buildapp/">Buildapp</a> is another gem from Mr. Beane. As its name implies, it packages a lisp &#8220;application&#8221; as a standalone application.</p>
 
-<p>This package is also installable via Quicklisp as <code>(ql:quickload &quot;buildapp&quot;)</code>. However, buildapp requires more work to properly install. Quicklisp can simply download it and put it in a standard place. We must actually build it first.</p>
+<p>This package is also installable via Quicklisp as <code>(ql:quickload &quot;buildapp&quot;)</code>. However, Buildapp requires more work to properly install. Quicklisp can simply download it and put it in a standard place. We must actually build it before using it.</p>
 
-<p>To locate buildapp, first open a terminal and cd to your quicklisp directory. By default this directory is <code>~/quicklisp</code>. From there it should be in a location similar to <code>~/quicklisp/dists/quicklisp/software/buildapp-1.5.2/</code>. Running <code>make install</code> in this directory will give you output similar to:</p>
+<p>To locate Buildapp, first open a terminal and cd to your quicklisp directory. By default this directory is <code>~/quicklisp</code>. From there it should be in a location similar to <code>~/quicklisp/dists/quicklisp/software/buildapp-1.5.2/</code>. Running <code>make install</code> in this directory will give you output similar to:</p>
 
 <pre><code>sbcl --noinform --no-userinit --no-sysinit --disable-debugger \
       --eval &quot;(require 'asdf)&quot; \
@@ -67,7 +67,7 @@ done]
 install -c -m 555 buildapp /usr/local/bin/buildapp
 </code></pre>
 
-<p>There are command line options you can use at make time to install it to a different directory if you wish. See the buildapp website for more information on these options.</p>
+<p>There are command line options you can use at make time to install it to a different directory if you wish. See the Buildapp website for more information on these options.</p>
 
 <h3 id="wu-sugar">Wu-Sugar</h3>
 
