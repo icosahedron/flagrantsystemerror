@@ -92,6 +92,15 @@
         <guid>http://flagrantsystemerror.com/#building_mocl</guid>
         <pubDate>25 May 2014 12:00 PST</pubDate>
     </item>
-    
+
+    <item>
+        <title>Retro Computing Rabbit Hole</title>
+        <link>http://flagrantsystemerror.com/#retro_computing</link>
+        <description>Inspired by a retro computing podcast to set up the junk in the box in the basement.</description>
+        <author>jkint@flagrantsystemerror.com (Jay Kint)</author>
+        <guid>http://flagrantsystemerror.com/#retro_computing</guid>
+        <pubDate>20 September 2014 12:00 PST</pubDate>
+    </item>
+
 </channel>
 </rss>
