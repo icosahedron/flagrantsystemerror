@@ -151,6 +151,11 @@ function showError(id, msg, xhr)
     return;
 }
 
+function count_page_view( hashName )
+{
+    ga('send', 'pageview', hashName);
+}
+
 function loadPost( hashName, subHash )
 {
     // show the spinner
@@ -168,7 +173,9 @@ function loadPost( hashName, subHash )
             showPost();
             return;
         }
-        
+
+        count_page_view(hashName);
+
         $("#post").imagesLoaded( function() {
             var endTime = Date.now();
             
@@ -241,7 +248,8 @@ $(document).ready( function() {
                 {
                     showError( "#post", "Sorry, the dice came up as: ", xhr );
                 }
-        
+
+                count_page_view(initialHash.hash);
                 setupLinks();
                 set_credit_at_bottom();
                 set_codeblock_widths();
@@ -320,7 +328,6 @@ $(window).on('load', function() {
 </div>
 
 <!-- Google Analytics snippet -->
-<!--
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -328,10 +335,7 @@ $(window).on('load', function() {
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-39852150-1', 'flagrantsystemerror.com');
-  ga('send', 'pageview');
-
 </script>
--->
 <!-- End Google Analytics -->
 
 </body>
