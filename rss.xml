@@ -102,5 +102,14 @@
         <pubDate>20 September 2014 12:00 PST</pubDate>
     </item>
 
+    <item>
+        <title>Chronicle of an App</title>
+        <link>http://flagrantsystemerror.com/#chronicle_of_an_app</link>
+        <description>Inspired by a retro computing podcast to set up the junk in the box in the basement.</description>
+        <author>jkint@flagrantsystemerror.com (Jay Kint)</author>
+        <guid>http://flagrantsystemerror.com/#chronicle_of_an_app/guid>
+        <pubDate>22 February 2015 12:00 PST</pubDate>
+    </item>
+
 </channel>
 </rss>
