@@ -48,8 +48,28 @@ Metalsmith(__dirname)
         collection: 'posts'
     }))
     .use(file_metadata([
-        { pattern : "posts/*.html", metadata: { template: "main.mustache" }, preserve: true },
-        { pattern : "sidebar/*.html", metadata: { template: "main.mustache" }, preserve: true }
+        { 
+            pattern : "posts/*.html", 
+            metadata: { 
+                template: "main.mustache",
+                posts_url: "",
+                images_url: "images/",
+                sidebar_url: "sidebar/",
+                styles_url: "styles/",
+            }, 
+            preserve: true 
+        },
+        { 
+            pattern : "sidebar/*.html", 
+            metadata: { 
+                template: "main.mustache",
+                posts_url: "../",
+                images_url: "../images/",
+                sidebar_url: "",
+                styles_url: "../styles/",
+            },
+            preserve: true 
+        }, 
     ]))
     .use(elevate({
         pattern: 'posts/*.html',
