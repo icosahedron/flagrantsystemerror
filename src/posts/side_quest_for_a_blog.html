@@ -1,0 +1,266 @@
+---
+title: Side Quest for the Blog
+index: true
+---
+<h1 id="sidequestfortheblog">Side Quest for the Blog</h1>
+
+<p>So I know not a lot of people read this blog. That&#8217;s fine. It&#8217;s not done for vanity, but for writing practice and the occasional person who might find something interesting. I guess it could be considered a portfolio of sorts, though there isn&#8217;t much yet to show for it.</p>
+
+<p>But&#8230; I do want at least the search engines to properly index it.</p>
+
+<h2 id="searchingforthegrail">Searching for the Grail</h2>
+
+<p>The former incarnation of this blog was a shell that would dynamically load articles via jQuery ajax. It worked great, and the response was pretty smooth I think. However, when searching for an article, the search engines didn&#8217;t link to the URL that would load the shell and then the article, they linked to the article text directly.</p>
+
+<p>This loaded just the article text, which looked like a circa 1995 website.</p>
+<!--more-->
+<p>How to fix this? Well, the site has to load the shell and the article from any URL. I experimented with redirection with the meta tag, but it didn&#8217;t give me the results I wanted.</p>
+
+<h2 id="visitthesmithy">Visit the Smithy</h2>
+
+<p>The easiest remedy was to just create truly static pages. While I could have done this by hand in a single afternoon, I, being a programmer, and therefore <a href="http://threevirtues.com/">lazy</a>, couldn&#8217;t just do the straightforward.</p>
+
+<p>After a bit of research into static site generators, I finally settled on <a href="http://metalsmith.io">Metalsmith</a>. It&#8217;s Javascript (important to my work on my outliner) and extremely simple and flexible.</p>
+
+<p>This is not a <a href="http://www.robinthrift.com/posts/metalsmith-part-1-setting-up-the-forge/">tutorial</a> on using Metalsmith. Instead, I will explain how I use it to build this blog.</p>
+
+<h3 id="javascriptvs.configuration">Javascript vs. Configuration</h3>
+
+<p>First, Metalsmith can be used in two modes:
+- a JSON configuration file
+- as an API in a script</p>
+
+<p>I opted for the API as a script because I had to create a simple plugin to create an index page, and JSON configuration obviously can&#8217;t contain functions. Here is an explanation of <code>blog.js</code>, the driver for creating the blog from the static assets I have.</p>
+
+<h3 id="loadtheplugins">Load the Plugins</h3>
+
+<p>The first task is to load the plugins required to build the site:</p>
+
+<pre><code>var Metalsmith = require('metalsmith');
+var templates = require('metalsmith-templates');
+var file_metadata = require('metalsmith-filemetadata');
+var ignore = require('metalsmith-ignore');
+var elevate = require('metalsmith-elevate');
+var collections = require('metalsmith-collections');
+var feed = require('metalsmith-feed');
+var more = require('metalsmith-more');
+</code></pre>
+
+<p>Pretty straightforward. Each one is explained as it is used.</p>
+
+<h3 id="indexplugin">Index Plugin</h3>
+
+<p>Here is the plugin that creates the index page based on the <code>index</code> tag that is in the metadata.</p>
+
+<pre><code>var index = function(files, metalsmith, done) {
+    for(var file in files) {
+        var f = files[file];
+        if(f.index != undefined &amp;&amp; f.index ) {
+            if(files['index.html'] != undefined) {
+                done(new Error(&quot;Multiple files with index property&quot;));
+            }
+            files['index.html'] = f;
+        }
+    }
+    done();
+}
+</code></pre>
+
+<p>This plugin is just a function that scans the files for the index metadata property and copies the file that has it to index.html for the site. If more than one file has the index property, then an error is thrown since there can be only one.</p>
+
+<h3 id="siteandmetadata">Site and Metadata</h3>
+
+<p>Metalsmith invokes the plugins as a chain of promises, starting with itself.</p>
+
+<p>The first in our chain is the destination directory, which I&#8217;m calling &#8216;site&#8217;. Next comes some metadata that applies to the entire site.</p>
+
+<pre><code>Metalsmith(__dirname)
+    .destination('./site')
+    .metadata({
+        site: {
+            title: &quot;Flagrant System Error&quot;,
+            url: &quot;http://flagrantsystemerror.com&quot;,
+            author: &quot;jkint@flagrantsystemerror.com (Jay Kint)&quot;
+        }
+    })
+</code></pre>
+
+<p>Next is a simple ignore plugin, which predictably enough gives some patterns for files to ignore while processing. Here, I&#8217;m telling it to ignore the templates and the remnants of my editor.</p>
+
+<pre><code>    .use(ignore([
+        'templates/*',
+        '**/*~',  // emacs droppings
+        '**/.*',  // hidden files
+    ]))
+</code></pre>
+
+<p>The next 3 plugins, <code>more</code>, <code>collections</code>, and <code>feed</code>, work in tandem to produce the RSS feed. More extracts the description and title from the post into metadata (the less key specifically) and collection and feed use the metadata to publish into the rss.xml file.</p>
+
+<pre><code>    .use(more())
+    .use(collections({
+        posts: 'posts/*.html'
+    }))
+    .use(feed({
+        collection: 'posts'
+    }))
+</code></pre>
+
+<p>The file_metadata plugin provides canned metadata for various files based on their path. See the template description below for a better explanation of what the metadata is used for.</p>
+
+<pre><code>    .use(file_metadata([
+        { 
+            pattern : &quot;posts/*.html&quot;, 
+            metadata: { 
+                template: &quot;main.mustache&quot;,
+                posts_url: &quot;&quot;,
+                images_url: &quot;images/&quot;,
+                sidebar_url: &quot;sidebar/&quot;,
+                styles_url: &quot;styles/&quot;,
+            }, 
+            preserve: true 
+        },
+        { 
+            pattern : &quot;sidebar/*.html&quot;, 
+            metadata: { 
+                template: &quot;main.mustache&quot;,
+                posts_url: &quot;../&quot;,
+                images_url: &quot;../images/&quot;,
+                sidebar_url: &quot;&quot;,
+                styles_url: &quot;../styles/&quot;,
+            },
+            preserve: true 
+        }, 
+    ]))
+</code></pre>
+
+<p>Elevate will move files in the destination directory relative to their location in the source directory. As you can see, any files in the pages and posts directories are moved up a directory with in the path. This puts them at the root of the site.</p>
+
+<pre><code>    .use(elevate({
+        pattern: 'posts/*.html',
+        depth: -1
+    }))
+    .use(elevate({
+        pattern: 'pages/*.html',
+        depth: -1
+    }))
+</code></pre>
+
+<p>And here&#8217;s where the magic happens. The template plugin is capable of using one of several template engines. I use mustache. The template itself is explained below.</p>
+
+<pre><code>    .use(templates({
+        engine: 'mustache',
+        directory: 'src/templates'
+    }))
+</code></pre>
+
+<p>To finish off our trip through the script, here we use the index plugin we created above, and then the actual build action which performs everything in our pipeline.</p>
+
+<pre><code>    .use(index)
+    .build(function(err) {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+    });
+</code></pre>
+
+<p><em>(The error callback is necessary for the build function to work.)</em></p>
+
+<h3 id="layoftheland">Lay of the Land</h3>
+
+<p>So what is the directory layout for the site? Some of it is probably evident from the script above.</p>
+
+<p>Metalsmith starts with the <code>src</code> directory by default for sources, and <code>build</code> as the default destination directory. I chose to modify the destination to be <code>site</code>.</p>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Directory</th>
+	<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;">src/posts</td>
+	<td style="text-align:left;">Meat of the blog</td>
+</tr>
+<tr>
+	<td style="text-align:left;">src/pages</td>
+	<td style="text-align:left;">Individual pages that are not chronologically organized</td>
+</tr>
+<tr>
+	<td style="text-align:left;">src/templates</td>
+	<td style="text-align:left;">The templates for the blog posts and pages</td>
+</tr>
+<tr>
+	<td style="text-align:left;">src/sidebar</td>
+	<td style="text-align:left;">Pages linked to by the sidebar</td>
+</tr>
+<tr>
+	<td style="text-align:left;">src/images</td>
+	<td style="text-align:left;">Pictures and images for the site</td>
+</tr>
+<tr>
+	<td style="text-align:left;">src/styles</td>
+	<td style="text-align:left;">CSS files</td>
+</tr>
+<tr>
+	<td style="text-align:left;">site</td>
+	<td style="text-align:left;">Posts and pages are in the root of the site</td>
+</tr>
+<tr>
+	<td style="text-align:left;">site/sidebar</td>
+	<td style="text-align:left;">Pages linked to by the sidebar</td>
+</tr>
+<tr>
+	<td style="text-align:left;">site/images</td>
+	<td style="text-align:left;">Pictures and images for the site</td>
+</tr>
+<tr>
+	<td style="text-align:left;">site/styles</td>
+	<td style="text-align:left;">CSS files</td>
+</tr>
+</tbody>
+</table>
+
+<p>The <code>site</code> directory can be deployed directly to the web server (Amazon S3 in this site&#8217;s case).</p>
+
+<h2 id="theknightstemplate">The Knights Template</h2>
+
+<p>I won&#8217;t bore you with the entire template as we did with the script above. Instead, here is the content and sidebar portion.</p>
+
+<pre><code>&lt;div id=&quot;content&quot;&gt;
+    &lt;div class=&quot;grid&quot;&gt;
+        &lt;div class=&quot;grid-col-1-5&quot;&gt;
+          &lt;div id=&quot;sidebar&quot;&gt;
+            &lt;p&gt;By JAY KINT&lt;/p&gt;
+            &lt;br/&gt;
+            &lt;p&gt;&lt;a href=&quot;{{{ posts_url }}}index.html&quot;&gt;HOME&lt;/a&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;a href=&quot;{{{ sidebar_url }}}archive.html&quot;&gt;ARCHIVE&lt;/a&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;a href=&quot;{{{ sidebar_url }}}colophon.html&quot;&gt;COLOPHON&lt;/a&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;a href=&quot;{{{ sidebar_url }}}projects.html&quot;&gt;PROJECTS&lt;/a&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;a href=&quot;{{{ sidebar_url }}}contact.html&quot;&gt;CONTACT&lt;/a&gt;&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;grid-col-4-5&quot;&gt;
+          &lt;div id=&quot;post&quot;&gt;
+            {{{ contents }}}
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>You can see how the url metadata from the script is used within the template. Since posts exist in the site&#8217;s root directory, the sidebar_url is set to &#8220;sidebar/&#8221;. For the pages within the sidebar directory, the sidebar_url is set to &quot;&#8220;. Likewise posts_url is set to &#8221;&#8220; for posts in the root and &#8221;../&quot; for the pages within the sidebar.</p>
+
+<p>Images and styles are likewise handled relative to the sidebar/post.</p>
+
+<h2 id="thereward">The Reward</h2>
+
+<p>I really like Metalsmith and its flexibility. It was easy to come up with this solution to my SEO problems in an afternoon. I would recommend Metalsmith if you&#8217;re looking for very extensible and otherwise minimal site generator.</p>
