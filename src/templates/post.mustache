@@ -1,30 +1,31 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
-    <meta name="author" content="Jay Kint" >
-    <meta name="description" content="Flagrant System Error" >
-    <meta name="keywords" content="{{keywords}}" >
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="author" content="{{{ author }}}" />
+    <meta name="description" content="{{{ description }}}" />
+    <meta name="keywords" content="{{keywords}}" />
     <meta name="robots" content="index, follow" />
-    <link rel="stylesheet" href="http://brick.a.ssl.fastly.net/Source+Sans+Pro:400,400i/Inconsolata:500">
-    <link rel="stylesheet" href="{{{ styles_url }}}common.css">
+    <link rel="stylesheet" href="http://brick.a.ssl.fastly.net/Source+Sans+Pro:400,400i/Inconsolata:500" />
+    <link rel="stylesheet" href="{{{ styles_url }}}post.css" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <title>Flagrant System Error - {{title}}</title>
 </head>
 <body>
 
-<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
-<!-- <script src="http://desandro.github.io/imagesloaded/imagesloaded.pkgd.js"></script> -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <!-- <script src="http://desandro.github.io/imagesloaded/imagesloaded.pkgd.js"></script> -->
+  <script src="{{{ js_url }}}flagrant.js"></script>  
 
 <div id="middle">
 
 <div id="header">
     <div class="grid">
-        <div class="grid-col-1"><a href="#front"><img src="{{{ images_url }}}flagrant_system_error.png" width="100%"></a></div>
+        <div class="grid-col-1"><a href="index.html"><img src="{{{ images_url }}}flagrant_system_error.png" width="100%"></a></div>
     </div>
 </div>
 
-<div id="content">
+<div id="body">
     <div class="grid">
         <div class="grid-col-1-5">
           <div id="sidebar">
@@ -39,8 +40,10 @@
         </div>
         <div class="grid-col-4-5">
           <div id="post">
-            {{{ contents }}}
+            <div id="content">
+              {{{ contents }}}
             </div>
+          </div>
         </div>
     </div>
 </div>
