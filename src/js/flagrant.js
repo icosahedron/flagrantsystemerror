@@ -53,7 +53,7 @@ function onClick(e)
     var _href = $(this).attr("href");
 
     // if this not a post for the blog, then load the new page
-    if( $(this).context.host != window.location.host ) {
+    if( $(this).context.host != window.location.host || _href.startsWith("/pages")) {
         console.log("$(this).context.host = " + $(this).context.host);
         console.log("window.location = " + window.location);
         window.location = _href;
