@@ -1,0 +1,34 @@
+---
+title: No Machine and the Black Bar
+date: June 7, 2015
+index: true
+---
+<h1 id="nomachineandtheblackmenu">No Machine and the Black Menu</h1>
+
+<p>At home I have a little server that I can log in to remotely. Normally I do so using SSH because it&#8217;s secure and fast. However, I sometimes need a GUI. After a lot of trial, I finally settled on <a href="https://www.nomachine.com/">No Machine</a> as the remote desktop software of choice.</p>
+
+<p>No Machine is fast and secure. It travels over SSH and it uses some sort of better compression than Screen Sharing and RDP. (It actually uses the open source <a href="https://en.wikipedia.org/wiki/NX_technology">NX protocol</a>.) Basically, it&#8217;s the only remote solution I&#8217;ve found that is usable over my network.</p>
+
+<p>Except for one really annoying bug: the menu bar is black&#8230; with black text. It&#8217;s not the same as &#8220;dark mode&#8221;.</p>
+
+<figure>
+<img src="images/no_machine_black_menu_bar.jpg" alt="No Machine Black Menu Bar" id="no_machine_black_menu_bar" style="width:512px;" />
+<figcaption>No Machine Black Menu Bar</figcaption>
+</figure>
+
+<p>I&#8217;ve been able to fumble through just using the mouse, as only the bar is black, the menus themselves remain light and legible.</p>
+
+<p>However, I was getting tired of the limitation, so a little research on the Etherwebs, and I was able to find a potential cause.</p>
+
+<p>Apparently if OS X Yosemite has a bug. If a Mac doesn&#8217;t have a display attached, then all sorts of oddities can occur over a remote connection.</p>
+
+<p><a href="https://discussions.apple.com/thread/6627331?start=0&amp;tstart=0">This thread</a> details similar problems to what I was experiencing, and offers a potential solution, <a href="http://www.amazon.com/gp/product/B00FLZXGJ6/">a display emulator</a>.</p>
+
+<p>Well, dear reader, I have tried the solution and can attest that it does work. If you have one of these display emulators, just plug it in and the computer believes it has a display attached. This makes all the graphical oddities disappear.</p>
+
+<figure>
+<img src="images/no_machine_white_menu_bar.jpg" alt="No Machine White Menu Bar" id="no_machine_white_menu_bar" style="width:512px;" />
+<figcaption>No Machine White Menu Bar</figcaption>
+</figure>
+
+<p>So, if you find the black menu bar annoying or even impossible, this will solve it at the cost of a meal at your favorite fast food place.</p>
