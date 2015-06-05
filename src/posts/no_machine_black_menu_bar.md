@@ -12,7 +12,7 @@ I've been able to fumble through just using the mouse, as only the bar is black,
 
 However, I was getting tired of the limitation, so a little research on the Etherwebs, and I was able to find a potential cause.
 
-Apparently if OS X Yosemite has a bug.  If a Mac doesn't have a display attached, then all sorts of oddities can occur over a remote connection.
+Apparently OS X Yosemite has a bug.  If a Mac doesn't have a display attached, then all sorts of oddities can occur over a remote connection.
 
 [This thread](https://discussions.apple.com/thread/6627331?start=0&tstart=0) details similar problems to what I was experiencing, and offers a potential solution, [a display emulator](http://www.amazon.com/gp/product/B00FLZXGJ6/).
 
