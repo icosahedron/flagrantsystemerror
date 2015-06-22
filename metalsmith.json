@@ -1,9 +1,0 @@
-{
-    "source": "./src",
-    "destination": "./blog",
-    "clean": true,
-    "plugins": {
-        "metalsmith-each" :
-        }
-    }
-}
