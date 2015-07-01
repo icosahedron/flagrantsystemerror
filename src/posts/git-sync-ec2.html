@@ -4,7 +4,7 @@ date: July 12, 2013
 ---
 <h1>Website Deployments to S3 through Git and EC2</h1>
 
-<p>As I wrote <a href="http://flagrantsystemerror.com/content_goes_here.html">when I started this blog</a>, this is a static site that is deployed via Git.  However, I have since decided to move everything to Amazon S3 for a couple of reasons:</p>
+<p>As I wrote <a href="/content_goes_here.html">when I started this blog</a>, this is a static site that is deployed via Git.  However, I have since decided to move everything to Amazon S3 for a couple of reasons:</p>
 <!-- more -->
 
 <ul>
@@ -27,7 +27,7 @@ date: July 12, 2013
 
 <ul>
 <li>Backups - the remote repository serves as a great place for the last good copy of your website. Git can't save you from a bad disk.</li>
-<li>Multiple workspaces - because I have a central repository, I can work from multiple places.  I typically work my sites via my <a href="http://flagrantsystemerror.com/ipad-www-workflow.html">iPad</a> and on my Mac.</li>
+<li>Multiple workspaces - because I have a central repository, I can work from multiple places.  I typically work my sites via my <a href="/ipad-www-workflow.html">iPad</a> and on my Mac.</li>
 </ul>
 
 
@@ -92,7 +92,7 @@ find . -type f -name '*.ico' | sed -e "s/\.\///g" | xargs -I xxxyyyzzz aws s3 pu
 
 <p>The biggest challenge for deploying via an EC2 instance is that the host name and ip address changes with every (re) start.  If you've seen the host names for an EC2 instance, they are in the format ec2-nn-nn-nn-nn@region.compute.amazonaws.com where nn is the ip address for the instance.  The trick is to use this name in the update process.</p>
 
-<p>The steps below configure your local repository to be able to start the EC2 instance, push the local repo to it (despite its changing host name), and then stop it.  Using a micro instance, this will cost US$0.02 per push.  <em>Evaluate if your update schedule will indeed save you money.</em>  Also, I find that the start and stop procedures add about a minute or two to a push.</p>
+<p>The steps below configure your local repository to be able to start the EC2 instance, push the local repo to it (despite its changing host name), and then stop it.  Using a micro instance, this will cost US$0.02 per push.  <em>Evaluate if your update schedule will indeed save you money.</em>  Also, I find that the start and stop procedures add about a minute or two each push.</p>
 
 <h3>Create Amazon EC2 Instance</h3>
 
@@ -117,7 +117,7 @@ Developer site.  Verify that you can connect to it.  These instructions assume y
 
 <h4>git-sync-ec2 scripts</h4>
 
-<p>Download the <a href="http:://flagrantsystemerror.com/git-sync-ec2-scripts.zip">git-sync-ec2</a> scripts from this site and put them somewhere in your path.  They are also available on <a href="https://bitbucket.org/icosahedron/git-sync-ec2">BitBucket</a>.</p>
+<p>Download the <a href="/download/git-sync-ec2-scripts.zip">git-sync-ec2</a> scripts from this site and put them somewhere in your path.  They are also available on <a href="https://bitbucket.org/icosahedron/git-sync-ec2">BitBucket</a>.</p>
 
 <h3>Manual Verification (Local, Optional)</h3>
 
