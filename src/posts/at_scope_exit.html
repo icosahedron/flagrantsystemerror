@@ -8,7 +8,7 @@ index: true
 <p>C++ has long used scoped resource managers, where a resource (e.g., pointer or mutex) is encapsulated in an object. The object creates or accepts the resource in the constructor and releases it in the destructor, creating a (nearly) foolproof way of making sure that all resources are managed properly.</p>
 <!-- more -->
 
-<p>Perhaps the best example is the standard library <a href="http://en.cppreference.com/w/cpp/memory/unique_ptr."><code>unique_ptr</code></a> Given a pointer, it will manage the pointer during the scope it is in. The following example from cppreference.com shows how it works:</p>
+<p>Perhaps the best example is the standard library <a href="http://en.cppreference.com/w/cpp/memory/unique_ptr"><code>unique_ptr</code></a> Given a pointer, it will manage the pointer during the scope it is in. The following example from cppreference.com shows how it works:</p>
 
 <pre><code>#include &lt;iostream&gt;
 #include &lt;memory&gt;
