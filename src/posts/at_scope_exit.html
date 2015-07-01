@@ -1,0 +1,96 @@
+---
+title: "At Scope Exit: Generic Scoped Resource Management in C++"
+date: June 30, 2015
+index: true
+---
+<h1 id="at_scope_exit:genericscopedresourcemanagementinc11">AT_SCOPE_EXIT: Generic Scoped Resource Management in C++11</h1>
+
+<p>C++ has long used scoped resource managers, where a resource (e.g., pointer or mutex) is encapsulated in an object. The object creates or accepts the resource in the constructor and releases it in the destructor, creating a (nearly) foolproof way of making sure that all resources are managed properly.</p>
+<!-- more -->
+
+<p>Perhaps the best example is the standard library <a href="http://en.cppreference.com/w/cpp/memory/unique_ptr."><code>unique_ptr</code></a> Given a pointer, it will manage the pointer during the scope it is in. The following example from cppreference.com shows how it works:</p>
+
+<pre><code>#include &lt;iostream&gt;
+#include &lt;memory&gt;
+ 
+struct Foo
+{
+    Foo()      { std::cout &lt;&lt; &quot;Foo::Foo\n&quot;;  }
+    ~Foo()     { std::cout &lt;&lt; &quot;Foo::~Foo\n&quot;; }
+    void bar() { std::cout &lt;&lt; &quot;Foo::bar\n&quot;;  }
+};
+ 
+void f(const Foo &amp;)
+{
+    std::cout &lt;&lt; &quot;f(const Foo&amp;)\n&quot;;
+}
+ 
+int main()
+{
+    std::unique_ptr&lt;Foo&gt; p1(new Foo);  // p1 owns Foo
+    if (p1) p1-&gt;bar();
+ 
+    {
+        std::unique_ptr&lt;Foo&gt; p2(std::move(p1));  // now p2 owns Foo
+        f(*p2);
+ 
+        p1 = std::move(p2);  // ownership returns to p1
+        std::cout &lt;&lt; &quot;destroying p2...\n&quot;;
+    }
+ 
+    if (p1) p1-&gt;bar();
+ 
+    // Foo instance is destroyed when p1 goes out of scope
+}
+</code></pre>
+
+<p>The nice thing is that it provides a single point of management for the pointer no matter the exit of the scope, whether by return or exception.</p>
+
+<p>What if we could do that for any resource? Have a database connection, and want to release it after exiting the function? How about a file or a 3rd party library network connection? (Many libraries come with such scoped resource managers, but still&#8230;).</p>
+
+<p>C++11 now has lambdas, making it easy to create arbitrary scoped managers. Here is an example of a small one for Windows file handling:</p>
+
+<pre><code>...
+
+hr srcFile = CreateFile2(src, GENERIC_READ, FILE_SHARE_READ, OPEN_EXISTING, NULL);
+if (srcFile == INVALID_HANDLE_VALUE)
+{
+    // handle error
+}
+AT_SCOPE_EXIT({
+    CloseHandle(srcFile);
+});
+
+...
+</code></pre>
+
+<p>This ensures that <code>srcFile</code> will be closed no matter how the function exits, and I didn&#8217;t have to write a custom class.</p>
+
+<p><code>AT_SCOPE_EXIT</code> is defined as a class with a single <code>std::function&lt;void()&gt;</code> member. Then a convenience macro wraps it so that the function body can simply be included:</p>
+
+<pre><code>struct at_scope_exit 
+{
+    std::function &lt; void() &gt; at_exit_;
+    
+    at_scope_exit(std::function&lt; void() &gt; at_exit)
+        : at_exit_(at_exit)
+    {
+    }
+    
+    ~at_scope_exit()
+    {
+        try {
+            at_exit_();
+        }
+        catch(...) {}
+    }
+};
+
+#define AT_SCOPE_EXIT_CAT(x,y)  x##y
+#define AT_SCOPE_EXIT_ID(index) AT_SCOPE_EXIT_CAT(at_scope_exit, index)
+#define AT_SCOPE_EXIT(expr) at_scope_exit AT_SCOPE_EXIT_ID(__LINE__), ([&amp;] () { expr; } );
+</code></pre>
+
+<p>I&#8217;ve found this immensely useful for such a small snippet. Hope you find it useful too.</p>
+
+<p>Just to cover the legal side of things, <em>the AT_SCOPE_EXIT macro and attendant code is licensed under the Apache 2.0 license.</em></p>
