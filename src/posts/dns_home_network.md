@@ -1,6 +1,6 @@
 # DNS on Home Network #
 
-I have a small home network which has a website (not this one), a code repository, a PC for the kids, a printer, and some VMs running various services.  With only a few machines, I long procrastinated setting up a way to resolve the names and just manually remembered the several IP addresses.  Finally tired of this situation (and sick at home from work), I finally installed DNS.
+I have a small home network which has a website (not this one), a code repository, a PC for the kids, a printer, and some VMs running various services.  With only a few machines, I long procrastinated setting up a way to resolve the names and just manually remembered the several IP addresses.  Finally tired of this situation (and sick at home from work), I installed DNS.
 
 *Disclaimer: There might be a better way to do this.  If you believe this set up could be made better, please drop me a note. I am by no means an expert and would welcome guidance.*
 
@@ -18,7 +18,7 @@ and you're ready to go.  Homebrew also has an easy Dnsmasq installation availabl
 
 To use DNS, the machines on the network have to know where to find the DNS server.  This is a job for DHCP.
 
-To manage things centrally, we want Dnsmasq to manage the DHCP as well as the DNS, so I needed to turn off the DHCP server on the Apple Airport.  Which really means that I set the DHCP range to really small (10.0.1.253-10.0.1.254) and created some bogus MAC addresses to be reserved so that it wouldn't allocate any DHCP addresses or answer any requests, since you can't really turn off the DHCP server and just use the NAT on an Airport router.
+To manage things centrally, we want Dnsmasq to manage the DHCP as well as the DNS, so I needed to turn off the DHCP server on the Apple Airport.  Which really means that I set the DHCP range to really small (10.0.1.253-10.0.1.254) and created some bogus MAC addresses to be reserved so that the Airport wouldn't allocate any DHCP addresses or answer any requests, since you can't really turn off the DHCP server on an Airport router.
 
 !["Turn off" DHCP in an Airport router][airport_dhcp_off]
 
@@ -31,23 +31,23 @@ Fortunately this is easily done, as Dnsmasq has a very well documented example c
 ```
 dhcp-range=10.0.1.50,10.0.1.150,255.255.255.0,24h
 
-dhcp-host=aa:bb:cc:dd:ee:ff,code,10.0.1.7
-dhcp-host=aa:bb:cc:dd:ee:ff,server,10.0.1.6
-dhcp-host=aa:bb:cc:dd:ee:ff,pi,10.0.1.5
-dhcp-host=aa:bb:cc:dd:ee:ff,pc,10.0.1.4
-dhcp-host=aa:bb:cc:dd:ee:ff,printer,10.0.1.3
+dhcp-host=aa:bb:cc:dd:ee:ff,code,xx.yy.zz.ww
+dhcp-host=aa:bb:cc:dd:ee:ff,server,xx.yy.zz.ww
+dhcp-host=aa:bb:cc:dd:ee:ff,pi,xx.yy.zz.ww
+dhcp-host=aa:bb:cc:dd:ee:ff,pc,xx.yy.zz.ww
+dhcp-host=aa:bb:cc:dd:ee:ff,printer,xx.yy.zz.ww
 
-dhcp-option=option:router,10.0.1.1
-dhcp-option=option:dns-server,10.0.1.6
+dhcp-option=option:router,xx.yy.zz.ww
+dhcp-option=option:dns-server,xx.yy.zz.ww
 ```
 
 The last line answers our main concern, where to find the DNS server.  The router is still the Airport, so set to 10.0.1.1.  Otherwise, we have some known addresses and everyone else receives an IP between 10.0.1.50 and 10.0.1.150.
 
 ## A Computer by Any Other Name ##
 
-To carry the vague Shakespearian references further, it is now time to configure the DNS entries.  Again, the example configuration file is very helpful, and through reading it, I was able to determine what was needed.
+To carry the vague Shakespearian references further, next I configured the DNS entries.  Again, the example configuration file is very helpful, and through reading it, I was able to determine what was needed.
 
-The first task is to make sure that our DNS service can find names on the Internet.  Dnsmasq has the ability to forward DNS requests to another server if it does not know how to satisfy a request.  This is the task of a resolver. Normally, the resolver exists at /etc/resolv.conf and Dnsmasq will use it if it's available.  However, /etc/resolv.conf is generated and can be changed by the OS.  To simplify and make the experience more consistent, I use the optional resolv.conf setting in Dnsmasq:
+The first task is to make sure that our DNS service can find names on the Internet.  Dnsmasq has the ability to forward DNS requests to another server if it does not know how to satisfy a request.  This is the task of a resolver. Normally, the resolver exists at /etc/resolv.conf and Dnsmasq will use it if it's available.  However, /etc/resolv.conf is generated and can be changed by the OS.  To simplify and make the experience more consistent, I use the optional *resolv-file* setting in Dnsmasq to use my own resolv.conf file:
 
 ```
 resolv-file=/opt/local/etc/resolv.conf

@@ -1,0 +1,96 @@
+---
+title: "DNS on Home Network Through VPN"
+date: September 2, 2015
+index: true
+---
+<h1 id="dnsonhomenetworkthroughvpn">DNS on Home Network Through VPN</h1>
+
+<p>Summary: You can set the NS record of a domain you own to your home network. If you let DNS pass through to your internal server, it will resolve the names on your network to their internal addresses. Of course, this is only useful if you are at home.</p>
+    <!--more-->
+
+<p><i>This is a continuation of setting up <a href="dns_home_network.html">DNS on your home network</a>.</i></p>
+    
+<p>The last entry was a simple foray into installing DNS on a small home network. As noted though, the home network wasn&#8217;t visible when the tablets or other electronics that were connected to a VPN. Presumably this is because the VPN has its own DHCP (or similar) settings that provide their own DNS.</p>
+
+<p>This is how I resolved (no pun intended) how to see my home network when connected to a VPN.</p>
+
+<h2 id="howdnsfindsyourdomain">How DNS Finds Your Domain</h2>
+
+<p>First, a little background on how DNS works.</p>
+
+<p>When using DNS in your home network, your computer uses the local DNS server to resolve any host names. If the server doesn&#8217;t know the address, it forwards the request to another DNS server to resolve.</p>
+
+<p>Public DNS works the same way. When you search for a name, your DNS server may not know the address, so it relies on other, authoritative, servers.</p>
+
+<p>Here&#8217;s the <code>dig</code> trace for kint.xyz:</p>
+
+<pre><code> jaykint@Dads-MacBook-Pro ~/dev/udptty/ dig +trace kint.xyz
+
+ &lt;&lt;&gt;&gt; DiG 9.8.3-P1 &lt;&lt;&gt;&gt; +trace kint.xyz
+;; global options: +cmd
+.           5129    IN  NS  b.root-servers.net.
+.           5129    IN  NS  j.root-servers.net.
+.           5129    IN  NS  e.root-servers.net.
+.           5129    IN  NS  c.root-servers.net.
+.           5129    IN  NS  h.root-servers.net.
+.           5129    IN  NS  f.root-servers.net.
+.           5129    IN  NS  i.root-servers.net.
+.           5129    IN  NS  a.root-servers.net.
+.           5129    IN  NS  m.root-servers.net.
+.           5129    IN  NS  k.root-servers.net.
+.           5129    IN  NS  d.root-servers.net.
+.           5129    IN  NS  l.root-servers.net.
+.           5129    IN  NS  g.root-servers.net.
+;; Received 228 bytes from 8.8.8.8#53(8.8.8.8) in 449 ms
+
+xyz.            172800  IN  NS  x.nic.xyz.
+xyz.            172800  IN  NS  y.nic.xyz.
+xyz.            172800  IN  NS  z.nic.xyz.
+xyz.            172800  IN  NS  generationxyz.nic.xyz.
+;; Received 282 bytes from 199.7.83.42#53(199.7.83.42) in 416 ms
+
+kint.xyz.       3600    IN  NS  home.icosahedron.org.
+;; Received 56 bytes from 212.18.249.42#53(212.18.249.42) in 75 ms
+
+;; Received 26 bytes from 67.183.147.81#53(67.183.147.81) in 37 ms
+</code></pre>
+
+<p>You can likely divine what is happening here. The .xyz domain is held in the root servers (aptly named <code>root-servers.net</code>), which in turn refer to the xyz authoritative domain servers (<code>x.nic.xyz</code>, etc.). These servers know about kint.xyz and deliver the NS record, which is my home server <code>home.icosahedron.org</code>.</p>
+
+<p>There is a fairly good <a href="http://www.internetsociety.org/sites/default/files/The%20Internet%20Domain%20Name%20System%20Explained%20for%20Non-Experts%20%28ENGLISH%29.pdf">introduction to DNS</a> published by the Internet Society if you would like more details.</p>
+
+<h2 id="homednsviavpn">Home DNS via VPN</h2>
+
+<p>A little bit of information goes a long way. So, we know we have to somehow make our DNS server available to the internet. But first things first. We need a domain that works on the public internet. </p>
+
+<p>In the previous article, I used kint.home. Well, .home isn&#8217;t (yet) available as a domain suffix (TLD), so I needed to pick another name. My registrar of choice, <a href="http://gandi.net">gandi.net</a>, has .xyz domains for cheap. kint.xyz it is!</p>
+
+<h3 id="punchingholes">Punching Holes</h3>
+
+<p>To be able to reach the authoritative server for kint.xyz (my home server), DNS must be forwarded through the firewall. This is left as an exercise to the reader (since it will depend on your router). (Hint: UDP port 53 is the port to forward.)</p>
+
+<h3 id="settingnstoyourhomenetwork">Setting NS to Your Home Network</h3>
+
+<p>With your own authoritative server, you simply have to set your domain&#8217;s NS record to your home network.</p>
+
+<p>Ah, but to set the NS record, you need an IP address to set it to! (Really, the NS record contains a hostname, but <em>that</em> has to resolve to an IP address at least.) If your ISP is like mine, then you have a dynamic address. Well, dynamic DNS to the rescue, but I&#8217;ll leave that for the next article.</p>
+
+<p>My home network is available at home.icosahedron.org. Using Gandi&#8217;s tools, it&#8217;s simply a matter of setting the DNS server for the domain to our home domain.</p>
+
+<figure>
+<img src="images/gandi_dns.png" alt="Gandi DNS Settings" id="gandi_dns" title="Gandi DNS Settings" style="width:570px;" />
+<figcaption>Gandi DNS Settings</figcaption>
+</figure>
+
+<h3 id="securityimplications">Security Implications</h3>
+
+<p>I&#8217;ll be honest, there are security implications to exposing your DNS server to the public internet. There are security implications in exposing <em>anything</em> to the public internet. However, in my research there was no information about concrete attacks from doing this, so I elected to do it for convenience.</p>
+
+<p>To each their own.</p>
+
+<h2 id="printeronline">Printer Online</h2>
+
+<p>With this set, I can now enter my printer name as printer.kint.xyz on my tablet, and it works! Only if I&#8217;m actually at my house of course.</p>
+
+<p><em>Please give any feedback, corrections or advice to jkint@flagrantsystemerror.com</em></p>
+    

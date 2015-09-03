@@ -1,13 +1,14 @@
 ---
 title: "DNS on Home Network"
 date: August 30, 2015
-index: true
 ---
 <h1 id="dnsonhomenetwork">DNS on Home Network</h1>
 
 <p>I have a small home network which has a website (not this one), a code repository, a PC for the kids, a printer, and some VMs running various services. With only a few machines, I long procrastinated setting up a way to resolve the names and just manually remembered the several IP addresses. Finally tired of this situation (and sick at home from work), I finally installed DNS.</p>
 <!-- more -->
-    
+
+<p><i>This is the first article about setting up DNS on your home network. The <a href="dns_home_vpn.html">next</a> article talks about accessing your home network DNS when connected to a VPN</i>.</p>
+
 <p><em>Disclaimer: There might be a better way to do this. If you believe this set up could be made better, please drop me a note. I am by no means an expert and would welcome guidance.</em></p>
 
 <p>My network is anchored by a Mac Mini, so that is the logical place to install the DNS server. <a href="http://www.thekelleys.org.uk/dnsmasq/doc.html">Dnsmasq</a> seems to be the small server of choice for DNS (and DHCP, TFTP, and a few other protocols).</p>
