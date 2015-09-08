@@ -1,0 +1,84 @@
+<html>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display|Lora|Libre+Baskerville|EB+Garamond|Droid+Merriweather' rel='stylesheet' type='text/css'>
+    <style>
+    @font-face {
+         font-family: 'NHL-Colorado';
+         src:url('http://flagrantsystemerror.com/fonts/NHL-Colorado.ttf.woff') format('woff'),
+             url('http://flagrantsystemerror.com/fonts/NHL-Colorado.ttf.svg#NHL-Colorado') format('svg'),
+             url('http://flagrantsystemerror.com/fonts/NHL-Colorado.ttf.eot'),
+             url('http://flagrantsystemerror.com/fonts/NHL-Colorado.ttf.eot?#iefix') format('embedded-opentype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+         font-family: 'ChunkFiveEx';
+         src:url('http://flagrantsystemerror.com/fonts/ChunkFiveEx.ttf.woff') format('woff'),
+             url('http://flagrantsystemerror.com/fonts/ChunkFiveEx.ttf.svg#ChunkFiveEx') format('svg'),
+             url('http://flagrantsystemerror.com/fonts/ChunkFiveEx.ttf.eot'),
+             url('http://flagrantsystemerror.com/fonts/ChunkFiveEx.ttf.eot?#iefix') format('embedded-opentype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    body {
+          display: flex;
+          flex-direction: column;
+          background: black;
+          color: white;
+          margin-left: 0;
+          margin-top: 0;
+          vertical-align: middle;
+     }
+     main {
+        display: table;
+        min-height: 75%;
+        min-width: 100%;
+        color: black;
+        font-size: 36pt;
+        background: white;
+     }
+     footer {
+         display: table;
+         min-height: 25%;
+         margin-left: 5%;
+     }
+     .done-text {
+         font-family: 'ChunkFiveEx';
+         font-size: 36pt;
+         vertical-align: middle;
+         display: table-cell;
+     }
+    .perfect-done-list {
+       margin-left: 45%;
+       margin-top: 5%;
+       font-family: 'NHL-Colorado';
+       flex: 1;
+       vertical-align: middle;
+    }
+    .perfect {
+        font-size: 36pt;
+    }
+    .done {
+        font-size: 60pt;
+    }
+    .check {
+        font-size: 36pt;
+        vertical-align: middle;
+    }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="perfect-done-list">
+            <span class="perfect"><span class="check">&#x2610; </span>PERFECT</span><br />
+            <span class="done"><span class="check">&#x2611; </span>DONE</span><br />
+            <span class="done"><span class="check">&#x2611; </span>DONE</span><br />
+            <span class="done"><span class="check">&#x2611; </span>DONE</span><br />
+            <span class="done"><span class="check">&#x2611; </span>DONE</span><br />
+        </div>
+        </main>
+    <footer>
+        <div class="done-text">Done is<br />better than<br />perfect.</div>
+    </footer>
+</body>
+</html>
