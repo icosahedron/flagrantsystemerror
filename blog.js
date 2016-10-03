@@ -8,6 +8,7 @@ var collections = require('metalsmith-collections');
 var feed = require('metalsmith-feed');
 var more = require('metalsmith-more');
 var permalinks = require('metalsmith-permalinks');
+
 var child_process = require('child_process');
 var path = require('path');
 
@@ -32,7 +33,7 @@ var mmd = function(options = {}) {
     // verify that mmd is installed
     // (this will throw an error if it's not installed)
     var mmdVersion = child_process.execSync('mmd -v');
-    
+
     var collectionName = options.collection;
     if(collectionName === 'undefined') {
         throw new Error('collection option is required. See metalsmith-collections.');
