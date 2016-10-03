@@ -1,13 +1,16 @@
----
-title: "Git on the Home Front"
-date: October 1, 2016
-index: true
----
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Git Service Setup on a Home Server</title>
+	<meta name="date" content="2016-10-01"/>
+	<meta name="index" content="true"/>
+</head>
+<body>
+
 <h1 id="gitonthehomefrontsettingupagitserviceindocker">Git on the Home Front (Setting up a Git Service in Docker)</h1>
 
-<p>I have a little home server at which I keep a number of services that I use locally. One of these is a <a href="https://gogs.io">
-
-Gogs</a> server to house my personal code that I don&#8217;t (yet) feel is ready for GitHub or other public repositories.</p>
+<p>I have a little home server at which I keep a number of services that I use locally. One of these is a <a href="https://gogs.io">Gogs</a> server to house my personal code that I don&#8217;t (yet) feel is ready for GitHub or other public repositories.</p>
 
 <p>To keep it quasi-secure, I use https, and to do that, I use Let&#8217;s Encrypt certificates. Recently the certificate ran out, and I had to dig back through to see how I had set up the site so I could reset the certificate.</p>
 
@@ -15,9 +18,7 @@ Gogs</a> server to house my personal code that I don&#8217;t (yet) feel is ready
 
 <h2 id="onthedock">On the Dock</h2>
 
-<p>To keep the set up as easy and isolated as possible, I use <a href="http://www.docker.com/products/overview">
-
-Docker for OSX</a>. If you haven&#8217;t used Docker recently, the latest version of Docker is much easier to administrate. Gone is Virtual Box, instead Docker using the native virtualization of OSX (and Windows too).</p>
+<p>To keep the set up as easy and isolated as possible, I use <a href="http://www.docker.com/products/overview">Docker for OSX</a>. If you haven&#8217;t used Docker recently, the latest version of Docker is much easier to administrate. Gone is Virtual Box, instead Docker using the native virtualization of OSX (and Windows too).</p>
 
 <p>Since I host other services as well, I use nginx as a reverse proxy. As nginx has data that needs to persist across container invocations, I created a couple of volumes for it: one to hold the configuration and another to hold the web pages and other data.</p>
 
@@ -34,9 +35,7 @@ docker volume create nginx-data
 
 <figure>
 <img src="images/nginx-screenshot.png" alt="Nginx Bare Screenshot" id="nginx-screenshot" style="width:512px;" />
-<figcaption>
-
-Nginx Bare Screenshot</figcaption>
+<figcaption>Nginx Bare Screenshot</figcaption>
 </figure>
 
 <p>To host the Git data, I chose the Gogs server. Gitlab is very nice, but it resource intensive, and I wanted something light. Gogs, written in Go, fit that bill quite nicely. As a bonus, it has many of the same features as GitHub and GitLab.</p>
@@ -55,15 +54,13 @@ Nginx Bare Screenshot</figcaption>
 
 <p>Gogs was up and running, though not yet available via the normal www. Instead, now that it was running, I had to configure it.</p>
 
-<p>I used the configuration instructions from the <a href="https://github.com/gogits/gogs/tree/master/docker">
-
-Gogs Docker Repository</a>.</p>
+<p>I used the configuration instructions from the <a href="https://github.com/gogits/gogs/tree/master/docker">Gogs Docker Repository</a>.</p>
 
 <h2 id="certifiable">Certifiable</h2>
 
 <p>Next came the nginx configuration to serve Gogs as a proxy. Before setting up the configuration, it was necessary to procure the certificate to allow for secure communications (https). The easiest way to do this is with Let&#8217;s Encrypt.</p>
 
-<p>Let&#8217;s Encrypt provides very good documentation on how to install the certificate. However, since I am running on OSX and nginx is running in a container, I followed the manual procedure<a href="#fn:68839" id="fnref:68839" title="see footnote" class="footnote">[1]</a>.</p>
+<p>Let&#8217;s Encrypt provides very good documentation on how to install the certificate. However, since I am running on OSX and nginx is running in a container, I followed the manual procedure<a href="#fn:1" id="fnref:1" title="see footnote" class="footnote">[1]</a>.</p>
 
 <pre><code>brew install certbot
 sudo certbot certonly --standalone -d code.icosahedron.io
@@ -188,9 +185,13 @@ docker exec -it &lt;container&gt; bash
 <hr />
 <ol>
 
-<li id="fn:68839">
-<p>In retrospect, it would likely be possible to perform the certificate retrieval and configuration in the containers themselves using <code>docker exec</code> <a href="#fnref:68839" title="return to article" class="reversefootnote">&#160;&#8617;</a></p>
+<li id="fn:1">
+<p>In retrospect, it would likely be possible to perform the certificate retrieval and configuration in the containers themselves using <code>docker exec</code> <a href="#fnref:1" title="return to article" class="reversefootnote">&#160;&#8617;</a></p>
 </li>
 
 </ol>
 </div>
+
+
+</body>
+</html>

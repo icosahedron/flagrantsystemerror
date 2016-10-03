@@ -1,3 +1,8 @@
+---
+title: Git Service Setup on a Home Server
+date: 2016-10-01
+index: true
+---
 # Git on the Home Front (Setting up a Git Service in Docker) #
 
 I have a little home server at which I keep a number of services that I use locally.  One of these is a [Gogs](https://gogs.io) server to house my personal code that I don't (yet) feel is ready for GitHub or other public repositories.

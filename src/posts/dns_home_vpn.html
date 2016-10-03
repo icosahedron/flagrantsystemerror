@@ -2,6 +2,17 @@
 title: "DNS on Home Network Through VPN"
 date: September 2, 2015
 ---
+# DNS on Home Network Through VPN #
+
+TL;DR; Summary: You can set the NS record of a domain you own to your home network. If you let DNS pass through to your internal server, it will resolve the names on your network to their internal addresses. Of course, this is only useful if you are at home.
+
+*This is a continuation of setting up <a href="dns_home_network.html">DNS on your home network.*
+
+The last entry was a simple foray into installing DNS on a small home network. As noted though, the home network wasn&#8217;t visible when the tablets or other electronics that were connected to a VPN. Presumably this is because the VPN has its own DHCP (or similar) settings that provide their own DNS.
+
+## How DNS Finds Your Domain ##
+
+
 <h1 id="dnsonhomenetworkthroughvpn">DNS on Home Network Through VPN</h1>
 
 <p>Summary: You can set the NS record of a domain you own to your home network. If you let DNS pass through to your internal server, it will resolve the names on your network to their internal addresses. Of course, this is only useful if you are at home.</p>
