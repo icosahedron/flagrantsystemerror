@@ -1,0 +1,42 @@
+{
+  "name": "flagrant",
+  "version": "1.0.0",
+  "description": "Blog for flagrantsystemerror.com",
+  "main": "blog.js",
+  "dependencies": {
+    "consolidate": "^0.12.1",
+    "metalsmith": "^2.2.0",
+    "metalsmith-collections": "^0.7.0",
+    "handlebars": "^3.0.3",
+    "metalsmith-each": "^0.1.1",
+    "metalsmith-elevate": "^0.0.0",
+    "metalsmith-feed": "^0.0.6",
+    "metalsmith-filemetadata": "^0.0.4",
+    "metalsmith-ignore": "^0.1.2",
+    "metalsmith-layouts": "^1.6.5",
+    "metalsmith-more": "^0.2.0",
+    "metalsmith-permalinks": "^0.5.0",
+    "metalsmith-markdown": "^0.2.1",
+    "metalsmith-templates": "^0.7.0",
+    "metalsmith-debug": "^0.0.2",
+    "mustache": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://code.icosahedron.io/flagrantsystemerror"
+  },
+  "keywords": [
+    "blog",
+    "flagrant",
+    "system",
+    "error",
+    "jay",
+    "kint"
+  ],
+  "author": "Jay Kint",
+  "license": "MIT"
+}
