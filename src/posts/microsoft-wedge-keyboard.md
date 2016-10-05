@@ -1,6 +1,6 @@
 # Microsoft Wedge Keyboard Review
 
-I blog from my iPad, which means a lot of typing.  Typing on the iPad is something of a challenge using the on screen keyboard.  I have used an Apple Wireless Keyboard for a while, and quite enjoy it.  However, while it is small, it's not really portable.  Carrying the Apple keyboarde with an iPad is not convenient.
+I blog from my iPad, which means a lot of typing.  Typing on the iPad is something of a challenge using the on screen keyboard.  I have used an Apple Wireless Keyboard for a while, and quite enjoy it.  However, while it is small, it's not really portable.  Carrying the Apple keyboard with an iPad is not convenient.
 
 A while back I saw the Microsoft Wedge Keyboard at the store.  I played with it a bit and thought it might be a passable alternative to the Apple keyboard.  Also, I liked the case that doubles as a stand for a tablet.  On a whim, I bought it.
 
@@ -42,7 +42,7 @@ Since the stand is an accessory to the keyboard, the iPad (or other tablet) does
 
 ## Parting Words
 
-The Microsoft Wedge Keyboard is a nice compantion to any tablet.  The keyboard has a nice feel and works well, though it could be cramped for smaller hands.
+The Microsoft Wedge Keyboard is a nice companion to any tablet.  The keyboard has a nice feel and works well, though it could be cramped for smaller hands.
 
 The true difference is the cover/stand that comes with it.  By being an accessory to the keyboard rather than a tablet case, it leaves the tablet to be as portable as you would like.
 

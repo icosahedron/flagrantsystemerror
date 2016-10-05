@@ -95,8 +95,7 @@ Metalsmith(__dirname)
         'templates/*',
         '**/*~',  // emacs droppings
         '**/.*',  // hidden files
-        'sidebar/*.md', // markdown files in ancillary directories
-        'pages/*.md'
+        '**/*.html', // all the HTML files are ignored
     ]))
     .use(each(function(file, filename) {
         file.source = filename;
@@ -106,13 +105,13 @@ Metalsmith(__dirname)
     //     pattern: ':title'
     // }))
     .use(collections({
-        posts:
-            { pattern: 'posts/*.md',
+        mdfiles:
+            { pattern: '**/*.md',
               sortBy: 'source',
               refer: false }
     }))
     .use(mmd({
-        collection: 'posts'
+        collection: 'mdfiles'
     }))
     // .use(feed({
     //     collection: 'posts'

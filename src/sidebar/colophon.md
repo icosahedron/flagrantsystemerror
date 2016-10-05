@@ -2,21 +2,25 @@
 
 Flagrant System Error is produced by [Jay Kint](mailto:jkint@flagrantsystemerror.com).
 
+It is available in source form on [Git](http://code.icosahedron.io/jkint/flagrantsystemerror).
+
 ## Site Software
 
 The following software is used to produce Flagrant System Error.
 
 ### Mac
 
-* [Coda 2](http://panic.com/coda/)
-* [MultiMarkdon Composer 2](http://multimarkdown.com/)
+* [MultiMarkdown Composer 3](http://multimarkdown.com/)
 * [git](http://git-scm.org)
-* [Typinator](http://www.ergonis.com/products/typinator/)
+* [node.js](http://nodejs.org)
+* [Metalsmith](http://metalsmith.io)
+* [iTerm2](http://iterm2.com)
 
 ### iPad
 
-* [Diet Coda](http://panic.com/dietcoda)
 * [Textastic](http://www.textasticapp.com/)
-* [Text Expander](http://itunes.apple.com/us/app/textexpander/id326180690?mt=8)
+* [Server Auditor](https://serverauditor.com)
+* [Working Copy](http://workingcopyapp.com)
 
-Flagrant System Error is hosted on Amazon S3 as static HTML.  See [the iPad WWW Workflow](#ipad-www-workflow) for more information.
+Flagrant System Error is hosted on Amazon S3 as static HTML.  See
+[the iPad WWW Workflow](http://flagrantsystemerror.com/ipad-www-workflow) for more information, though that document is out of date.
