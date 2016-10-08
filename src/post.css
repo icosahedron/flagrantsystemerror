@@ -1,0 +1,38 @@
+/**:before, *:after, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}*/
+
+html, body {
+    background: #ffffff;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#wrap {
+   height: 100vh;
+   display: flex;
+}
+
+main {
+  flex: 1;
+  display: flex;
+}
+
+aside, article {
+   padding: 5em;
+   overflow-y: scroll;
+}
+
+aside {
+  flex: 23;
+  background: tomato;
+}
+
+article {
+    background: skyblue;
+    flex: 77;
+}
