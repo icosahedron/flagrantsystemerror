@@ -1,11 +1,6 @@
-/**:before, *:after, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}*/
 
 html, body {
-    background: #ffffff;
+    background: white;
     width: 100%;
     height: 100%;
     margin: 0;
@@ -13,26 +8,111 @@ html, body {
 }
 
 #wrap {
-   height: 100vh;
-   display: flex;
+    height: 100vh;
+    display: flex;
 }
 
 main {
-  flex: 1;
-  display: flex;
+    flex: 1;
+    display: flex;
 }
 
-aside, article {
-   padding: 5em;
-   overflow-y: scroll;
+nav, article {
 }
 
-aside {
-  flex: 23;
-  background: tomato;
+nav {
+    background: #206da8 center;
+    background-attachment: fixed;
+    flex: 24;
+    padding-right: 25px;
+    text-align: right;
+    color: #dbdef0;
+    font-family: "Alegreya Sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+#nav-content {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+}
+
+nav h1 {
+    font-size: 40px;
+    margin-left: -2.5px;
+    line-height: 1.04;
+    letter-spacing: -.028em;
+}
+
+nav h4 {
+    font-size: 16px;
+    margin-left: -2px;
+    line-height: 1.15;
+    letter-spacing: -.01em;
+    text-align: center;
+    padding-bottom: 10%;
+}
+
+nav a {
+    text-decoration: none;
+    color: #dbdef0;
+}
+
+nav #sidebar a {
+    font-size: 20px;
+    margin-left: -2px;
+    line-height: 1.5;
+    letter-spacing: -.02em;
+    padding-right: 50px;
+    /* text-align: center; */
+}
+
+nav img {
+    width: 100%;
+    margin-top: 20%;
+    margin-bottom: 20%;
+    padding-left: 2%;   /* to center the image, rather than resize it.. lazy, I know. */
+}
+
+nav #credits {
+    text-align: center;
+    vertical-align: bottom;
+    justify-content: flex-end;
 }
 
 article {
-    background: skyblue;
-    flex: 77;
+    background: white;
+    flex: 76;
+    overflow-y: scroll;
 }
+
+/* style for title
+font-family: "Alegreya Sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+    letter-spacing: -.02em;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 40px;
+    margin-left: -2.5px;
+    line-height: 1.04;
+    letter-spacing: -.028em; */
+
+/* style for in article subheadings
+font-family: "Alegreya Sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 32px;
+    margin-left: -2px;
+    line-height: 1.15;
+    letter-spacing: -.02em; */
+
+/*
+style for text in the article
+font-family: medium-content-serif-font,Georgia,Cambria,"Times New Roman",Times,serif;
+    letter-spacing: .01rem;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 21px;
+    line-height: 1.58;
+    letter-spacing: -.003em;
+*/
