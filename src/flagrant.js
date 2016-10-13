@@ -2,14 +2,17 @@
 // still need this for Safari.  All the other browsers work fine using flexbox only.
 function set_credit_at_bottom()
 {
+    return;
     console.log("window.height = " + $(window).height());
-    console.log("#credits.position().top = " + $("#credits").psoition().top);
+    console.log("#credits.position().top = " + $("#credits").position().top);
     console.log("#credits.height() = " + $("#credits").height());
+    console.log("#credits.css('margin-top') = " + $("#credits").css("margin-top"));
     $("#credits").css("margin-top", $(window).height() - $("#credits").position().top - $("#credits").height());
 }
 
 function set_codeblock_widths()
 {
+    return;
     if( $("pre").length != 0 )
     {
         var paddingRight = $("pre").css("padding-right");
@@ -17,10 +20,10 @@ function set_codeblock_widths()
         paddingLeft = paddingLeft.substring(0,paddingLeft.length-2);
         paddingRight = paddingRight.substring(0,paddingRight.length-2);
         paddingLeft = parseInt(paddingLeft);
-        paddingRigt = parseInt(paddingRight);
+        paddingRight = parseInt(paddingRight);
 
         // padding is left in innerWidth
-        $("pre").width($("#post").innerWidth() - paddingRight - paddingLeft);
+        $("pre").width($("article").innerWidth() - paddingRight - paddingLeft);
     }
 }
 
@@ -88,5 +91,6 @@ $(document).ready( function() {
 
     $(window).resize(function() {
         set_credit_at_bottom();
+        set_codeblock_widths();
     });
 });
