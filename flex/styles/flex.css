@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "CharisSIL";
+    src: url("/fonts/CharisSILR.ttf");
+}
+
 html,
 body {
   width: 100%;
@@ -11,24 +16,26 @@ h5,
 h6 {
   font-weight: 300;
   line-height: 1.1;
+  margin-top: 1.2em;
+  margin-bottom: 0em;
 }
 h1 {
-  font-size: 2.4em;
-}
-h2 {
   font-size: 2em;
 }
-h3 {
+h2 {
   font-size: 1.6em;
 }
-h4 {
+h3 {
   font-size: 1.36em;
 }
-h5 {
+h4 {
   font-size: 1.2em;
 }
-h6 {
+h5 {
   font-size: 1.1em;
+}
+h6 {
+  font-size: 1.0em;
 }
 body {
   margin: 0;
@@ -61,6 +68,10 @@ aside {
   background-color: #206da8;
   color: #dbdef0;
   text-align: center;
+  font-family: "Alegreya Sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+  position: relative;
+  /*font-weight: 700;
+  font-style: normal;*/
 }
 aside a {
   color: #dbdef0;
@@ -69,17 +80,15 @@ aside a:hover {
   color: #eeeeee;
 }
 aside div {
-  padding: 20px;
+  /* padding: 20px; */
   margin: 0;
 }
 #banner {
-    border-top: 10%;
-    border-bottom: 10%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    padding-left: 5%;
+    padding-right: 5%;
 }
-/*aside div img {
-  border-radius: 50%;
-  max-width: 140px;
-}*/
 aside div h1 {
   margin: 15px 0 5px 0;
 }
@@ -92,7 +101,12 @@ aside nav ul li {
   line-height: 1.6em;
   font-size: 1.28em;
   text-transform: lowercase;
+  text-align: right;
 }
+aside .credits {
+    display: none;
+}
+
 main nav {
   text-align: center;
   text-transform: uppercase;
@@ -115,9 +129,19 @@ main .social-share p {
   font-size: .8em;
 }
 main article {
-    width: 60%;
-    margin-left: 20%;
+    width: 80%;
+    margin-left: 10%;
     /* margin: 0 8% 2% 8%; */
+    font-family: "CharisSIL", "Times New Roman", serif;
+    letter-spacing: .01rem;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 21px;
+    line-height: 1.58;
+    letter-spacing: -.003em;
+}
+main article h1, h2, h3, h4, h5, h6 {
+    font-family: "Alegreya Sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
 }
 main article header h1,
 main article header h2 {
@@ -126,6 +150,7 @@ main article header h2 {
 main article header p {
   color: #999999;
   font-size: 0.86em;
+  font-family:
 }
 main article code,
 main article kbd,
@@ -195,6 +220,8 @@ main article table td {
   border-top: 1px solid #ddd;
 }
 main footer {
+    display: block;
+    font-size: 13px;
   padding-top: 4px;
   border-top: #eeeeee 1px solid;
 }
@@ -339,17 +366,26 @@ ul.social a.sc-soundcloud {
     position: fixed;
     top: 0;
     left: 0;
-    overflow-y: auto;
+    /*overflow-y: auto;*/
   }
-  aside div {
+  /*aside div {
     padding: 36px 18px;
-  }
+  }*/
   aside div nav ul li {
-    padding: 0 !important;
+    /*padding: 0 !important;*/
+    padding-right: 20%;
     display: block;
   }
   aside div ul.social {
     padding-top: 32px;
+  }
+  aside .credits {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      text-align: center;
+      width: 100%;
+      font-size: 13px;
   }
   main {
     width: 75%;
@@ -358,10 +394,23 @@ ul.social a.sc-soundcloud {
     top: 0;
     left: 25%;
   }
+  main article {
+      width: 60%;
+      margin-left: 20%;
+  }
   main article.single {
     min-height: 80%;
   }
   main article ul.list li {
     padding: 2px;
+  }
+  ul.list {
+      padding-top: 33%;
+  }
+  ul.list li {
+    padding-right: 10%;
+  }
+  main footer .credits {
+      display: none;
   }
 }
