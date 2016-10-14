@@ -147,6 +147,23 @@ main article header h1,
 main article header h2 {
   margin-bottom: 0;
 }
+main article h1 {
+    letter-spacing: -.02em;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 40px;
+    margin-left: -2.5px;
+    line-height: 1.04;
+    letter-spacing: -.028em;
+}
+main article h2 {
+    font-weight: 500;
+    font-style: normal;
+    font-size: 32px;
+    margin-left: -2px;
+    line-height: 1.15;
+    letter-spacing: -.02em;
+}
 main article header p {
   color: #999999;
   font-size: 0.86em;
@@ -175,6 +192,7 @@ main article pre {
   padding: 4px;
   font-size: .9em;
   overflow-x: auto;
+  white-space: pre;
 }
 main article samp {
   white-space: pre;
@@ -195,12 +213,14 @@ main article kbd {
 }
 main article code {
   font-size: .8em;
-  white-space: nowrap;
   color: #c25;
-  padding: 1px 3px;
+  /*padding: 1px 3px;*/
+  margin-top: 10px;
+  margin-bottom: 20px;
   background-color: #f7f7f9;
-  border: 1px solid #e1e1e8;
-  border-radius: 3px;
+  overflow-y: hidden;
+  /*border: 1px solid #e1e1e8;*/
+  /*border-radius: 3px;*/
 }
 main article .comment-count {
   font-size: .8em;
@@ -299,7 +319,7 @@ ul.list {
   padding: 1em 0 1em 0;
 }
 ul.list li {
-  padding: 4px;
+  padding: 2.5%;
 }
 ul.social {
   font-size: 1.6em;
