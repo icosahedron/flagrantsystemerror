@@ -14,7 +14,7 @@ The series of projects I'm working on, listed loosely by priority.
 struggling with the design for the new site, cause, you know, I couldn't just port the site design as is, I finally decided to make
 the break and place technical items on another (this) blog and gaming items on another blog, expertisedice.com.
 
-> It seems like a tinker with this site often enough to have it listed here as an ongoing project.
+> It seems like I tinker with this site often enough to have it listed here as an ongoing project.
 
 ### Baldur's Gate ###
 

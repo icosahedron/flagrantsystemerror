@@ -19,8 +19,9 @@ The following software is used to produce Flagrant System Error.
 ### iPad
 
 * [Textastic](http://www.textasticapp.com/)
-* [Server Auditor](https://serverauditor.com)
+* [Blink](https://github.com/blinksh/blink)
 * [Working Copy](http://workingcopyapp.com)
 
 Flagrant System Error is hosted on Amazon S3 as static HTML.  See
-[the iPad WWW Workflow](http://flagrantsystemerror.com/ipad-www-workflow) for more information, though that document is out of date.
+[the iPad WWW Workflow](http://flagrantsystemerror.com/ipad-www-workflow) for more information,
+though that document is out of date.

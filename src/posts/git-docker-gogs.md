@@ -5,24 +5,32 @@ index: true
 ---
 # Git on the Home Front (Setting up a Git Service in Docker) #
 
-I have a little home server at which I keep a number of services that I use locally.  One of these is a [Gogs](https://gogs.io) server to house my personal code that I don't (yet) feel is ready for GitHub or other public repositories.
+I have a little home server at which I keep a number of services that I use locally.  One of these is a [Gogs](https://gogs.io)
+server to house my personal code that I don't (yet) feel is ready for GitHub or other public repositories.
 
-To keep it quasi-secure, I use https, and to do that, I use Let's Encrypt certificates.  Recently the certificate ran out, and I had to dig back through to see how I had set up the site so I could reset the certificate.
+To keep it quasi-secure, I use https, and to do that, I use Let's Encrypt certificates.  Recently the certificate ran out, and I had
+to dig back through to see how I had set up the site so I could reset the certificate.
 
-This is a record of how I set it up for my own records and perhaps for someone else who wants something simple to house their code.  I'm sure there are better ways to set this up and make it more automated, but this suffices for what I need, and I didn't want to spend too much time on it.
+This is an account of how I set it up for my own records and the thought that perhaps someone else might find it useful.  I'm sure
+there are better ways to set this up and make it more automated, but this suffices for what I need, and I didn't want to spend too
+much time on it.
 
 ## On the Dock ##
 
-To keep the set up as easy and isolated as possible, I use [Docker for OSX](http://www.docker.com/products/overview).  If you haven't used Docker recently, the latest version of Docker is much easier to administrate.  Gone is Virtual Box, instead Docker using the native virtualization of OSX (and Windows too).
+To keep the set up as easy and isolated as possible, I use [Docker for OSX](http://www.docker.com/products/overview).  If you
+haven't used Docker recently, the latest version of Docker is much easier to administrate.  Gone is Virtual Box.  Instead Docker
+uses the native virtualization of OSX (and Windows too).
 
-Since I host other services as well, I use nginx as a reverse proxy.  As nginx has data that needs to persist across container invocations, I created a couple of volumes for it: one to hold the configuration and another to hold the web pages and other data.
+Since I host other services as well, I use nginx as a reverse proxy.  As nginx has data that needs to persist across container
+invocations, I created a couple of volumes for it: one to hold the configuration and another to hold the web pages and other data.
 
 ```
 docker volume create nginx-config
 docker volume create nginx-data
 ```
 
-With these set up, I set up nginx proper in docker, mounting the data and configuration volumes where nginx looks for them by default:
+With these set up, I set up nginx proper in docker, mounting the data and configuration volumes where nginx looks for them by
+default:
 
 ```
 docker run --name nginx -v nginx-config:/etc/nginx -v nginx-data:/usr/share/nginx/html -p 80:80 -p 443:443 -d nginx
@@ -34,7 +42,8 @@ Now all web traffic to the server goes to the nginx docker container.
 
 [nginx-screenshot]: images/nginx-screenshot.png width=512px
 
-To host the Git data, I chose the Gogs server.  Gitlab is very nice, but it resource intensive, and I wanted something light.  Gogs, written in Go, fit that bill quite nicely.  As a bonus, it has many of the same features as GitHub and GitLab.
+To host the Git data, I chose the Gogs server.  Gitlab is very nice, but it is resource intensive, and I wanted something light.  
+Gogs, written in Go, fits that bill quite nicely.  As a bonus, it has many of the same features as GitHub and GitLab.
 
 Like nginx, Gogs needs a separate volume to host the repository data.
 
@@ -56,18 +65,22 @@ I used the configuration instructions from the [Gogs Docker Repository](https://
 
 ## Certifiable ##
 
-Next came the nginx configuration to serve Gogs as a proxy.  Before setting up the configuration, it was necessary to procure the certificate to allow for secure communications (https).  The easiest way to do this is with Let's Encrypt.
+Next came the nginx configuration to serve Gogs as a proxy.  Before setting up the configuration, it was necessary to procure the
+certificate to allow for secure communications (https).  The easiest way to do this is with Let's Encrypt.
 
-Let's Encrypt provides very good documentation on how to install the certificate.  However, since I am running on OSX and nginx is running in a container, I followed the manual procedure[^manual-cert].
+Let's Encrypt provides very good documentation on how to install the certificate.  However, since I am running on OSX and nginx is
+running in a container, I followed the manual procedure[^manual-cert].
 
-[^manual-cert]: In retrospect, it would likely be possible to perform the certificate retrieval and configuration in the containers themselves using `docker exec`
+[^manual-cert]: In retrospect, it would likely be possible to perform the certificate retrieval and configuration in the containers
+themselves using `docker exec`
 
 ```
 brew install certbot
 sudo certbot certonly --standalone -d code.icosahedron.io
 ```
 
-This placed the certificate in the /etc/letsencrypt/live/code.icosahedron.io.  From here, I had to place the certificate into the container.
+This placed the certificate in the /etc/letsencrypt/live/code.icosahedron.io.  From here, I had to place the certificate into the
+container.
 
 ```
 sudo cp /etc/letsencrypt/live/code.icosahedron.io/fullchain.pem .
@@ -77,7 +90,9 @@ sudo docker cp privkey.pem 26c6:/etc/nginx/ssl/code.icosahedron.io/privkey.pem
 srm privkey.pm
 ```
 
-Because Let's Encrypt uses symbolic links, it was necessary unfortunately to copy the private key and certificate chain to my user directory and then from there copy it to the nginx container into the proper directory.  Docker's cp command supposedly will follow a link with the -L parameter, but it didn't work for me.
+Because Let's Encrypt uses symbolic links, it was necessary unfortunately to copy the private key and certificate chain to my user
+directory and from there copy it to the the proper directory in the nginx container.  Docker's cp command supposedly will follow a
+link with the -L parameter, but it didn't work for me.
 
 ## Start Your Ngin ##
 
@@ -141,17 +156,21 @@ server {
 }
 ```
 
-The first server block exposes the gogs server on the domain code.icosahedron.io, and forwards all access to the port 10080, which is the port that docker has bound to the host side of the gogs server (3000, being the default port that gogs binds itself to on the container side).
+The first server block exposes the gogs server on the domain code.icosahedron.io, and forwards all access to the port 10080, which
+is the port that docker has bound to the host side of the gogs server (3000, being the default port that gogs binds itself to on
+the container side).
 
 The second block is a simple redirect from http to https.
 
 ## And We Go ##
 
-With the certificates and configuration in place, I was able to start the nginx server and have it successfully serve the Gogs server.  Mission accomplished!
+With the certificates and configuration in place, I was able to start the nginx server and have it successfully serve the Gogs
+server.  Mission accomplished!
 
 ## Renewably Certifiable ##
 
-Let's Encrypt is a wonderful service, but the certificates only last 90 days.  Thankfully, the renewal isn't much different from the original certificate request.
+Let's Encrypt is a wonderful service, but the certificates only last 90 days.  Thankfully, the renewal isn't much different from the
+original certificate request.
 
 ```
 docker stop nginx
@@ -167,21 +186,28 @@ docker start nginx
 
 What happens if something goes wrong?  There are a couple of things to help you diagnose problems.
 
-The first is `docker log <container>`.  This will show you the log from the container that you look at.  When I first copied over the certificate and private key, since they were symbolic links, the links on the container didn't exist, so nginx wouldn't boot.  `docker log` showed me why the nginx container wouldn't stay up when running.
+The first is `docker log <container>`.  This will show you the log from the container that you look at.  
 
-The second is `docker exec -ti <container> bash`.  This will put you at a shell in the container as root.  Here you can look around to see what might be wrong.
+When I first copied over the certificate and private key, since they were symbolic links, the links on the container didn't exist,
+so nginx wouldn't boot.  `docker log` showed me why the nginx container wouldn't stay up when running.
 
-When initially doing the certificate renewal, I found I had screwed up the nginx configuration and the container wouldn't boot, I had to create another container to mount the nginx-config volume to be able to fix the problem.
+The second is `docker exec -ti <container> bash`.  This will put you at a shell in the container as root.  Here you can look around
+to see what might be wrong.
+
+Since I had screwed up the nginx configuration and the container wouldn't boot, I had to create another container to mount the
+nginx-config volume to be able to fix the problem.
 
 ```
 docker run --name nginx-conf -v nginx-config:/etc/nginx -d bashell/alpine-bash /bin/true
 docker exec -it <container> bash
 ```
 
-I was able to fix the problem and exit the shell, bring down the container, and restart the nginx container.
+I was able to fix the problem and exit the shell, bring down the container, and restart the nginx container with the correct
+configuration on the config volume.
 
 ## Simple ##
 
-This is a simple set up that creates a Git hosting server for myself.  In addition, Gogs allows me to mirror other repositories I'm interested in.
+This is a simple set up that creates a Git hosting server for myself.  In addition, Gogs allows me to mirror other repositories I'm
+interested in.
 
 The certificate handling is largely manual, but it is straightforward to understand, and I like to keep things simple.
