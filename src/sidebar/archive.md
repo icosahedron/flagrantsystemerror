@@ -52,7 +52,7 @@ title: Archive
 #### JANUARY 2014 ####
 
 [Flagrant System Error C++ Coding Guidelines](http://flagrantsystemerror.com/my_cpp_coding_guidelines.html)
-  C++ coding guideline for my personal projects.
+> C++ coding guideline for my personal projects.
 
 #### SEPTEMBER 2013 ####
 

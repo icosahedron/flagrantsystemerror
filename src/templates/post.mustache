@@ -1,73 +1,71 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="author" content="{{{ author }}}" />
-    <meta name="description" content="{{{ description }}}" />
-    <meta name="keywords" content="{{keywords}}" />
-    <meta name="robots" content="index, follow" />
-    <link rel="stylesheet" href="http://brick.a.ssl.fastly.net/Source+Sans+Pro:400,400i/Inconsolata:500" />
-    <link rel="stylesheet" href="{{{ styles_url }}}post.css" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-    <title>Flagrant System Error - {{title}}</title>
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{{ styles_url }}}post.css">
+    <link rel="stylesheet" type="text/css" href="{{{ styles_url }}}font-awesome/css/font-awesome.min.css">
+    <!-- <script src="https://use.fontawesome.com/ba0e3f3bde.js"></script> -->
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+
+  <meta name="author" content="Jay Kint" />
+  <meta name="description" content="Jay Kint's blog for technical/programmable musings" />
+  <meta property="og:site_name" content="Flagrant System Error"/>
+  <meta property="og:type" content="blog"/>
+  <meta property="og:title" content="Flagrant System Error"/>
+  <meta property="og:description" content="Technical Blog for Jay Kint"/>
+  <meta property="og:locale" content="en-US"/>
+  <meta property="og:url" content="http://flagrantsystemerror.com"/>
+
+  <title>Flagrant System Error - {{ title }}</title>
 </head>
 <body>
-
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <!-- <script src="http://desandro.github.io/imagesloaded/imagesloaded.pkgd.js"></script> -->
-  <script src="{{{ js_url }}}flagrant.js"></script>  
-
-<div id="middle">
-
-<div id="header">
-    <div class="grid">
-        <div class="grid-col-1"><a href="{{{ posts_url }}}index.html"><img src="{{{ images_url }}}flagrant_system_error.png" width="100%"></a></div>
-    </div>
-</div>
-
-<div id="body">
-    <div class="grid">
-        <div class="grid-col-1-5">
-          <div id="sidebar">
-            <p>By JAY KINT</p>
-            <br/>
-            <p><a href="{{{ posts_url }}}index.html">HOME</a></p>
-            <p><a href="{{{ sidebar_url }}}archive.html">ARCHIVE</a></p>
-            <p><a href="{{{ sidebar_url }}}colophon.html">COLOPHON</a></p>
-            <p><a href="{{{ sidebar_url }}}projects.html">PROJECTS</a></p>
-            <p><a href="{{{ sidebar_url }}}contact.html">CONTACT</a></p>
-          </div>
+    <!-- google tag manager -->
+  <aside>
+    <div>
+        <div id="banner">
+          <a href="{{{ posts_url }}}index.html">
+              <img src="{{{ images_url }}}flagrant_system_error.png" />
+          </a>
         </div>
-        <div class="grid-col-4-5">
-          <div id="post">
-            <div id="content">
-              {{{ contents }}}
-            </div>
-          </div>
-        </div>
-    </div>
-</div>
-
-<div id="footer">
-    <div class="grid">
-      <div class="grid-col-1" id="credits">
-        <p>Title graphic from <a href="http://www.homestarrunner.com/sbemail50.html">Homestar Runner SB E-mail 50</a>. <a href="http://flagrantsystemerror.com/rss.xml">RSS feed</a>.</p>
+      <p>BY JAY KINT</p>
+      <nav>
+        <ul class="list">
+            <li><a href="{{{ posts_url }}}index.html">home</a></li>
+            <li><a href="{{{ sidebar_url }}}archive.html">archive</a></li>
+            <li><a href="{{{ sidebar_url }}}colophon.html">colophon</a></li>
+            <li><a href="{{{ sidebar_url }}}projects.html">projects</a></li>
+            <li><a href="{{{ sidebar_url }}}contact.html">contact</a></li>
+        </ul>
+      </nav>
+      <!-- social buttons go here -->
+      <div class="credits">
+          <p>{{{ credits }}}</p>
       </div>
     </div>
-</div>
+  </aside>
+  <main>
+    <!-- <nav> -->
+        <!-- links to other items go here -->
+    <!-- </nav> -->
+    <article>
+        {{{ contents }}}
+    </article>
+    <footer>
+        <div class="credits">
+            <p>{{{ credits }}}</p>
+        </div>
+    </footer>
+  </main>
 
-</div>
-
-<!-- Google Analytics snippet -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-39852150-1', 'flagrantsystemerror.com');
-</script>
-<!-- End Google Analytics -->
-
+  <!-- analytics go here -->
 </body>
 </html>

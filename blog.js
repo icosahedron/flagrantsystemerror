@@ -90,6 +90,8 @@ Metalsmith(__dirname)
         url: "http://flagrantsystemerror.com",
         author: "Jay Kint",
         description: "The system is down. I don't know what you did moron, but you sure screwed everything up good.",
+        credits: "Title graphic from <a href=\"http://www.homestarrunner.com/sbemail50.html\">Homestar Runner SB E-mail 50</a>.<br> \
+        Site design inspired by <a href=\"http://blog.alexandrevicenzi.com/\">Alexandre Vicenzi</a>. <a href=\"http://flagrantsystemerror.com/rss.xml\">RSS feed</a>."
     })
     .use(ignore([
         'templates/*',
