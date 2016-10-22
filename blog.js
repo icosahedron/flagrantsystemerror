@@ -8,6 +8,7 @@ var collections = require('metalsmith-collections');
 var feed = require('metalsmith-feed');
 var more = require('metalsmith-more');
 var permalinks = require('metalsmith-permalinks');
+var which = require('which');
 
 var child_process = require('child_process');
 var path = require('path');
@@ -112,6 +113,7 @@ Metalsmith(__dirname)
               sortBy: 'source',
               refer: false }
     }))
+    // requires the source parameter created above
     .use(mmd({
         collection: 'mdfiles'
     }))
