@@ -167,6 +167,7 @@ main article h2 {
 main article header p {
   color: #999999;
   font-size: 0.86em;
+  font-family:
 }
 main article code,
 main article kbd,
@@ -383,62 +384,58 @@ ul.social a.sc-reddit {
 ul.social a.sc-soundcloud {
   background-color: #ff5500;
 }
-
-@media only screen
-and (min-device-width : 768px)
-/* and (min-device-height : 565px) */
-{
-    aside {
-      width: 25%;
-      height: 100%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      /*overflow-y: auto;*/
-    }
-    /*aside div {
-      padding: 36px 18px;
-    }*/
-    aside div nav ul li {
-      /*padding: 0 !important;*/
-      padding-right: 20%;
+@media screen and (min-width: 768px) {
+  aside {
+    width: 25%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    /*overflow-y: auto;*/
+  }
+  /*aside div {
+    padding: 36px 18px;
+  }*/
+  aside div nav ul li {
+    /*padding: 0 !important;*/
+    padding-right: 20%;
+    display: block;
+  }
+  aside div ul.social {
+    padding-top: 32px;
+  }
+  aside .credits {
       display: block;
-    }
-    aside div ul.social {
-      padding-top: 32px;
-    }
-    aside .credits {
-        display: block;
-        position: absolute;
-        bottom: 0;
-        text-align: center;
-        width: 100%;
-        font-size: 13px;
-    }
-    main {
-      width: 75%;
-      height: 100%;
       position: absolute;
-      top: 0;
-      left: 25%;
-    }
-    main article {
-        width: 60%;
-        margin-left: 20%;
-    }
-    main article.single {
-      min-height: 80%;
-    }
-    main article ul.list li {
-      padding: 2px;
-    }
-    ul.list {
-        padding-top: 33%;
-    }
-    ul.list li {
-      padding-right: 10%;
-    }
-    main footer .credits {
-        display: none;
-    }
+      bottom: 0;
+      text-align: center;
+      width: 100%;
+      font-size: 13px;
+  }
+  main {
+    width: 75%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 25%;
+  }
+  main article {
+      width: 60%;
+      margin-left: 20%;
+  }
+  main article.single {
+    min-height: 80%;
+  }
+  main article ul.list li {
+    padding: 2px;
+  }
+  ul.list {
+      padding-top: 33%;
+  }
+  ul.list li {
+    padding-right: 10%;
+  }
+  main footer .credits {
+      display: none;
+  }
 }
