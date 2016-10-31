@@ -1,17 +1,18 @@
 var Metalsmith = require('metalsmith');
-var layout = require('metalsmith-layouts');
+var collections = require('metalsmith-collections');
 var each = require("metalsmith-each");
+var elevate = require('metalsmith-elevate');
+var feed = require('metalsmith-feed');
 var file_metadata = require("metalsmith-filemetadata");
 var ignore = require('metalsmith-ignore');
-var elevate = require('metalsmith-elevate');
-var collections = require('metalsmith-collections');
-var feed = require('metalsmith-feed');
+var layout = require('metalsmith-layouts');
 var more = require('metalsmith-more');
 var permalinks = require('metalsmith-permalinks');
-var which = require('which');
+var stylus = require('metalsmith-stylus');
 
 var child_process = require('child_process');
 var path = require('path');
+var which = require('which');
 
 // set the index.html file from the single file that has index:true in its metadata
 var index = function(files, metalsmith, done) {
@@ -33,7 +34,12 @@ var mmd = function(options = {}) {
 
     // verify that mmd is installed
     // (this will throw an error if it's not installed)
-    var mmdVersion = child_process.execSync('mmd -v');
+    try {
+        var mmdVersion = which.sync("mmd");
+    }
+    catch(err) {
+        throw new Error("MultiMarkdown is not installed.  See http://fletcherpenney.net");
+    }
 
     var collectionName = options.collection;
     if(collectionName === 'undefined') {
@@ -43,7 +49,7 @@ var mmd = function(options = {}) {
     return function(files, metalsmith, done) {
         var metadata = metalsmith.metadata();
         if(metadata.collections === 'undefined') {
-            throw new Error('collections is not configured.  See metalsmith-collections.');
+            done(new Error('collections is not configured.  See metalsmith-collections.'));
         }
         var collection = metadata.collections[collectionName];
         // for(var file in files) {
@@ -117,6 +123,7 @@ Metalsmith(__dirname)
     .use(mmd({
         collection: 'mdfiles'
     }))
+    .use(stylus())
     // .use(feed({
     //     collection: 'posts'
     // }))
