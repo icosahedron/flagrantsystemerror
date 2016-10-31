@@ -81,7 +81,8 @@ title: Archive
 #### MAY 2012 ####
 
 [iPad Blog Post Workflow](../ipad-www-workflow.html)
-> I've long wanted to be able to author my blog completely on my iPad.  Now with the help of a new app, I can do so.  This is my workflow and how this post came to fruition.
+> I've long wanted to be able to author my blog completely on my iPad.  Now with the help of a new app, I can do so.  
+This is my workflow and how this post came to fruition.
 
 
 #### JANUARY 2012 ####
@@ -93,4 +94,5 @@ title: Archive
 #### DECEMBER 2011 ####
 
 [Content Goes Here](../content_goes_here.html)
-> Welcome to flagrantsystemerror.com.  This is the inaugural post. This website is intended to blog the more technical aspects of my projects.  I will mirror appropriate posts to {====}{>> - 2016-10-04 20:03:47<<}[artifice-lang.org](http://www.artifice-lang.org).
+> Welcome to flagrantsystemerror.com.  This is the inaugural post. This website is intended to blog the more technical aspects of
+my projects.  I will mirror appropriate posts to {====}{>> - 2016-10-04 20:03:47<<}[artifice-lang.org](http://www.artifice-lang.org).
