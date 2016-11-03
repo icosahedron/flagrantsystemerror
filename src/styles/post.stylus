@@ -77,12 +77,15 @@ img {
     max-width: 100%;
 }
 
-aside {
+aside-default()
     background-color: #206da8;
     color: #dbdef0;
     text-align: center;
     font-family: "Alegreya Sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
     position: relative;
+
+aside {
+    aside-default();
     /*font-weight: 700;
     font-style: normal;*/
 }
@@ -199,7 +202,6 @@ main article h2 {
 main article header p {
     color: #999999;
     font-size: 0.86em;
-    font-family:
 }
 
 main article code,
@@ -461,29 +463,25 @@ ul.social a.sc-soundcloud {
     background-color: #ff5500;
 }
 
-@media screen and (min-width: 768px) {
+// laout with sidebar on left and article on right
+sidebar-layout(sidebar-width, article-width)
 
     aside {
-    width: 25%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    /*overflow-y: auto;*/
+        width: sidebar-width;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
     }
 
-    /*aside div {
-    padding: 36px 18px;
-    }
-*/
     aside div nav ul li {
-    /*padding: 0 !important;*/
-    padding-right: 20%;
-    display: block;
+        /*padding: 0 !important;*/
+        padding-right: 20%;
+        display: block;
     }
 
     aside div ul.social {
-    padding-top: 32px;
+        padding-top: 32px;
     }
 
     aside .credits {
@@ -496,24 +494,24 @@ ul.social a.sc-soundcloud {
     }
 
     main {
-    width: 75%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 25%;
+        width: (100% - sidebar-width)%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 25%;
     }
 
     main article {
-        width: 60%;
-        margin-left: 20%;
+        width: article-width;
+        margin-left: ((100% - article-width) / 2)%;
     }
 
     main article.single {
-    min-height: 80%;
+        min-height: 80%;
     }
 
     main article ul.list li {
-    padding: 2px;
+        padding: 2px;
     }
 
     ul.list {
@@ -521,10 +519,31 @@ ul.social a.sc-soundcloud {
     }
 
     ul.list li {
-    padding-right: 10%;
+        padding-right: 10%;
     }
+
+    main footer
+        border: none;
 
     main footer .credits {
         display: none;
     }
+
+// normal desktop browser
+@media screen and (min-device-width: 769px) and (orientation: landscape) {
+    sidebar-layout(25%, 60%)
 }
+
+// ipad in landscape mode
+@media screen and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+
+    sidebar-layout(25%, 80%)
+}
+
+/*@media screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait) {
+
+    sidebar-layout(30%, 80%)
+}*/
