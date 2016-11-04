@@ -5,6 +5,7 @@
 
 html,
 body {
+    min-width: 768px;
     width: 100%;
     height: 100%;
 }
@@ -114,10 +115,14 @@ aside div h1 {
     margin: 15px 0 5px 0;
 }
 
-aside div p {
-    margin: 0 0 15px 0;
-    font-size: .92em;
-}
+aside-by-jay-kint(top-margin, font-size)
+    // "By Jay Kint"
+    #author {
+        margin: 0 0 top-margin 0;
+        font-size: font-size;
+    }
+
+aside-by-jay-kint(15px, 0.92em)
 
 aside nav ul li {
     display: inline;
@@ -158,46 +163,58 @@ main .social-share p {
     font-size: .8em;
 }
 
+// adjust the text sizes for different devices
+main-article-text(font-size, line-height)
+
+    main article {
+        /* margin: 0 8% 2% 8%; */
+        font-family: "CharisSIL", "Times New Roman", serif;
+        letter-spacing: .01rem;
+        font-weight: 300;
+        font-style: normal;
+        font-size: font-size;
+        line-height: line-height;
+        letter-spacing: -.003em;
+    }
+
+// default text sizes
+main-article-text(21px, 1.58)
+
 main article {
     width: 80%;
     margin-left: 10%;
-    /* margin: 0 8% 2% 8%; */
-    font-family: "CharisSIL", "Times New Roman", serif;
-    letter-spacing: .01rem;
-    font-weight: 300;
-    font-style: normal;
-    font-size: 21px;
-    line-height: 1.58;
-    letter-spacing: -.003em;
 }
 
 main article h1, h2, h3, h4, h5, h6 {
     font-family: "Alegreya Sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
 }
 
-main article header h1,
-main article header h2 {
-    margin-bottom: 0;
-}
+main-article-header-text(h1-font-size, h1-line-height, h2-font-size, h2-line-height)
+    main article header h1,
+    main article header h2 {
+        margin-bottom: 0;
+    }
 
-main article h1 {
-    letter-spacing: -.02em;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 40px;
-    margin-left: -2.5px;
-    line-height: 1.04;
-    letter-spacing: -.028em;
-}
+    main article h1 {
+        letter-spacing: -.02em;
+        font-weight: 700;
+        font-style: normal;
+        font-size: h1-font-size;
+        margin-left: -2.5px;
+        line-height: h1-line-height;
+        letter-spacing: -.028em;
+    }
 
-main article h2 {
-    font-weight: 500;
-    font-style: normal;
-    font-size: 32px;
-    margin-left: -2px;
-    line-height: 1.15;
-    letter-spacing: -.02em;
-}
+    main article h2 {
+        font-weight: 500;
+        font-style: normal;
+        font-size: h2-font-size;
+        margin-left: -2px;
+        line-height: h2-line-height;
+        letter-spacing: -.02em;
+    }
+
+main-article-header-text(40px, 1.04, 32px, 1.15)
 
 main article header p {
     color: #999999;
@@ -220,11 +237,14 @@ main article pre {
     border-left-width: 10px;
 }
 
-main article blockquote {
-    padding: 10px 20px;
-    font-weight: 300;
-    font-size: 1.1em;
-}
+main-article-block-quote(left-padding, right-padding, font-size)
+    main article blockquote {
+        padding: left-padding right-padding;
+        font-weight: 300;
+        font-size: font-size;
+    }
+
+main-article-block-quote(10px, 20px, 21px)
 
 main article pre {
     padding: 4px;
@@ -484,15 +504,6 @@ sidebar-layout(sidebar-width, article-width)
         padding-top: 32px;
     }
 
-    aside .credits {
-        display: block;
-        position: absolute;
-        bottom: 0;
-        text-align: center;
-        width: 100%;
-        font-size: 13px;
-    }
-
     main {
         width: (100% - sidebar-width)%;
         height: 100%;
@@ -514,14 +525,6 @@ sidebar-layout(sidebar-width, article-width)
         padding: 2px;
     }
 
-    ul.list {
-        padding-top: 33%;
-    }
-
-    ul.list li {
-        padding-right: 10%;
-    }
-
     main footer
         border: none;
 
@@ -529,21 +532,87 @@ sidebar-layout(sidebar-width, article-width)
         display: none;
     }
 
+sidebar-nav(padding-top, space-between, font-size, line-height)
+    ul.list {
+        padding-top: padding-top;
+    }
+
+    ul.list li {
+        padding: space-between;
+        padding-right: 10%;
+    }
+
+    aside nav ul li {
+        display: inline;
+        line-height: line-height;
+        font-size: font-size;
+        text-transform: lowercase;
+        text-align: right;
+    }
+
+sidebar-credits(font-size, line-height)
+    aside .credits {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+        width: 100%;
+        font-size: font-size;
+        line-height: line-height;
+    }
+
 // normal desktop browser
-@media screen and (min-device-width: 769px) and (orientation: landscape) {
+@media screen and (min-width: 1024px) and (min-height: 536px) {
     sidebar-layout(25%, 60%)
+    sidebar-nav(33%, 2.5%, 1.28em, 1.6em)
+    sidebar-credits(13px, 16px)
 }
 
 // ipad in landscape mode
 @media screen and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
-
     sidebar-layout(25%, 80%)
+    sidebar-nav(33%, 2.5%, 1.28em, 1.6em)
+    sidebar-credits(13px, 16px)
 }
 
-/*@media screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: portrait) {
+// iPhone 6 and 6s, portrait mode
+@media screen and (device-width: 375px) and (device-height: 667px) and (orientation: portrait) {
+    main-article-text(16px, 1.58)
+    main-article-header-text(24px, 1.04, 22px, 1.0)
+    main-article-block-quote(5px, 10px, 16px)
+}
 
-    sidebar-layout(30%, 80%)
-}*/
+// iPhone 6 and 6s, landscape mode
+@media screen and (device-width: 375px) and (device-height: 667px) and (orientation: landscape) {
+    sidebar-layout(25%, 80%)
+    sidebar-nav(33%, 2.5%, 1.28em, 1.6em)
+    sidebar-credits(8px, 10px)
+    main-article-text(16px, 1.58)
+    main-article-header-text(24px, 1.04, 22px, 1.0)
+    main-article-block-quote(5px, 10px, 16px)
+}
+
+// iphone 6+ and 6S+ in portrait mode
+@media screen and (device-width: 414px) and (device-height: 736px) and (orientation: portrait) {
+    main-article-text(16px, 1.58)
+    main-article-header-text(24px, 1.04, 22px, 1.0)
+    main-article-block-quote(5px, 10px, 16px)
+}
+
+// iphone 6+ and 6S+ in landscape mode
+@media screen and (device-width: 414px) and (device-height: 736px) and (orientation: landscape) {
+    sidebar-layout(25%, 80%)
+    sidebar-nav(10%, 2.5%, 16px, 20px)
+    sidebar-credits(8px, 10px)
+    main-article-text(16px, 1.58)
+    main-article-header-text(24px, 1.04, 22px, 1.0)
+    main-article-block-quote(5px, 10px, 16px)
+    aside-by-jay-kint(5px, 10px)
+}
+
+// iPhone 5 and 5s portrait mode
+@media screen and (device-width: 320px) and (device-height: 568px) {
+    main-article-text(16px, 1.58)
+    main-article-header-text(20px, 1.04, 16px, 1.0)
+    main-article-block-quote(5px, 10px, 16px)
+}
