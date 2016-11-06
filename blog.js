@@ -6,7 +6,6 @@ var ignore = require('metalsmith-ignore');
 var elevate = require('metalsmith-elevate');
 var collections = require('metalsmith-collections');
 var feed = require('metalsmith-feed');
-var more = require('metalsmith-more');
 var permalinks = require('metalsmith-permalinks');
 var which = require('which');
 
