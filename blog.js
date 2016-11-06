@@ -6,7 +6,6 @@ var feed = require('metalsmith-feed');
 var file_metadata = require("metalsmith-filemetadata");
 var ignore = require('metalsmith-ignore');
 var layout = require('metalsmith-layouts');
-var more = require('metalsmith-more');
 var permalinks = require('metalsmith-permalinks');
 var stylus = require('metalsmith-stylus');
 
