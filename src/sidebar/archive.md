@@ -21,12 +21,12 @@ title: Archive
 [At Scope Exit: Generic Scoped Resource Management in C++](../at_scope_exit.html)
 > A simple class that allows for scoped resource management with lambdas.
 
-[No Machine With a Black Bar](../no_machine_black_bar.html)
+[No Machine With a Black Bar](../no_machine_black_menu_bar.html)
 > A remedy for remote graphics glitches for the Mac.
 
 #### APRIL 2015 ####
 
-[Side Quest for a Blog](../side_quest_for_a_blog.html)
+[Side Quest for a Blog](../side_quest_for_blog.html)
 > Oops. We make the site visible to Google and get rid of the # urls.
 
 #### FEBRUARY 2015 ####
