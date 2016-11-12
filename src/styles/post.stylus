@@ -481,17 +481,18 @@ sidebar-credits(font-size, line-height)
     sidebar-nav(33%, 2.5%, 1.28em, 1.6em)
     sidebar-credits(13px, 16px)
 
-// iphone 6+ and 6S+ in portrait mode
-@media screen and (device-width: 414px) and (device-height: 736px) and (orientation: portrait)
+@media screen and (max-device-width: 768px)
     main-article-text(16px, 1.58)
     main-article-header-text(24px, 1.04, 22px, 1.0)
     aside-nav-text(18px, 1.6, 2.5%)
-    // main-article-block-quote(5px, 10px, 16px)
 
-@media screen and (device-width: 414px) and (device-height: 736px) and (orientation: landscape)
-    // sidebar-layout(30%, 80%)
-    // sidebar-nav(2%, 2.5%, 1em, 1.25em)
-    // sidebar-credits(8px, 10px)
-    main-article-text(16px, 1.58)
-    main-article-header-text(24px, 1.04, 22px, 1.0)
-    aside-nav-text(20px, 1.6, 2.5%)
+// iphone 6+ and 6S+ in portrait mode
+// @media screen and (device-width: 414px) and (device-height: 736px) and (orientation: portrait)
+//     main-article-text(16px, 1.58)
+//     main-article-header-text(24px, 1.04, 22px, 1.0)
+//     aside-nav-text(18px, 1.6, 2.5%)
+//
+// @media screen and (device-width: 414px) and (device-height: 736px) and (orientation: landscape)
+//     main-article-text(16px, 1.58)
+//     main-article-header-text(24px, 1.04, 22px, 1.0)
+//     aside-nav-text(20px, 1.6, 2.5%)

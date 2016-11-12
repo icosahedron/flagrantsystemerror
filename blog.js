@@ -174,7 +174,7 @@ Metalsmith(__dirname)
     //     console.log("post: " + filename);
     //     return filename;
     // }))
-    // .clean(false)
+    .clean(false)
     .build(function(err) {
         if (err) {
             console.log(err);
