@@ -74,6 +74,9 @@ hr
 
 img
     max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 
 aside
     background-color: flagrant-blue;
@@ -104,21 +107,56 @@ aside
 
         nav
             ul
+                padding: 1em 0 1em 0;
                 li
                     display: inline;
-                    line-height: 1.6em;
-                    font-size: 1.28em;
                     text-transform: lowercase;
                     text-align: right;
+                    list-style-type: none;
+
+    // ul.list
+    //     padding: 1em 0 1em 0;
+    //
+    //     li
+    //         padding: 2%;
+
+aside-nav-text(font-size, line-height, padding-percent)
+    aside
+        div
+            nav
+                ul
+                    li
+                        line-height: line-height;
+                        font-size: font-size;
+                        padding: padding-percent;
+
+aside-nav-text(1.28em, 1.6, 2%)
 
 aside .credits
     display: none;
 
 #banner
-    padding-top: 10%;
-    padding-bottom: 10%;
+    padding-top: 2%;
+    padding-bottom: 2%;
     padding-left: 5%;
     padding-right: 5%;
+
+main-article-text(font-size, line-height)
+    main
+        article
+            font-size: font-size;
+            line-height: line-height;
+
+main-article-header-text(h1-font-size, h1-line-height, h2-font-size, h2-line-height)
+    main
+        article
+            h1
+                font-size: h1-font-size;
+                line-height: h1-line-height;
+
+            h2
+                font-size: h2-font-size;
+                line-height: h2-line-height;
 
 main
     nav
@@ -143,35 +181,22 @@ main
         letter-spacing: .01rem;
         font-weight: 300;
         font-style: normal;
-        font-size: 21px;
-        line-height: 1.58;
         letter-spacing: -.003em;
 
         h1, h2, h3, h4, h5, h6
             font-family: sans-font
 
-        header
-            h1, h2
-                margin-bottom: 0
-            p
-                color: #999999;
-                font-size: 0.86em;
-
         h1
             letter-spacing: -.02em;
             font-weight: 700;
             font-style: normal;
-            font-size: 40px;
             margin-left: -2.5px;
-            line-height: 1.04;
             letter-spacing: -.028em;
 
         h2
             font-weight: 500;
             font-style: normal;
-            font-size: 32px;
             margin-left: -2px;
-            line-height: 1.15;
             letter-spacing: -.02em;
 
         code, kbd, samp, pre
@@ -242,10 +267,13 @@ main
                 vertical-align: top;
                 border-top: 1px solid #ddd;
 
-            figcaption
-                font-family: sans-font
-                font-size: 16px;
-                font-style: italic;
+        figure
+            text-align: center;
+
+        figcaption
+            font-family: sans-font
+            font-size: 16px;
+            font-style: italic;
 
     footer
         display: block;
@@ -259,6 +287,9 @@ main
             padding: 0 40px 0 40px;
             color: #999999;
             font-size: 11px;
+
+main-article-text(21px, 1.58)
+main-article-header-text(40px, 1.04, px, 1.15)
 
 main.pagination
     margin: 4% 8% 2% 8%;
@@ -294,16 +325,10 @@ a.btn:hover
 .float-right
     float: right;
 
-ul.list, ul.social
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-
-ul.list
-    padding: 1em 0 1em 0;
-
-    li
-        padding: 2.5%;
+// ul.list, ul.social
+//     list-style-type: none;
+//     margin: 0;
+//     padding: 0;
 
 ul.social
     font-size: 1.6em;
@@ -407,6 +432,13 @@ sidebar-layout(sidebar-width, article-width)
         footer .credits
             display: none;
 
+    #banner
+        padding-top: 10%;
+        padding-bottom: 10%;
+        padding-left: 5%;
+        padding-right: 5%;
+
+
 sidebar-nav(padding-top, space-between, font-size, line-height)
     ul.list
         padding-top: padding-top;
@@ -452,4 +484,13 @@ sidebar-credits(font-size, line-height)
 @media screen and (device-width: 414px) and (device-height: 736px) and (orientation: portrait)
     main-article-text(16px, 1.58)
     main-article-header-text(24px, 1.04, 22px, 1.0)
-    main-article-block-quote(5px, 10px, 16px)
+    aside-nav-text(18px, 1.6, 2.5%)
+    // main-article-block-quote(5px, 10px, 16px)
+
+@media screen and (device-width: 414px) and (device-height: 736px) and (orientation: landscape)
+    sidebar-layout(25%, 80%)
+    sidebar-nav(33%, 2.5%, 1.28em, 1.6em)
+    sidebar-credits(13px, 16px)
+    main-article-text(16px, 1.58)
+    main-article-header-text(24px, 1.04, 22px, 1.0)
+    // aside-nav-text(14px, 1.25, 2.5%)
