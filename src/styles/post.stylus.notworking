@@ -1,0 +1,620 @@
+@font-face {
+    font-family: "CharisSIL";
+    src: url("/fonts/CharisSILR.ttf");
+}
+
+html,
+body {
+    min-width: 768px;
+    width: 100%;
+    height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 300;
+    line-height: 1.1;
+    margin-top: 1.2em;
+    margin-bottom: 0em;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.6em;
+}
+
+h3 {
+    font-size: 1.36em;
+}
+
+h4 {
+    font-size: 1.2em;
+}
+
+h5 {
+    font-size: 1.1em;
+}
+
+h6 {
+    font-size: 1.0em;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #242121;
+    font-family: 'Source Sans Pro', 'Verdana', sans-serif;
+    font-size: 1.02em;
+    line-height: 1.2em;
+}
+
+a {
+    color: #555;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #999;
+}
+
+hr {
+    color: #eeeeee;
+    background-color: #eeeeee;
+    height: 1px;
+    border: none;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+img {
+    max-width: 100%;
+}
+
+aside-default()
+    background-color: #206da8;
+    color: #dbdef0;
+    text-align: center;
+    font-family: "Alegreya Sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+    position: relative;
+
+aside {
+    aside-default();
+    /*font-weight: 700;
+    font-style: normal;*/
+}
+
+aside a {
+    color: #dbdef0;
+}
+
+aside a:hover {
+    color: #eeeeee;
+}
+
+aside div {
+    /* padding: 20px; */
+    margin: 0;
+}
+
+#banner {
+    padding-top: 10%;
+    padding-bottom: 10%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+aside div h1 {
+    margin: 15px 0 5px 0;
+}
+
+aside-by-jay-kint(top-margin, font-size)
+    // "By Jay Kint"
+    #author {
+        margin: 0 0 top-margin 0;
+        font-size: font-size;
+    }
+
+aside-by-jay-kint(15px, 0.92em)
+
+aside nav ul li {
+    display: inline;
+    line-height: 1.6em;
+    font-size: 1.28em;
+    text-transform: lowercase;
+    text-align: right;
+}
+
+aside .credits {
+    display: none;
+}
+
+
+main nav {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: .72em;
+    padding: 14px 0 14px 0;
+    border-bottom: #eeeeee 1px solid;
+}
+
+main nav a {
+    padding: 0 4px 0 4px;
+    border-right: #eeeeee 1px solid;
+}
+
+main nav :first-child {
+    border-left: #eeeeee 1px solid;
+}
+
+main .pagination {
+    margin: 4% 8% 2% 8%;
+    height: 20px;
+}
+
+main .social-share p {
+    font-size: .8em;
+}
+
+// adjust the text sizes for different devices
+main-article-text(font-size, line-height)
+
+    main article {
+        /* margin: 0 8% 2% 8%; */
+        font-family: "CharisSIL", "Times New Roman", serif;
+        letter-spacing: .01rem;
+        font-weight: 300;
+        font-style: normal;
+        font-size: font-size;
+        line-height: line-height;
+        letter-spacing: -.003em;
+    }
+
+// default text sizes
+main-article-text(21px, 1.58)
+
+main article {
+    width: 80%;
+    margin-left: 10%;
+}
+
+main article h1, h2, h3, h4, h5, h6 {
+    font-family: "Alegreya Sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+}
+
+main-article-header-text(h1-font-size, h1-line-height, h2-font-size, h2-line-height)
+    main article header h1,
+    main article header h2 {
+        margin-bottom: 0;
+    }
+
+    main article h1 {
+        letter-spacing: -.02em;
+        font-weight: 700;
+        font-style: normal;
+        font-size: h1-font-size;
+        margin-left: -2.5px;
+        line-height: h1-line-height;
+        letter-spacing: -.028em;
+    }
+
+    main article h2 {
+        font-weight: 500;
+        font-style: normal;
+        font-size: h2-font-size;
+        margin-left: -2px;
+        line-height: h2-line-height;
+        letter-spacing: -.02em;
+    }
+
+main-article-header-text(40px, 1.04, 32px, 1.15)
+
+main article header p {
+    color: #999999;
+    font-size: 0.86em;
+}
+
+main article code,
+main article kbd,
+main article samp,
+main article pre {
+    font-family: 'Source Code Pro', 'Consolas', monospace;
+}
+
+main article blockquote,
+main article pre {
+    background-color: rgba(128, 128, 128, 0.05);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: 8px solid rgba(128, 128, 128, 0.075);
+    border-left-width: 10px;
+}
+
+main-article-block-quote(left-padding, right-padding, font-size)
+    main article blockquote {
+        padding: left-padding right-padding;
+        font-weight: 300;
+        font-size: font-size;
+    }
+
+main-article-block-quote(10px, 20px, 21px)
+
+main article pre {
+    padding: 4px;
+    font-size: .9em;
+    overflow-x: auto;
+    white-space: pre;
+}
+
+main article samp {
+    white-space: pre;
+    display: block;
+    overflow-x: auto;
+}
+
+main article kbd {
+    padding: .1em .6em;
+    border: 1px solid rgba(63, 63, 63, 0.25);
+    box-shadow: 0 1px 0 rgba(63, 63, 63, 0.25);
+    background-color: #fff;
+    color: #333;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 0 .1em;
+    white-space: nowrap;
+    font-size: .78em;
+}
+
+main article code {
+    font-size: .8em;
+    color: #c25;
+    /*padding: 1px 3px;*/
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-color: #f7f7f9;
+    overflow-y: hidden;
+    /*border: 1px solid #e1e1e8;*/
+    /*border-radius: 3px;*/
+}
+
+main article .comment-count {
+    font-size: .8em;
+}
+
+main article table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+main article table thead:first-child tr:first-child th {
+    border-top: 0;
+}
+
+main article table th,
+main article table td {
+    padding: 8px;
+    line-height: 20px;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+
+main article figcaption {
+    font-family: "Alegreya Sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+    font-size: 16px;
+    font-style: italic;
+}
+
+main footer {
+    display: block;
+    font-size: 13px;
+    padding-top: 4px;
+    border-top: #eeeeee 1px solid;
+}
+
+main footer p {
+    margin: 2px;
+    text-align: center;
+    padding: 0 40px 0 40px;
+    color: #999999;
+    font-size: 11px;
+}
+
+.tag-cloud a {
+    background-color: #D9411E;
+    padding: .2em .6em .2em;
+    font-size: .74em;
+    line-height: 1;
+    color: #ffffff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+.tag-cloud a:hover {
+    background-color: #FF5A09;
+}
+
+a.btn {
+    background-color: #D9411E;
+    padding: .6em .6em;
+    font-size: .8em;
+    line-height: 1;
+    color: #ffffff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+a.btn:hover {
+    background-color: #FF5A09;
+}
+
+.center,
+.text-center {
+    text-align: center;
+}
+
+.img-center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.float-right {
+    float: right;
+}
+
+div.related-posts {
+    margin: 15px 0 15px 0;
+    padding-bottom: 20px;
+    border-top: #eeeeee 1px solid;
+    border-bottom: #eeeeee 1px solid;
+}
+
+div.related-posts h4 {
+    margin: 20px 0 25px 0;
+}
+
+div.related-posts ul {
+    font-size: 1.1em;
+    padding-left: 12px;
+}
+
+div.related-posts ul li {
+    padding: 4px 0 4px 0;
+}
+
+ul.list,
+ul.social,
+ul.related-posts {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul.list {
+    padding: 1em 0 1em 0;
+}
+
+ul.list li {
+    padding: 2.5%;
+}
+
+ul.social {
+    font-size: 1.6em;
+    padding-top: 20px;
+}
+
+ul.social li {
+    display: inline;
+}
+
+ul.social a:hover {
+    z-index: 2;
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+}
+
+ul.social a {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+    text-align: center;
+    font-size: .8em;
+    line-height: 36px;
+}
+
+ul.social a.sc-facebook {
+    background-color: #3e5b98;
+}
+
+ul.social a.sc-google {
+    background-color: #d93e2d;
+}
+
+ul.social a.sc-pinterest {
+    background-color: #c92619;
+}
+
+ul.social a.sc-linkedin {
+    background-color: #3371b7;
+}
+
+ul.social a.sc-rss {
+    background-color: #f26109;
+}
+
+ul.social a.sc-stack-overflow {
+    background-color: #ff9900;
+}
+
+ul.social a.sc-twitter {
+    background-color: #4da7de;
+}
+
+ul.social a.sc-youtube {
+    background-color: #e02a20;
+}
+
+ul.social a.sc-github,
+ul.social a.sc-github-alt {
+    background-color: #111010;
+}
+
+ul.social a.sc-envelope-o {
+    background-color: #578AD6;
+}
+
+ul.social a.sc-reddit {
+    background-color: #ff4500;
+}
+
+ul.social a.sc-soundcloud {
+    background-color: #ff5500;
+}
+
+// laout with sidebar on left and article on right
+sidebar-layout(sidebar-width, article-width)
+
+    aside {
+        width: sidebar-width;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    aside div nav ul li {
+        /*padding: 0 !important;*/
+        padding-right: 20%;
+        display: block;
+    }
+
+    aside div ul.social {
+        padding-top: 32px;
+    }
+
+    main {
+        width: (100% - sidebar-width)%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 25%;
+    }
+
+    main article {
+        width: article-width;
+        margin-left: ((100% - article-width) / 2)%;
+    }
+
+    main article.single {
+        min-height: 80%;
+    }
+
+    main article ul.list li {
+        padding: 2px;
+    }
+
+    main footer
+        border: none;
+
+    main footer .credits {
+        display: none;
+    }
+
+sidebar-nav(padding-top, space-between, font-size, line-height)
+    ul.list {
+        padding-top: padding-top;
+    }
+
+    ul.list li {
+        padding: space-between;
+        padding-right: 10%;
+    }
+
+    aside nav ul li {
+        display: inline;
+        line-height: line-height;
+        font-size: font-size;
+        text-transform: lowercase;
+        text-align: right;
+    }
+
+sidebar-credits(font-size, line-height)
+    aside .credits {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+        width: 100%;
+        font-size: font-size;
+        line-height: line-height;
+    }
+
+// normal desktop browser
+@media screen and (min-width: 1024px) and (min-height: 536px) {
+    sidebar-layout(25%, 60%)
+    sidebar-nav(33%, 2.5%, 1.28em, 1.6em)
+    sidebar-credits(13px, 16px)
+}
+
+/*
+// ipad in landscape mode
+@media screen and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+    sidebar-layout(25%, 80%)
+    sidebar-nav(33%, 2.5%, 1.28em, 1.6em)
+    sidebar-credits(13px, 16px)
+}
+
+// iPhone 6 and 6s, portrait mode
+@media screen and (device-width: 375px) and (device-height: 667px) and (orientation: portrait) {
+    main-article-text(16px, 1.58)
+    main-article-header-text(24px, 1.04, 22px, 1.0)
+    main-article-block-quote(5px, 10px, 16px)
+}
+
+// iPhone 6 and 6s, landscape mode
+@media screen and (device-width: 375px) and (device-height: 667px) and (orientation: landscape) {
+    sidebar-layout(25%, 80%)
+    sidebar-nav(33%, 2.5%, 1.28em, 1.6em)
+    sidebar-credits(8px, 10px)
+    main-article-text(16px, 1.58)
+    main-article-header-text(24px, 1.04, 22px, 1.0)
+    main-article-block-quote(5px, 10px, 16px)
+}
+
+// iphone 6+ and 6S+ in portrait mode
+@media screen and (device-width: 414px) and (device-height: 736px) and (orientation: portrait) {
+    main-article-text(16px, 1.58)
+    main-article-header-text(24px, 1.04, 22px, 1.0)
+    main-article-block-quote(5px, 10px, 16px)
+}
+
+// iphone 6+ and 6S+ in landscape mode
+@media screen and (device-width: 414px) and (device-height: 736px) and (orientation: landscape) {
+    sidebar-layout(25%, 80%)
+    sidebar-nav(10%, 2.5%, 16px, 20px)
+    sidebar-credits(8px, 10px)
+    main-article-text(16px, 1.58)
+    main-article-header-text(24px, 1.04, 22px, 1.0)
+    main-article-block-quote(5px, 10px, 16px)
+    aside-by-jay-kint(5px, 10px)
+}
+
+// iPhone 5 and 5s portrait mode
+@media screen and (device-width: 320px) and (device-height: 568px) {
+    main-article-text(16px, 1.58)
+    main-article-header-text(20px, 1.04, 16px, 1.0)
+    main-article-block-quote(5px, 10px, 16px)
+}
+*/

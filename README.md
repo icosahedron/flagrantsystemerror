@@ -6,8 +6,8 @@ The blog is a static site generated using [metalsmith](http://metalsmith.io).
 
 ## Install
 
-[MultiMarkdown](http://fletcherpenney.net/multimarkdown/) and node.js/npm must already be installed.  Run `npm install` to download
-the necessary node packages required for the blog.
+[MultiMarkdown](http://fletcherpenney.net/multimarkdown/) and node.js/npm must already be installed.  Run the following to download
+the necessary dependencies required for the blog.
 
 ```
 brew install MultiMarkdown
@@ -27,7 +27,7 @@ Posts go into the **src/posts** directory and pages go into... wait for it... th
 
 I use Markdown to author the posts and generate the html with MultiMarkdown.  I use
 [MultiMarkdown Composer](http://multimarkdown.com/) to author the posts, and MultiMarkdown generates the same HTML as MultiMarkdown
-composer does (since they were both written by the same person).
+Composer does (since they were both written by the same person).
 
 The HTML generated does not contain the full document, but just the snippet of the document, which is then inserted into a Mustache
 template (kept in **src/templates**).
