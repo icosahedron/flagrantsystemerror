@@ -37,10 +37,23 @@ React Native and NativeScript both support the ability to update an application'
 
 [^javascript-out-of-band]: There are limits to what an update may contain according to Apple App Store rules.  It may not add new features or alter the functionality of your application significantly.  I doubt Google Play has such restrictions.
 
+In addition, Hog Bay Software released a [javascript library](https://github.com/jessegrosjean/birch-outline) for manipulating TaskPaper documents.
+
+I really liked the idea of out-of-band updates and it was too tempting to use the library, so I've incorporated Javascript into the app.  Xamarin supports the iOS JavascriptCore runtime provided by Apple, so this was fairly simple.
+
+It does mean that I will have to find or write an updater though.  It might be possible to use one of the React Native services that do this.
+
 ## You Got Your Javascript in My C#! ##
 
-
 @Done contains a core in C# for loading Javascript and binding that to the UI.
+
+To simplify this, I've been using Redux.NET.  It works well, and I've been pleased with the results.  The flow is simple and it is easy to communicate between components without tightly coupling them.
+
+However, Redux.NET (and Reducto, etc.) is purely synchronous.  As the app has grown, there have been minor performance problems that I wish to surmount before I get too far and have to retool much more code.
+
+There are examples about how to use Redux.NET asynchronously, but it feels bolted on.
+
+I thought of just creating a special API, DispatchAsync, that would handle the dispatch for me, but I thought I would do some research before 
 
 To help in this, I'm using Akka.NET to handle the binding of messages between the two layers.  This way the UI thread will always be free and responsive, and the work will be done in the background.  Akka.NET handles the plumbing details.
 
