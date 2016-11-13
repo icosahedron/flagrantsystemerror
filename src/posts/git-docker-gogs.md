@@ -1,7 +1,6 @@
 ---
 title: Git Service Setup on a Home Server
 date: 2016-10-01
-index: true
 ---
 # Git on the Home Front (Setting up a Git Service in Docker) #
 
