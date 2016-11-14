@@ -1,6 +1,11 @@
 ---
 title: Archive
 ---
+#### NOVEMBER 2016 ####
+
+[The Chronicle Continues](../chronicle-continues.html)
+> Development on my first mobile app continues (after graduating)
+	
 #### OCTOBER 2016 ####
 
 [Gogs Git Service in Docker on Home Server](../git-docker-gogs.html)
