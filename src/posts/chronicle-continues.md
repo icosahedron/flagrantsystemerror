@@ -69,3 +69,7 @@ Also, it's written for C# and .NET and works with Xamarin.
 
 I haven't made the adjustment yet, but I have done some initial tests, and they work very well.  I will follow up with how it goes.
 
+*Edit: So it came quickly to my attention that Akka.NET will not work for my scenario.*
+
+*I need to dispatch certain requests to the UI thread, and Akka.NET does not provide a way to easily receive messages on a specific thread.  Oh well.*
+
