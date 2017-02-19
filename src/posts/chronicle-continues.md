@@ -7,11 +7,11 @@ index: true
 
 [A while back](http://flagrantsystemerror.com/chronicle-of-an-app.html) I started an app, my first real mobile application.
 
-As it is wont, life gets in the way, in particular finishing my degree.  As part of the degree program, I was required to do a Senior Project.  I chose to continue the TaskPaper clone that I had started earlier.
+As it is wont, life gets in the way, in particular finishing my degree.  As part of the degree program, I was required to do a Senior Project.  I chose to prototype the TaskPaper clone that I had imagined earlier.
 
-Well, the app is coming along nicely.  I completed the project without completing the app.  The project was to design the app, finish a prototype, and write a report on the project.
+(The project was to design the app, finish a prototype, and write a report on the project prototype.)
 
-So far this prototype has evolved a bit.
+So far this prototype has evolved a bit to something a bit more functional.
 
 ![@Done Prototype][done-prototype]
 
