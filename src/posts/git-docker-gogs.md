@@ -16,20 +16,16 @@ much time on it.
 
 ## On the Dock ##
 
-To keep the set up as easy and isolated as possible, I use [Docker for OSX](http://www.docker.com/products/overview).  If you
-haven't used Docker recently, the latest version of Docker is much easier to administrate.  Gone is Virtual Box.  Instead Docker
-uses the native virtualization of OSX (and Windows too).
+To keep the set up as easy and isolated as possible, I use [Docker for OSX](http://www.docker.com/products/overview).  If you haven't used Docker recently, the latest version of Docker is much easier to administrate.  Gone is Virtual Box.  Instead Docker uses the native virtualization of OSX (and Windows too).
 
-Since I host other services as well, I use nginx as a reverse proxy.  As nginx has data that needs to persist across container
-invocations, I created a couple of volumes for it: one to hold the configuration and another to hold the web pages and other data.
+Since I host other services as well, I use nginx as a reverse proxy.  As nginx has data that needs to persist across container invocations, I created a couple of volumes for it: one to hold the configuration and another to hold the web pages and other data.
 
 ```
 docker volume create nginx-config
 docker volume create nginx-data
 ```
 
-With these set up, I set up nginx proper in docker, mounting the data and configuration volumes where nginx looks for them by
-default:
+With these set up, I set up nginx proper in docker, mounting the data and configuration volumes where nginx looks for them by default:
 
 ```
 docker run --name nginx -v nginx-config:/etc/nginx -v nginx-data:/usr/share/nginx/html -p 80:80 -p 443:443 -d nginx
@@ -41,8 +37,7 @@ Now all web traffic to the server goes to the nginx docker container.
 
 [nginx-screenshot]: images/nginx-screenshot.png width=512px
 
-To host the Git data, I chose the Gogs server.  Gitlab is very nice, but it is resource intensive, and I wanted something light.  
-Gogs, written in Go, fits that bill quite nicely.  As a bonus, it has many of the same features as GitHub and GitLab.
+To host the Git data, I chose the Gogs server.  Gitlab is very nice, but it is resource intensive, and I wanted something light.  Gogs, written in Go, fits that bill quite nicely.  As a bonus, it has many of the same features as GitHub and GitLab.
 
 Like nginx, Gogs needs a separate volume to host the repository data.
 

@@ -1,7 +1,6 @@
 ---
 title: The Chronicle Continues
 date: 2016-11-12
-index: true
 ---  
 # The Chronicle Continues #
 
