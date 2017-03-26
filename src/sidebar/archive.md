@@ -1,10 +1,10 @@
 ---
 title: Archive
 ---
-#### FEBRUARY 2017 ####
+#### MARCH 2017 ####
 
-[Gogs Git Server with Nginx on Docker using Docker Compose](../gogs-docker-compose.html)
-> Composing a Gogs Git server with Nginx reverse proxy using Docker Compose.
+[Compose a Git Server](../git-vagrant-docker.html)
+> Composing a Gogs Git server with Nginx reverse proxy using Vagrant and Docker Compose.
 
 #### NOVEMBER 2016 ####
 
