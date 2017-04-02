@@ -7,7 +7,6 @@ var file_metadata = require("metalsmith-filemetadata");
 var ignore = require('metalsmith-ignore');
 var layout = require('metalsmith-layouts');
 var permalinks = require('metalsmith-permalinks');
-var stylus = require('metalsmith-stylus');
 var less = require('metalsmith-less');
 
 var child_process = require('child_process');
