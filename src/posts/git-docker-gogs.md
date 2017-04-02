@@ -35,7 +35,7 @@ Now all web traffic to the server goes to the nginx docker container.
 
 ![Nginx Bare Screenshot][nginx-screenshot]
 
-[nginx-screenshot]: images/nginx-screenshot.png width=512px
+[nginx-screenshot]: images/nginx-screenshot.png width=100%
 
 To host the Git data, I chose the Gogs server.  Gitlab is very nice, but it is resource intensive, and I wanted something light.  Gogs, written in Go, fits that bill quite nicely.  As a bonus, it has many of the same features as GitHub and GitLab.
 

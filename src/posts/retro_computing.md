@@ -58,8 +58,8 @@ Add a joystick, and rediscover your childhood!
 
 I've also discovered that the BBS is not dead! We'll connect to some BBSs with the Atari.
 
-[atari_8bit_setup]: images/atari_8bit_setup.jpg width="512px"
-[ion_audio_video2pc]: images/ion_audio_video2pc.jpg width="512px"
-[sio2pc]: images/sio2pc.jpg width="512px"
-[playing_the_atari]: images/playing_the_atari.jpg width="512px"
+[atari_8bit_setup]: images/atari_8bit_setup.jpg width="100%"
+[ion_audio_video2pc]: images/ion_audio_video2pc.jpg width="100%"
+[sio2pc]: images/sio2pc.jpg width="100%"
+[playing_the_atari]: images/playing_the_atari.jpg width="100%"
 

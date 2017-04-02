@@ -22,5 +22,5 @@ Well, dear reader, I have tried the solution and can attest that it does work.  
 
 So, if you find the black menu bar annoying or even impossible, this will solve it at the cost of a meal at your favorite fast food place.
 
-[no_machine_black_menu_bar]: images/no_machine_black_menu_bar.jpg width="512px"
-[no_machine_white_menu_bar]: images/no_machine_white_menu_bar.jpg width="512px"
+[no_machine_black_menu_bar]: images/no_machine_black_menu_bar.jpg width="100%"
+[no_machine_white_menu_bar]: images/no_machine_white_menu_bar.jpg width="100%"
