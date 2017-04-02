@@ -1,0 +1,55 @@
+// Mixins
+
+.transition-all() {
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.background-cover() {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.background-contain() {
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    background-size: contain;
+    -o-background-size: contain;
+}
+
+.sans-serif-font() {
+  font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;       
+}
+
+.serif-font() {
+  font-family: "ApparatusSIL";
+}
+
+@font-face {
+    font-family: "ApparatusSIL";
+    src: url("../fonts/AppSILR.ttf");
+    font-weight: regular;
+}
+@font-face {
+    font-family: "ApparatusSIL";
+    src: url("../fonts/AppSILB.ttf");
+    font-weight: bold;
+}
+@font-face {
+    font-family: "ApparatusSIL";
+    src: url("../fonts/AppSILI.ttf");
+    font-style: italic;
+}
+@font-face {
+    font-family: "ApparatusSIL";
+    src: url("../fonts/AppSILBI.ttf");
+    font-weight: bold;
+    font-style: italic;
+}
+
+    .title-padding() {
+        padding: 17vw 0 23vw;
+    }

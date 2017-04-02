@@ -8,10 +8,12 @@ var ignore = require('metalsmith-ignore');
 var layout = require('metalsmith-layouts');
 var permalinks = require('metalsmith-permalinks');
 var stylus = require('metalsmith-stylus');
+var less = require('metalsmith-less');
 
 var child_process = require('child_process');
 var path = require('path');
 var which = require('which');
+var util = require('util');
 
 // set the index.html file from the single file that has index:true in its metadata
 var index = function(files, metalsmith, done) {
@@ -51,33 +53,43 @@ var mmd = function(options = {}) {
             done(new Error('collections is not configured.  See metalsmith-collections.'));
         }
         var collection = metadata.collections[collectionName];
-        // for(var file in files) {
-        //     console.log(file);
-        // }
-        // console.log("---------");
-        // for(var file in collection) {
-        //     if(typeof collection[file] === 'undefined') {
-        //         continue;
-        //     }
-        //     console.log(collection[file].source);
-        // }
         for(var file in collection) {
-            // console.log("file: " + file);
-            // console.log(collection[file]);
             var cmd = "multimarkdown -s --to=html";
-            // console.log(collection[file].contents.toString('utf8'));
-            if(typeof collection[file] === 'undefined') {
+            if(file == 'metadata') {
                 continue;
             }
             var html = child_process.execSync(cmd, { input: collection[file].contents });
             collection[file].html = html;
             var newFile = collection[file].source;
             newFile = path.dirname(newFile) + path.sep + path.basename(newFile, '.md') + ".html";
-            // console.log("old file: " + collection[file].source + " new file: " + newFile);
             files[newFile] = files[collection[file].source];
-            // console.log(files[collection[file].source] + " " + files[newFile]);
             if(files[collection[file].source])
             files[newFile].contents = html;
+            delete files[collection[file].source];
+        }
+        done();
+    }
+}
+
+// remove certain files from those to be processed (e.g., less files)
+// the files to be removed are defined in a collection
+var rm = function(options = {}) {
+
+    var collectionName = options.collection;
+    if(collectionName === 'undefined') {
+        throw new Error('collection option is required. See metalsmith-collections.');
+    }
+
+    return function(files, metalsmith, done) {
+        var metadata = metalsmith.metadata();
+        if(metadata.collections === 'undefined') {
+            done(new Error('collections is not configured.  See metalsmith-collections.'));
+        }
+        var collection = metadata.collections[collectionName];
+        for(var file in collection) {
+            if(file == 'metadata') {
+                continue;
+            }
             delete files[collection[file].source];
         }
         done();
@@ -97,7 +109,7 @@ Metalsmith(__dirname)
         author: "Jay Kint",
         description: "The system is down. I don't know what you did moron, but you sure screwed everything up good.",
         credits: "Title graphic from <a href=\"http://www.homestarrunner.com/sbemail50.html\">Homestar Runner SB E-mail 50</a>.<br> \
-        Site design inspired by <a href=\"http://blog.alexandrevicenzi.com/\">Alexandre Vicenzi</a>.<br>Subscribe to the <a href=\"http://flagrantsystemerror.com/rss.xml\">RSS feed</a> to receive updates."
+        Site design inspired by Clean Blog and Bootstrap.<br>Subscribe to the <a href=\"http://flagrantsystemerror.com/rss.xml\">RSS feed</a> to receive updates."
     })
     .use(ignore([
         'templates/*',
@@ -116,16 +128,25 @@ Metalsmith(__dirname)
         mdfiles:
             { pattern: '**/*.md',
               sortBy: 'source',
+              refer: false },
+        lessfiles:
+            { pattern: '**/*.less',
+              sortBy: 'source',
               refer: false }
     }))
     // requires the source parameter created above
     .use(mmd({
         collection: 'mdfiles'
     }))
-    .use(stylus())
-    // .use(feed({
-    //     collection: 'posts'
+    // .use(each(function(file, filename) {
+    //     console.log(util.inspect(file, { showHidden: true, depth: null, color: true }));
     // }))
+    // just proces the one file
+    .use(less({
+        pattern: '**/post.less',
+        render: { paths: ['src/styles'] }
+    }))
+    .use(rm({ collection: 'lessfiles' }))
     .use(file_metadata([
         {
             pattern : "posts/*.html",
@@ -174,7 +195,7 @@ Metalsmith(__dirname)
     //     console.log("post: " + filename);
     //     return filename;
     // }))
-    .clean(false)
+    .clean(true)
     .build(function(err) {
         if (err) {
             console.log(err);
