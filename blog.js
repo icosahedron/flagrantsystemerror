@@ -153,19 +153,19 @@ Metalsmith(__dirname)
                 layout: "post.mustache",
                 posts_url: "/",
                 images_url: "/images/",
-                sidebar_url: "/sidebar/",
+                navbar_url: "/navbar/",
                 styles_url: "/styles/",
                 js_url: "/js/"
             },
             preserve: true
         },
         {
-            pattern : "sidebar/*.html",
+            pattern : "navbar/*.html",
             metadata: {
                 layout: "post.mustache",
                 posts_url: "/",
                 images_url: "/images/",
-                sidebar_url: "/sidebar/",
+                navbar_url: "/navbar/",
                 styles_url: "/styles/",
                 js_url: "/js/"
             },
