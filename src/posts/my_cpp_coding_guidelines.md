@@ -10,8 +10,8 @@ I've written a personal C++ coding standard.  It is cultivated from the followin
 	* This standard has C++11 advice that will be included in subsequent revisions of this coding guideline.
 * [Google C++ coding standard](https://google-styleguide.googlecode.com/svn/trunk/cppguide.xml) 
 
-This coding standard needs to be updated to include advice on some of the newer features in C++11.  I'll get to that in the upcoming weeks.
+This coding standard needs to be updated to include advice on some of the newer features in C++11.  I'll get to that with my next C++ project.
 
 I use this standard only for personal projects and update it from time to time.  Some justifications have been given, but admittedly it's is mostly my opinion.
 
-[Flagrant System Error C++ Coding Guidelines](cpp_coding_guidelines.html)
+[Flagrant System Error C++ Coding Guidelines](/pages/cpp_coding_guidelines.html)
