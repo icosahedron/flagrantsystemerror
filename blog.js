@@ -107,7 +107,9 @@ Metalsmith(__dirname)
         author: "Jay Kint",
         description: "The system is down. I don't know what you did moron, but you sure screwed everything up good.",
         credits: "Title graphic from <a href=\"http://www.homestarrunner.com/sbemail50.html\">Homestar Runner SB E-mail 50</a>.<br> \
-        Site design inspired by Clean Blog and Bootstrap.<br>Subscribe to the <a href=\"http://flagrantsystemerror.com/rss.xml\">RSS feed</a> to receive updates."
+        Site design inspired by <a href=\"https://startbootstrap.com/template-overviews/clean-blog/\">Start Bootstrap Clean Blog theme</a>.<br> \
+        Photo altered from original by <a href=\"https://unsplash.com/@emilep?photo=xrVDYZRGdw4\">Emile Perron</a> under <a href=\"http://creativecommons.org/publicdomain/zero/1.0/\">Creative Commons Zero</a>.<br> \
+        Subscribe to the <a href=\"http://flagrantsystemerror.com/rss.xml\">RSS feed</a> to receive updates."
     })
     .use(ignore([
         'templates/*',
