@@ -2,6 +2,8 @@
 title: Projects
 ---
 
+# Projects #
+
 The series of projects I'm working on, listed loosely by priority.
 
 ### @Done ###

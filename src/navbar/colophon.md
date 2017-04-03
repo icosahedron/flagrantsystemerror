@@ -2,7 +2,9 @@
 
 Flagrant System Error is produced by [Jay Kint](mailto:jkint@flagrantsystemerror.com).
 
-It is available in source form on [Git](http://code.icosahedron.io/jkint/flagrantsystemerror).
+It is available in source form on [Github](http://github.com/icosahedron/flagrantsystemerror).
+
+It is something of a tongue-in-cheek look at my technical musings.  For anyone familiar with Strong Bad e-mails from Homestar Runner, I hope it brings a small chuckle, as well as being useful.
 
 ## Site Software
 
