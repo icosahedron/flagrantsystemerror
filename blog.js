@@ -6,7 +6,6 @@ var feed = require('metalsmith-feed');
 var file_metadata = require("metalsmith-filemetadata");
 var ignore = require('metalsmith-ignore');
 var layout = require('metalsmith-layouts');
-var permalinks = require('metalsmith-permalinks');
 var less = require('metalsmith-less');
 
 var child_process = require('child_process');
@@ -72,7 +71,7 @@ var mmd = function(options = {}) {
 
 // remove certain files from those to be processed (e.g., less files)
 // the files to be removed are defined in a collection
-var rm = function(options = {}) {
+var rmdest = function(options = {}) {
 
     var collectionName = options.collection;
     if(collectionName === 'undefined') {
@@ -120,9 +119,6 @@ Metalsmith(__dirname)
         file.source = filename;
         return filename;
     }))
-    // .use(permalinks({
-    //     pattern: ':title'
-    // }))
     .use(collections({
         mdfiles:
             { pattern: '**/*.md',
@@ -145,7 +141,7 @@ Metalsmith(__dirname)
         pattern: '**/post.less',
         render: { paths: ['src/styles'] }
     }))
-    .use(rm({ collection: 'lessfiles' }))
+    .use(rmdest({ collection: 'lessfiles' }))
     .use(file_metadata([
         {
             pattern : "posts/*.html",
